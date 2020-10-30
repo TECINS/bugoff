@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bugOff"
+    }
+  },
+  "defaultProject": "bugOff",
+  "cli": {
+    "analytics": "be923be4-22c5-4ffc-ab6c-04e442ed6aba"
+  }
 }
