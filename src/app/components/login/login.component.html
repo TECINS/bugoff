@@ -35,6 +35,21 @@
                         <input type="email" class="form__field" placeholder="Contraseña" name="pass" id='pass' required />
                         <label for="pass" class="form__label">Contraseña</label>
                     </div>
+
+                    <div>
+                        <button class="btn-iniciar">
+                            Iniciar sesion
+                        </button>
+                    </div>
+
+                    <div>
+                        <button class="btn-iniciar">
+                            <a [routerLink]="['/register']" routerLinkActive = "Active">
+                            Registrarse
+                        </a>
+                        </button>
+                    </div>
+
                 </form>
             </div>
         </div>
