@@ -32,11 +32,11 @@
                 <small style="color: thistle;"> Ingresa la siguiente información.</small>
                 <form autocomplete="off" style="width: 100%;">
                     <div class="form__group field mt-5" style="width: 100%;">
-                        <input autocomplete="off" type="email" class="form__field" name="email" id='email' required />
+                        <input autocomplete="off" type="email" class="form__field" name="email" id='email' />
                         <label for="email" class="form__label">e-mail</label>
                     </div>
                     <div class="form__group field mt-5" style="width: 100%;">
-                        <input type="password" class="form__field" name="pass" id='pass' required />
+                        <input type="password" class="form__field" name="pass" id='pass' />
                         <label for="pass" class="form__label">Contraseña</label>
                     </div>
                     <div class="row ml-2 text-warning" style="width: 95%; justify-content: space-between;">
@@ -51,9 +51,13 @@
                     <div class="mt-4">
                         <button class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;"> Start coding now! </button>
                     </div>
+
+                    <div class="mt-4">
+                        <button [routerLink]="['/register']" class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;">  > Register </button>
+                    </div>
                 </form>
                 <div class="mt-5" style="justify-content: center; align-items: center; align-self: center; width: 100%; display: flex;">
-                    <p style="color: #C8CABE; font-weight: 400;"> O crea una cuenta con: </p>
+                    <p style="color: #C8CABE; font-weight: 400;"> O crea una cuenta con: </p>c
                 </div>
                 <div style="justify-content: center; align-items: center; align-self: center; width: 100%; display: flex;">
                     <button type="button" class="mt-0 btn btn-primary btn-lg" style="background-color: #162A36; border-color: lawngreen; border: 5px;">
