@@ -17,5 +17,8 @@ export class LoginService {
   sendForgotMessage( toEmail: string ): Observable<any>{
     return this.http.post(this.SERV_POINT.URL_API + 'usuarios/recuperar-contrasena', toEmail );
   }
+  
+  
+  
 
 }

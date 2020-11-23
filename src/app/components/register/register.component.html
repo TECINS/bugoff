@@ -37,31 +37,38 @@
         <div class="container-fluid">
 
             <div class="row centrado">
-                <form action="">
-
-                    <div class="form-group ">
-                        <input type="text " class="forma " placeholder="Ingresa tu nombre ">
+                <form action="" class="form-group" [formGroup] = "formRegistro">
+                    
+                    <div >
+                        <input type="text " class="forma form-control" formControlName="nombre" placeholder="Ingresa tu nombre ">
                     </div>
-                    <div class="form-group ">
-                        <input type="text " class="forma " placeholder="Ingresa tus apellidos ">
+                    <div >
+                        <input type="text " class="forma form-control" formControlName="apellido_paterno" placeholder="Ingresa tu apellido paterno ">
                     </div>
-                    <div class="form-group ">
-                        <input type="text " class="forma " placeholder="Crea un nombre de usuario ">
+                    <div >
+                        <input type="text " class="forma form-control" formControlName="apellido_materno" placeholder="Ingresa tu apellido materno ">
                     </div>
-                    <div class="form-group ">
-                        <div class="form-group ">
-                            <input type="text " class="forma " placeholder="Ingresa tu Correo ">
+                    <div >
+                        <input type="text " class="forma form-control" formControlName="user_name" placeholder="Crea un nombre de usuario ">
+                    </div>
+                    <div >
+                        <div >
+                            <input type="email" class="forma form-control " formControlName="correo" placeholder="Ingresa tu Correo ">
                         </div>
-                        <input class="forma " type="text " placeholder="Crea una contraseña ">
+                        <input class="forma " type="text form-control " formControlName="contrasenia" placeholder="Crea una contraseña ">
                     </div>
-                    <div class="form-group ">
-                        <input class="forma " type="text " placeholder="Confirme su Contraseña ">
+                
+                </form>
+
+                <form [formGroup]="formConfirmacion">
+                    <div >
+                        <input class="forma form-control" formControlName="confirmar" type="text form-control "   placeholder="Confirme su Contraseña ">
                     </div>
-                    <div class="form-group ">
+                    <div>
                         <p>Al crear una cuenta en BugOff acepto los <span>terminos y condiciones</span></p>
                     </div>
 
-                    <div class="form-group d-flex justify-content-end">
+                    <div class="d-flex justify-content-end">
                         <button class="btn-reg">
                             <i class="fas fa-arrow-right"></i>
                     </button>
