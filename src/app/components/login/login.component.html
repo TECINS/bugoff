@@ -38,13 +38,13 @@
             <div style="width: 100%;">
                 <h2 style="color: white;"> <strong>INICIAR SESIÓN</strong> </h2>
                 <small style="color: thistle;"> Ingresa la siguiente información.</small>
-                <form autocomplete="off" style="width: 100%;">
+                <form autocomplete="off" style="width: 100%;" class="form-group" [formGroup]="formLogin">
                     <div class="form__group field mt-5" style="width: 100%;">
-                        <input autocomplete="off" type="email" class="form__field" name="email" id='email' />
+                        <input formControlName="correo" autocomplete="off" type="email" class="form__field" name="email" id='email' />
                         <label for="email" class="form__label">e-mail</label>
                     </div>
                     <div class="form__group field mt-5" style="width: 100%;">
-                        <input type="password" class="form__field" name="pass" id='pass' />
+                        <input formControlName="contrasenia" type="password" class="form__field" name="pass" id='pass' />
                         <label for="pass" class="form__label">Contraseña</label>
                     </div>
                     <div class="row ml-2 text-warning" style="width: 95%; justify-content: space-between;">
@@ -57,7 +57,7 @@
                         <a [routerLink]="['/register']" style="color: chartreuse; font-weight: 600;" [routerLink]="['/recovery']"> ¿Problemas para ingresar? </a>
                     </div>
                     <div class="mt-4">
-                        <button class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;"> Start coding now! </button>
+                        <button class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;" (click)="iniciar()"> Start coding now! </button>
                     </div>
 
                     <div class="mt-4">
