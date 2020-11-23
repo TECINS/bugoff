@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
+import { ServerPoint } from './config/config.services';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    ServerPoint
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
