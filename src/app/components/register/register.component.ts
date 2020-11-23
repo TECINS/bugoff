@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { group } from 'console';
-import { threadId } from 'worker_threads';
+
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   formConfirmacion: FormGroup;
 
-  constructor( private formBuilder: FormBuilder ) { 
+  constructor( private formBuilder: FormBuilder, private loginService: LoginService) { 
 
     this.formRegistro = formBuilder.group({
     
@@ -32,16 +32,19 @@ export class RegisterComponent implements OnInit {
 
     });
 
-
-
-    
-
   }
 
   ngOnInit(): void {
   }
 
   Registro(){
+
+  if(this.formRegistro.value.contrasenia === this.formConfirmacion.value){
+    this.loginService.registro(this.formRegistro.value).subscribe(
+      data => { console.log(data) },
+      err  => { console.log(err ) }
+    );
+  }
 
   }
 
