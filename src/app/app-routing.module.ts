@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'recovery', component: RecoveryPassComponent
   },
   {
     path: 'loading', component: LoadingComponent
@@ -23,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: '', pathMatch: 'full', redirectTo: 'login'
-  },
+  }
 ];
 
 @NgModule({
