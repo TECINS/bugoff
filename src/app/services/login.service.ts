@@ -21,4 +21,9 @@ export class LoginService {
   
   
 
+  login(body: string): Observable<any>{
+    return this.http.post(this.SERV_POINT.URL_API + 'usuarios/login', body);
+    
+  }
+
 }
