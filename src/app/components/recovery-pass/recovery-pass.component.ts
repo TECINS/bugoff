@@ -21,7 +21,7 @@ export class RecoveryPassComponent implements OnInit {
 
   recoveryPassword() {
     if(this.validarCorreoElectronico(this.formRecoveryPass.value)) {
-
+      
     }
   }
 
@@ -32,6 +32,5 @@ export class RecoveryPassComponent implements OnInit {
     }
     return true;
   }
-
 }
 
