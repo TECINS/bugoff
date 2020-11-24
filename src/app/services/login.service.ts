@@ -22,4 +22,9 @@ export class LoginService {
     return this.http.post(this.SERV_POINT.URL_API + 'usuarios/recuperar-contrasena', correo , {headers: this.headers});
   }
 
+  login(body: string): Observable<any>{
+    return this.http.post(this.SERV_POINT.URL_API + 'usuarios/login', body);
+    
+  }
+
 }
