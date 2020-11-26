@@ -5,6 +5,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
+import { TesterComponent } from './components/pages/tester/tester.component';
+import { HomeTesterComponent } from './components/pages/tester/pages/home-tester/home-tester.component';
+import { HistorialpruebasTesterComponent } from './components/pages/tester/pages/historialpruebas-tester/historialpruebas-tester.component';
 
 const routes: Routes = [
   {
@@ -23,6 +26,16 @@ const routes: Routes = [
     path: 'signup', component: SignUpComponent
   },
   {
+    path: 'tester', component: TesterComponent, children: [
+      {
+        path: 'tester-home', component: HomeTesterComponent
+      },
+      {
+        path: 'tester-historyTest', component: HistorialpruebasTesterComponent
+      }
+    ]
+  },
+  {
     path: '**', pathMatch: 'full', redirectTo: 'login'
   },
   {
@@ -31,7 +44,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
