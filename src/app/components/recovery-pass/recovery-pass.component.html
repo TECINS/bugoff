@@ -11,7 +11,7 @@
                         <label for="">Correo</label>
                     </div>
                     <div>
-                        <input type="text" class="form-control" formControlName="recuperar" placeholder="Ingresa tu correo" />
+                        <input [(ngModel)]="correo" type="text" class="form-control" formControlName="recuperar" placeholder="Ingresa tu correo" />
                     </div>
                     <div>
                         <button class="btn btn-primary" [disabled]="!formRecoveryPass.valid" (click)="recoveryPassword()">Recuperar</button>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServerPoint } from '../config/config.services';
@@ -9,13 +9,17 @@ import { ServerPoint } from '../config/config.services';
 })
 export class LoginService {
 
+  headers = new HttpHeaders();
   constructor(
     private http: HttpClient,
     private SERV_POINT: ServerPoint
-  ) { }
+  ) {
+    this.headers.set('Content-Type', 'application/json; charset=utf-8');
+   }
 
-  sendForgotMessage( toEmail: string ): Observable<any>{
-    return this.http.post(this.SERV_POINT.URL_API + 'usuarios/recuperar-contrasena', toEmail );
+
+  sendForgotMessage( correo: string ): Observable<any>{
+    return this.http.post(this.SERV_POINT.URL_API + 'usuarios/recuperar-contrasena', correo , {headers: this.headers});
   }
   
   
