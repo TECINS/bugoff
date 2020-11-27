@@ -12,9 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
 import { ServerPoint } from './config/config.services';
 import { TesterComponent } from './components/pages/tester/tester.component';
-import { SidebarComponent } from './components/pages/tester/components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/pages/shared/sidebar/sidebar.component';
 import { HomeTesterComponent } from './components/pages/tester/pages/home-tester/home-tester.component';
 import { HistorialpruebasTesterComponent } from './components/pages/tester/pages/historialpruebas-tester/historialpruebas-tester.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+import { ErrorReportComponent } from './components/pages/tester/pages/error-report/error-report.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { HistorialpruebasTesterComponent } from './components/pages/tester/pages
     SidebarComponent,
     HomeTesterComponent,
     HistorialpruebasTesterComponent,
+    ErrorReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,8 @@ import { HistorialpruebasTesterComponent } from './components/pages/tester/pages
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     ServerPoint
