@@ -37,47 +37,44 @@
         <div class="container-fluid">
 
             <div class="row centrado">
-                <form action="" class="form-group" [formGroup] = "formRegistro">
-                    
-                    <div >
+                <div>
+                <form class="form-group" [formGroup] = "formRegistro">
+                    <div class="mt-3">
                         <input type="text " class="forma form-control" formControlName="nombre" placeholder="Ingresa tu nombre ">
                     </div>
-                    <div >
+                    <div class="mt-3" >
                         <input type="text " class="forma form-control" formControlName="apellido_paterno" placeholder="Ingresa tu apellido paterno ">
                     </div>
-                    <div >
+                    <div class="mt-3">
                         <input type="text " class="forma form-control" formControlName="apellido_materno" placeholder="Ingresa tu apellido materno ">
                     </div>
-                    <div >
+                    <div class="mt-3">
                         <input type="text " class="forma form-control" formControlName="user_name" placeholder="Crea un nombre de usuario ">
                     </div>
-                    <div >
-                        <div >
-                            <input type="email" class="forma form-control " formControlName="correo" placeholder="Ingresa tu Correo ">
-                        </div>
-                        <input class="forma " type="text form-control " formControlName="contrasenia" placeholder="Crea una contraseña ">
+                    <div class="mt-3" >
+                        <input type="email" class="forma form-control " formControlName="correo" placeholder="Ingresa tu Correo ">
                     </div>
-                
+                    <div class="mt-3" >
+                        <input type="password" class="forma form-control"  formControlName="contrasenia" placeholder="Crea una contraseña ">
+                    </div>
                 </form>
 
                 <form [formGroup]="formConfirmacion">
                     <div >
-                        <input class="forma form-control" formControlName="confirmar" type="text form-control "   placeholder="Confirme su Contraseña ">
+                        <input type="password" class="forma form-control" formControlName="confirmar"    placeholder="Confirme su Contraseña ">
                     </div>
+                    
                     <div>
-                        <p>Al crear una cuenta en BugOff acepto los <span>terminos y condiciones</span></p>
+                        <p>Al crear una cuenta en BugOff acepto los <span>  <a href=""> terminos y condiciones </a></span></p>
                     </div>
 
                     <div class="d-flex justify-content-end">
                         <button class="btn-reg" (click)="Registro()" [disabled]="!formRegistro.valid" >
                             <i class="fas fa-arrow-right"></i>
-                    </button>
+                        </button>
                     </div>
                 </form>
-
+            </div>
             </div>
         </div>
-
     </div>
-
-</div>

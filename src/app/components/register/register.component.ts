@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 import { LoginService } from '../../services/login.service';
 
@@ -14,11 +16,12 @@ export class RegisterComponent implements OnInit {
 
   formConfirmacion: FormGroup;
 
-  constructor( private formBuilder: FormBuilder, private loginService: LoginService) { 
+  constructor( private formBuilder: FormBuilder, private loginService: LoginService, private route: Router) { 
 
     this.formRegistro = formBuilder.group({
     
       nombre: ['', Validators.required],
+      correo:['', Validators.required],
       apellido_paterno: ['', Validators.required],
       apellido_materno:['', Validators.required],
       user_name: ['', Validators.required],
@@ -41,8 +44,21 @@ export class RegisterComponent implements OnInit {
 
   if(this.formRegistro.value.contrasenia === this.formConfirmacion.value){
     this.loginService.registro(this.formRegistro.value).subscribe(
-      data => { console.log(data) },
-      err  => { console.log(err ) }
+      data => { if(data){
+        this.route.navigateByUrl('/login');
+        Swal.fire({
+          icon: 'success',
+          title: 'Se ha registrado correctamente'
+        });
+      }else{
+        Swal.fire({
+          icon: 'warning',
+          title: 'Verifica que no haya campos vacios'
+        });
+      }
+      },
+
+      err  => { console.log(err ) },
     );
   }
 
