@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
     if (this.formRegistro.value.contrasenia === this.formConfirmacion.value.confirmar) {
       this.loginService.registro(this.formRegistro.value).subscribe(
         data => {
-          if (data.error.text === 'Usuario registrado') {
+          if (data) {
             this.router.navigateByUrl('/login');
           } else {
             Swal.fire({
@@ -57,6 +57,10 @@ export class RegisterComponent implements OnInit {
         },
         err => {
           console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Ocurrio un error al registrar'
+          });
         }
       );
     } else {
