@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
 import { LoginService } from '../../services/login.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +15,7 @@ export class RegisterComponent implements OnInit {
   formRegistro: FormGroup;
 
   formConfirmacion: FormGroup;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
@@ -52,7 +51,7 @@ export class RegisterComponent implements OnInit {
         },
         err => {
           console.log(err.error['text']);
-          if(err.error['text'] === 'Usuario registrado') {
+          if (err.error['text'] === 'Usuario registrado') {
             this.router.navigateByUrl('/login');
           } else {
             Swal.fire({
@@ -68,24 +67,25 @@ export class RegisterComponent implements OnInit {
         title: 'Revisa que las contraseñas coincidan'
       });
     }
-  if(this.formRegistro.value.contrasenia === this.formConfirmacion.value){
-    this.loginService.registro(this.formRegistro.value).subscribe(
-      data => { if(data){
-        this.route.navigateByUrl('/login');
-        Swal.fire({
-          icon: 'success',
-          title: 'Se ha registrado correctamente'
-        });
-      }else{
-        Swal.fire({
-          icon: 'warning',
-          title: 'Verifica que no haya campos vacios'
-        });
-      }
-      },
-
-      err  => { console.log(err ) },
-    );
+    if (this.formRegistro.value.contrasenia === this.formConfirmacion.value) {
+      this.loginService.registro(this.formRegistro.value).subscribe(
+        data => {
+          if (data) {
+            this.router.navigateByUrl('/login');
+            Swal.fire({
+              icon: 'success',
+              title: 'Se ha registrado correctamente'
+            });
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Verifica que no haya campos vacios'
+            });
+          }
+        },
+        err =>  console.log(err) ,
+      );
+    }
   }
 }
 
