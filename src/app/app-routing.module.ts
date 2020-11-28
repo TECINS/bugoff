@@ -8,6 +8,7 @@ import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.
 import { TesterComponent } from './components/pages/tester/tester.component';
 import { HomeTesterComponent } from './components/pages/tester/pages/home-tester/home-tester.component';
 import { HistorialpruebasTesterComponent } from './components/pages/tester/pages/historialpruebas-tester/historialpruebas-tester.component';
+import { ErrorReportComponent } from './components/pages/tester/pages/error-report/error-report.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,9 @@ const routes: Routes = [
       },
       {
         path: 'tester-historyTest', component: HistorialpruebasTesterComponent
+      },
+      {
+        path: 'tester-report', component: ErrorReportComponent
       }
     ]
   },
