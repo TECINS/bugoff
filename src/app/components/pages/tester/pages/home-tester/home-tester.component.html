@@ -1,101 +1,172 @@
-<div class="principalbody">
-    <div class="dashboard" style="background-color: #1A303E;">
-        <div class="" style="padding-top: 2rem; padding-bottom: 1rem; padding-right: 3rem; padding-left: 5rem;">
-            <div class="baroptions col">
-                <div class="row optionleft text-white">
-                    <p style="font-weight: 700; font-size: 16pt;"> Dashboard </p>
-                    <div class="btn-group dropright ml-3">
-                        <button type="button" class="btn text-warning">
-                          Kabuum
-                        </button>
-                        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span class="sr-only">Kabuum</span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item">
-                                <div class="row" style="display: flex; align-self: center; align-content: center; align-items: baseline;">
-                                    <i class="fas fa-bug"></i>
-                                    <p style="font-weight: 500; color: #1e272e; margin-left: 10px; margin-bottom: 10px;"> Kabuum </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item">KFood</a>
-                            <a class="dropdown-item">Watrmelon</a>
-                        </div>
+<div style=" width: 100%; height: 100%;" class="animate__animated animate__backInLeft">
+    <div class="row" style="justify-content: space-between;">
+        <div class="col-lg-8 col-sm-6">
+            <div style="width: 100%; justify-content: center; display: flex;">
+                <mat-card class="example-card" style="background-color: #F5FCFF; color: black; width: 95%; margin-top: 20px;">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Interfaz Gráfica</mat-card-title>
+                        <mat-card-subtitle>
+                            <span class="badge badge-primary mr-2">En progreso</span>
+                            <span class="badge badge-danger mr-2">Alta</span>
+
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <div style="width: 100%; margin-top: 50px;">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint eaque nihil est porro debitis repellat maiores ipsum dicta ea! Recusandae dolores rerum hic veniam aspernatur consectetur minima possimus accusamus quam. Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Ratione, totam. Quisquam voluptates, sit optio veniam, dolor magni facilis amet maiores cupiditate eos quod hic nisi explicabo voluptatem facere officiis repudiandae?
+                        </p>
                     </div>
-                </div>
-                <div class="optionright mr-4">
-                    <div class="row">
-                        <button class="btn btn-primary ">
-                            <i class="fas fa-cogs"></i>
+                    <mat-card-content style="margin-top: 50px;">
+                        <p>
+                            Responsables
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button style="justify-content: center;">
+                            <div style="width: 100%; justify-content: center; display: flex;">
+                                <div mat-card-avatar class="example-header-image"></div>
+                            </div>
+                            <p>ANGEL EDUARADO</p>
                         </button>
-                        <button class="btn btn-primary ml-3 mr-3">
-                            <i class="fas fa-plus"></i>
+                        <button mat-button style="justify-content: center;">
+                            <div style="width: 100%;  justify-content: center; display: flex;">
+                                <div mat-card-avatar class="example-header-image"></div>
+                            </div>
+                            <p>ANGEL EDUARADO</p>
                         </button>
-                        <button class="btn btn-primary ">
-                            <i class="fas fa-bell"></i>
+                        <button mat-button style="justify-content: center;">
+                            <div style="width: 100%; justify-content: center; display: flex;">
+                                <div mat-card-avatar class="example-header-image"></div>
+                            </div>
+                            <p>ANGEL EDUARADO</p>
                         </button>
-                    </div>
-                </div>
+                    </mat-card-actions>
+                </mat-card>
             </div>
-            <div class="row" style=" display: flex; justify-content: center;">
-                <div class="col-lg-2 col-sm-6">
-                    <div class="card-box bg-green">
-                        <div class="inner">
-                            <h3> 2 Tareas </h3>
-                            <p> En proceso </p>
+        </div>
+        <div class="col-lg-4 col-sm-6" style=" justify-content: center;">
+            <div style="width: 100%; margin-top: 20px;" class="col">
+                <div class="col-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="row ml-3">
+                            <i class="fas fa-bug"></i>
+                            <p class="titles-right">
+                                Errores recientes
+                            </p>
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-clock" aria-hidden="true"></i>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="justify-content: space-between; display: flex;">
+                                        Error en rutas internas #1
+                                        <span class="badge badge-pill badge-danger">Urgente</span>
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
                         </div>
-                        <a class="card-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="justify-content: space-between; display: flex;">
+                                        Error en pantall principal #2
+                                        <span class="badge badge-pill badge-success">Medio</span>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="justify-content: space-between; display: flex;">
+                                        No abren pantallas #3
+                                        <span class="badge badge-pill badge-primary">Bajo</span>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="card-box bg-blue">
-                        <div class="inner">
-                            <h3> 2 Tareas </h3>
-                            <p> Testing </p>
+                <div class="col-12 mt-5">
+                    <div class="accordion" id="accordionExample">
+                        <div class="row ml-3">
+                            <i class="fas fa-clipboard"></i>
+                            <p class="titles-right">
+                                Notas
+                            </p>
                         </div>
-                        <div class="icon">
-                            <i class="fas fa-tasks" aria-hidden="true"></i>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Asunto #1
+                              </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
                         </div>
-                        <a class="card-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="card-box bg-orange">
-                        <div class="inner">
-                            <h3> 2 Tareas </h3>
-                            <p> Actualizado </p>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Asunto #2
+                              </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fas fa-sync-alt"></i>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Asunto #3
+                              </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                    craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
                         </div>
-                        <a class="card-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="card-box bg-teal">
-                        <div class="inner">
-                            <h3> 2 Tareas </h3>
-                            <p> Abierto </p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <a class="card-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="card-box bg-red">
-                        <div class="inner">
-                            <h3> 2 Tareas </h3>
-                            <p> Cerrado </p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-times-circle"></i>
-                        </div>
-                        <a class="card-box-footer"><i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

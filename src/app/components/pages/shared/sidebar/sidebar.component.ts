@@ -1,15 +1,16 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import {ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
+import { Observable } from 'rxjs';
+
 
 @Component({
-  selector: 'app-tester',
-  templateUrl: './tester.component.html',
-  styleUrls: ['./tester.component.scss']
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
-export class TesterComponent implements OnInit {
+export class SidebarComponent implements OnInit {
 
-  activate = false;
+  @Input() toggleside: Observable<boolean>;
   mobileQuery: MediaQueryList;
   
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
@@ -28,13 +29,7 @@ export class TesterComponent implements OnInit {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
-
-  activateSide(){
-    this.activate = !this.activate;
-    console.log(this.activate);
-  }
-
   ngOnInit(): void {
   }
-  
+
 }
