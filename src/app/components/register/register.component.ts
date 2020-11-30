@@ -43,48 +43,28 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  Registro() {
+  registro() {
     if (this.formRegistro.value.contrasenia === this.formConfirmacion.value.confirmar) {
       this.loginService.registro(this.formRegistro.value).subscribe(
         data => {
-
+          console.log(data);
+          Swal.fire({
+            title: 'Se registo correctamente',
+            icon: 'success'
+          }).then(() => this.router.navigateByUrl('login') );
         },
         err => {
-          console.log(err.error['text']);
-          if (err.error['text'] === 'Usuario registrado') {
-            this.router.navigateByUrl('/login');
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Ocurrio un error al registrar'
-            });
-          }
-        }
-      );
+          console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Ocurrio un error al registrar'
+          });
+        });
     } else {
       Swal.fire({
         icon: 'warning',
         title: 'Revisa que las contraseñas coincidan'
       });
-    }
-    if (this.formRegistro.value.contrasenia === this.formConfirmacion.value) {
-      this.loginService.registro(this.formRegistro.value).subscribe(
-        data => {
-          if (data) {
-            this.router.navigateByUrl('/login');
-            Swal.fire({
-              icon: 'success',
-              title: 'Se ha registrado correctamente'
-            });
-          } else {
-            Swal.fire({
-              icon: 'warning',
-              title: 'Verifica que no haya campos vacios'
-            });
-          }
-        },
-        err =>  console.log(err) ,
-      );
     }
   }
 }

@@ -26,18 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   iniciar() {
-    if (this.formLogin.value.correo === null || this.formLogin.value.contrasenia === null) {
+    if (this.formLogin.value.correo === '' || this.formLogin.value.contrasenia === '') {
       Swal.fire({
         icon: 'warning',
         title: 'Verifica que no haya campos vacios'
       });
     }
     else {
-
     this.loginService.login(this.formLogin.value).subscribe(
       data => {
         if (data){
-          this.route.navigateByUrl('/tester-home');
+          this.route.navigateByUrl('/tester/tester-home');
           localStorage.setItem('session-bugoff', JSON.stringify(data));
         } else {
           Swal.fire({

@@ -16,7 +16,7 @@
                         <label for="email" class="form__label">e-mail</label>
                     </div>
                     <div class="mt-4">
-                        <button [routerLink]="['/register']" class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;">Recuperar contraseña</button>
+                        <button (click)="recoveryPassword()" [disabled]="formRecoveryPass.invalid" class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;">Recuperar contraseña</button>
                     </div>
                 </form>
             </div>
