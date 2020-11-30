@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  formLogin: FormGroup
+  formLogin: FormGroup;
   constructor(
     public formBuilder: FormBuilder,
     private loginService: LoginService,
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       correo: ['', Validators.required],
       contrasenia: ['', Validators.required]
     });
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -38,15 +38,14 @@ export class LoginComponent implements OnInit {
         if (data){
           this.route.navigateByUrl('/tester/tester-home');
           localStorage.setItem('session-bugoff', JSON.stringify(data));
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error contraseña incorrecta'
-          });
         }
       },
       err => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error contraseña o correo incorrecta'
+        });
       }
     );
   }
