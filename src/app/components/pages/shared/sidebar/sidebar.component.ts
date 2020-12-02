@@ -1,5 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
@@ -24,12 +25,17 @@ export class SidebarComponent implements OnInit {
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
   );
   private _mobileQueryListener: () => void;
+  private router: Router
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit(): void {
+  }
+  cerrar(){
+    localStorage.setItem('session-bugoff', '');
+    
   }
 
 }

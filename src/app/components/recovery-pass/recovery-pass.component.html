@@ -9,11 +9,11 @@
             </div>  
             <div class="col-4 fondo">
                 <img src="../../../assets/imgs/logoblanco.png" height="50px" alt="" class="imagen-blanca">
-                <h3 class="titulo" text>Recovery password</h3>
+                <h3 class="titulo" text>Recuperar contraseña</h3>
                 <form action="" class="form-group" [formGroup]="formRecoveryPass">
                     <div class="form__group field mt-5" style="width: 100%;">
                         <input formControlName="correo" autocomplete="off" type="email" class="form__field" name="email" id='email' />
-                        <label for="email" class="form__label">e-mail</label>
+                        <label for="email" class="form__label">Correo</label>
                     </div>
                     <div class="mt-4">
                         <button (click)="recoveryPassword()" [disabled]="formRecoveryPass.invalid" class="btn btn-block btn-warning" style="height: 50px; font-weight: 600; color: white;">Recuperar contraseña</button>
