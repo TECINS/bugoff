@@ -1,5 +1,6 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 
 @Component({
@@ -23,7 +24,7 @@ export class TesterComponent implements OnInit {
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
   );
   private _mobileQueryListener: () => void;
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -35,6 +36,10 @@ export class TesterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  perfil() {
+    this.router.navigateByUrl('/crear-perfil');
   }
   
 }

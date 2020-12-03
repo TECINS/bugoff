@@ -18,6 +18,7 @@ import { HistorialpruebasTesterComponent } from './components/pages/tester/pages
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ErrorReportComponent } from './components/pages/tester/pages/error-report/error-report.component';
+import { CreateProfileComponent } from './components/shared/create-profile/create-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ErrorReportComponent } from './components/pages/tester/pages/error-repo
     HomeTesterComponent,
     HistorialpruebasTesterComponent,
     ErrorReportComponent,
+    CreateProfileComponent,
   ],
   imports: [
     BrowserModule,
