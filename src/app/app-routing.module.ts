@@ -10,6 +10,12 @@ import { HomeTesterComponent } from './components/pages/tester/pages/home-tester
 import { HistorialpruebasTesterComponent } from './components/pages/tester/pages/historialpruebas-tester/historialpruebas-tester.component';
 import { ErrorReportComponent } from './components/pages/tester/pages/error-report/error-report.component';
 import { CreateProfileComponent } from './components/shared/create-profile/create-profile.component';
+import { HwEditComponent } from './components/pages/tester/pages/hw-edit/hw-edit.component';
+import { HwFinishComponent } from './components/pages/tester/pages/hw-finish/hw-finish.component';
+import { NotificationsComponent } from './components/pages/dev/notifications/notifications.component';
+import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
+import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
+
 
 const routes: Routes = [
   {
@@ -31,6 +37,9 @@ const routes: Routes = [
     path: 'crear-perfil', component: CreateProfileComponent
   },
   {
+    path: 'create-project', component: CreateProjectComponent
+  },
+  {
     path: 'tester', component: TesterComponent, children: [
       {
         path: 'tester-home', component: HomeTesterComponent
@@ -40,8 +49,24 @@ const routes: Routes = [
       },
       {
         path: 'tester-report', component: ErrorReportComponent
+      },
+      {
+        path: 'edit', component: HwEditComponent
+      },
+      {
+        path: 'hw-list', component: HwFinishComponent
       }
     ]
+  },
+  {
+    path: 'developer', component: TesterComponent, children: [
+      {
+        path: 'notification', component: NotificationsComponent
+      },
+      {
+        path: 'hw', component: HomeworkComponent
+      }
+    ],
   },
   {
     path: '**', pathMatch: 'full', redirectTo: 'tester'

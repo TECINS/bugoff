@@ -1,7 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-tester',
