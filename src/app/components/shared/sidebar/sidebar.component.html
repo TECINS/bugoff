@@ -17,6 +17,13 @@
             </mat-list-item>
             <mat-list-item>
                 <button mat-icon-button>
+                    <i class="far fa-plus-square"></i>
+                </button>
+                <a matLine routerLink="/create-project"> Crear proyecto </a>
+            </mat-list-item>
+            
+            <mat-list-item>
+                <button mat-icon-button>
                     <i class="fas fa-vial"></i>
                 </button>
                 <a matLine routerLink="/tester/tester-historyTest"> Historial de pruebas </a>
@@ -26,6 +33,30 @@
                     <i class="fas fa-bomb"></i>
                 </button>
                 <a matLine routerLink="/tester/tester-report"> Reportar Error </a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-icon-button>
+                    <i class="fas fa-edit"></i>
+                </button>
+                <a matLine routerLink="/tester/edit"> Editar tareas </a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-icon-button>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <a matLine routerLink="/tester/hw-list"> Tareas terminadas </a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-icon-button>
+                    <i class="fas fa-bell"></i>
+                </button>
+                <a matLine routerLink="/developer/notification"> Notificaciones </a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-icon-button>
+                    <i class="far fa-eye"></i>
+                </button>
+                <a matLine routerLink="/developer/hw"> Ver tareas </a>
             </mat-list-item>
             <mat-list-item style="margin-top: 5rem;">
                 <button mat-icon-button>
