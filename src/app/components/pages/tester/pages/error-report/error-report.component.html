@@ -1,1 +1,93 @@
-<p>error-report works!</p>
+
+<div class="container" style="margin-top: 20px;">
+
+    <div class="row" style="justify-content: space-between;">
+        <div class="col-10 ">
+            <p style="font-size: 24px; font-weight: 700; margin-bottom: 0;" > Reportar error </p>
+            <p style="font-size: 16px; font-weight: 400; margin-top: 5px; color: cadetblue; " > Ingresa la información del @bug que encontraste. </p>
+        </div>
+        <div class="col-2 " style="justify-content: center; align-self: center; align-content: center;" >
+            <i class="fas fa-bug fa-2x"></i>
+        </div>
+    </div>
+
+    <div >
+        <form class="" >
+            <div class="row mt-3">
+                <div class="col-6 col-sm-6 col-lg-6">
+                    <div class="input-group input-group-lg" style="border: none;">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" style="border: none; color: black;" placeholder="Titulo del error">
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3 col-lg-3">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg" style="background-color: white; border: none;">
+                            <i class="fas fa-retweet"></i>
+                        </span>
+                        <input type="number" placeholder="Iteraciones" style="border: none; color: black;" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    </div>
+                </div>
+                <div class="col-3 col-sm-3 col-lg-3">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg" style="background-color: white; border: none;">
+                            <i class="fas fa-percent"></i>
+                        </span>
+                        <input type="number" placeholder="Porcentaje" style="border: none; color: black;" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-lg-12 mt-4">
+                    <p>Mas acerca del error:</p>
+                </div>
+                <!-- Aqui iria la fecha o el date time -->
+                <div class="col-3 col-sm-3 col-lg-3 mt-4">
+                    <select class="form-select" aria-label="Default select example" style="width: 100%;">
+                        <option selected>0.1.0.5</option>
+                        <option value="1">0.1.0.4</option>
+                        <option value="2">0.1.0.3</option>
+                        <option value="3">0.1.0.4</option>
+                    </select>
+                </div>
+                <div class="col-3 col-sm-3 col-lg-3 mt-4">
+                    <select class="form-select" aria-label="Default select example" style="width: 100%;">
+                        <option selected>Prioridad</option>
+                        <option value="1">Baja</option>
+                        <option value="2">Media</option>
+                        <option value="3">Alta</option>
+                        <option value="4">Blocxer</option>
+                    </select>
+                </div>
+                <div class="col-3 col-sm-3 col-lg-3 mt-4">
+                    <select class="form-select" aria-label="Default select example" style="width: 100%;">
+                        <option selected>Probado en:</option>
+                        <option value="1">Móvil</option>
+                        <option value="2">Web</option>
+                        <option value="3">Tablet</option>
+                        <option value="4">Smart TV xd</option>
+                    </select>
+                </div>
+                <div class="col-12 bug-descripcion">
+                    <p style="font-weight: 600; color: #FCB207; font-size: 18px;" > 
+                        Describe el @bug
+                    </p>
+                    <textarea placeholder="Describe el bug" id="descripcion" name="descripcion" style="width: 100%; padding: 10px 8px 10px 8px; border: none;"></textarea>
+                    <div style="width: 100%;">
+                        <div class="row" style="justify-content: flex-end; display: flex; padding-right: 25px;">
+                            <div style="justify-content: center; align-self: center; align-content: center; margin-right: 10px;">
+                                <figure class="profile-img"></figure>
+                            </div>
+                            <div>
+                                <small>Reportado por</small>
+                                <p style="font-weight: 600; font-size: 14px; color: darkslategrey;" >@Angel Catedral</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3 mt-3 ">
+                        <input type="file" class="form-control" id="inputGroupFile02">
+                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
