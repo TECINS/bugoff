@@ -1,10 +1,10 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
-import { RegisterComponent } from './components/register/register.component';
-import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { RecoveryPassComponent } from './components/auth/recovery-pass/recovery-pass.component';
 import { TesterComponent } from './components/pages/tester/tester.component';
 import { HomeTesterComponent } from './components/pages/tester/pages/home-tester/home-tester.component';
 import { HistorialpruebasTesterComponent } from './components/pages/tester/pages/historialpruebas-tester/historialpruebas-tester.component';

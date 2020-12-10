@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RecoveryPassComponent } from './components/recovery-pass/recovery-pass.component';
+import { RecoveryPassComponent } from './components/auth/recovery-pass/recovery-pass.component';
 import { ServerPoint } from './config/config.services';
 import { TesterComponent } from './components/pages/tester/tester.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
