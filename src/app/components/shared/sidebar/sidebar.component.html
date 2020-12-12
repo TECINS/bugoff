@@ -9,19 +9,32 @@
                </button>
                 <a matLine routerLink="/crear-perfil"> Angel Catedral </a>
             </mat-list-item>
+
+            <mat-list-item style="margin-top: 20px; margin-right: 80px;">
+            <mat-form-field appearance="fill" style="height: 100%;">
+                <mat-label>Cambiar de proyecto</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-list-item>
+            
             <mat-list-item style="margin-top: 20px; margin-right: 80px;">
                 <button mat-icon-button>
                   <mat-icon>info</mat-icon>
                </button>
                 <a matLine routerLink="/tester/tester-home"> Menu Principal </a>
             </mat-list-item>
+
             <mat-list-item>
                 <button mat-icon-button>
                     <i class="far fa-plus-square"></i>
                 </button>
                 <a matLine routerLink="/create-project"> Crear proyecto </a>
             </mat-list-item>
-            
+
             <mat-list-item>
                 <button mat-icon-button>
                     <i class="fas fa-vial"></i>
