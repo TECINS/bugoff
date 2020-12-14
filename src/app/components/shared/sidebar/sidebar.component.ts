@@ -3,6 +3,10 @@ import {ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +14,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'BugOff'},
+    {value: 'pizza-1', viewValue: 'Kabum'},
+    {value: 'tacos-2', viewValue: 'SIIA'}
+  ];
+
 
   @Input() toggleside: Observable<boolean>;
   mobileQuery: MediaQueryList;
