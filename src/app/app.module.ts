@@ -24,6 +24,7 @@ import { HwFinishComponent } from './components/pages/tester/pages/hw-finish/hw-
 import { NotificationsComponent } from './components/pages/dev/notifications/notifications.component';
 import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
 import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
+import { AgregarproyectoComponent } from './agregarproyecto/agregarproyecto.component';
 import { HistoricErrorsComponent } from './components/pages/tester/pages/historic-errors/historic-errors.component';
 
 @NgModule({
@@ -45,6 +46,7 @@ import { HistoricErrorsComponent } from './components/pages/tester/pages/histori
     NotificationsComponent,
     HomeworkComponent,
     CreateProjectComponent,
+    AgregarproyectoComponent,
     HistoricErrorsComponent,
   ],
   imports: [
