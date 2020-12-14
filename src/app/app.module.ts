@@ -25,6 +25,7 @@ import { NotificationsComponent } from './components/pages/dev/notifications/not
 import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
 import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
 import { AgregarproyectoComponent } from './agregarproyecto/agregarproyecto.component';
+import { HistoricErrorsComponent } from './components/pages/tester/pages/historic-errors/historic-errors.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AgregarproyectoComponent } from './agregarproyecto/agregarproyecto.comp
     HomeworkComponent,
     CreateProjectComponent,
     AgregarproyectoComponent,
+    HistoricErrorsComponent,
   ],
   imports: [
     BrowserModule,
