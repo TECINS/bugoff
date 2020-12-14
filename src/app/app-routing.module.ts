@@ -15,6 +15,8 @@ import { HwFinishComponent } from './components/pages/tester/pages/hw-finish/hw-
 import { NotificationsComponent } from './components/pages/dev/notifications/notifications.component';
 import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
 import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
+import { HistoricErrorsComponent } from './components/pages/tester/pages/historic-errors/historic-errors.component';
+
 
 
 const routes: Routes = [
@@ -55,6 +57,9 @@ const routes: Routes = [
       },
       {
         path: 'hw-list', component: HwFinishComponent
+      },
+      {
+        path: 'historial-errors', component: HistoricErrorsComponent
       }
     ]
   },
