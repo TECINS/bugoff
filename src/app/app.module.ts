@@ -24,6 +24,7 @@ import { HwFinishComponent } from './components/pages/tester/pages/hw-finish/hw-
 import { NotificationsComponent } from './components/pages/dev/notifications/notifications.component';
 import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
 import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
+import { AgregarproyectoComponent } from './agregarproyecto/agregarproyecto.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CreateProjectComponent } from './components/shared/create-project/creat
     NotificationsComponent,
     HomeworkComponent,
     CreateProjectComponent,
+    AgregarproyectoComponent,
   ],
   imports: [
     BrowserModule,
