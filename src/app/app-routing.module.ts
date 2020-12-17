@@ -35,7 +35,7 @@ const routes: Routes = [
         path: 'initial-page', component: InitialPageComponent
       },
       {
-      path: 'tester-agregar', component: AgregarproyectoComponent
+      path: 'crear-proyecto', component: AgregarproyectoComponent
       },
       {
         path: 'tester-home', component: HomeTesterComponent

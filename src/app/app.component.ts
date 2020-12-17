@@ -10,9 +10,9 @@ export class AppComponent implements OnInit {
   title = 'bugOff';
   constructor(private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit(): void{
     if (localStorage.getItem('session-bugoff')) {
-      this.router.navigateByUrl('/home/initial-page');
+      this.router.navigateByUrl('/home/crear-proyecto');
     } else {
       this.router.navigateByUrl('login');
     }
