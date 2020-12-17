@@ -117,3 +117,43 @@ h1.example-app-name {
 .bg-teal {
     background-color: #05c46b !important;
 }
+
+.sub {
+    margin-left: 63px;
+}
+
+.estado-tarea {
+    border-radius: 40px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-color: none;
+    border: none;
+    width: 70px; 
+    height: 20px;
+}
+
+.estado-tarea:hover {
+    cursor: none;
+    margin-top: -60px;
+}
+
+.estado-tarea:focus {
+    outline: none;
+    box-shadow: none;
+    border:2px solid transparent;
+}
+
+.subtitulo {
+    margin-top: -15px;
+}
+
+.notificaciones {
+    cursor: pointer;
+}
+
+.notificaciones:hover {
+    transition: transform 0.2s ease-out;
+    transform: scale(1.1);
+}
