@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     if (localStorage.getItem('session-bugoff')) {
-      this.router.navigateByUrl('/tester/tester-home');
+      this.router.navigateByUrl('/home/initial-page');
     } else {
       this.router.navigateByUrl('login');
     }

@@ -1,23 +1,22 @@
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
-import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-tester',
-  templateUrl: './tester.component.html',
-  styleUrls: ['./tester.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class TesterComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   activate = false;
   mobileQuery: MediaQueryList;
-  
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-  
+
+  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+
   fillerContent = Array.from(
-    {length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    { length: 50 }, () =>
+    `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
@@ -30,16 +29,13 @@ export class TesterComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  activateSide(){
+  activateSide() {
     this.activate = !this.activate;
     console.log(this.activate);
   }
-
   ngOnInit(): void {
   }
-
   perfil() {
     this.router.navigateByUrl('/crear-perfil');
   }
-  
 }

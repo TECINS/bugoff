@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  iniciar() {
+  iniciar(): void {
     if (this.formLogin.value.correo === '' || this.formLogin.value.contrasenia === '') {
       Swal.fire({
         icon: 'warning',
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.formLogin.value).subscribe(
       data => {
         if (data){
-          this.route.navigateByUrl('/tester/tester-home');
+          this.route.navigateByUrl('/home/initial-page');
           localStorage.setItem('session-bugoff', JSON.stringify(data));
         }
       },

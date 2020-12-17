@@ -1,0 +1,168 @@
+
+
+.zoomimage{
+	transition: transform .2s;
+	margin: 0 auto;
+}
+.zoomimage:hover {
+	transform: scale(1.1);
+  }
+  h1.example-app-name {
+    margin-left: 8px;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: auto;
+    width: 100%;
+}
+
+.example-is-mobile .example-toolbar {
+    position: fixed !important;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2 !important;
+}
+
+.example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.item-content {
+    padding: 4px 8px 4px 8px;
+}
+
+.card-box {
+    border-radius: 8px;
+    position: relative;
+    color: #fff;
+    padding: 20px 10px 40px;
+    margin: 20px 0px;
+}
+
+.card-box:hover {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+
+.card-box:hover .icon i {
+    font-size: 100px;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+
+.card-box .inner {
+    padding: 5px 10px 0 10px;
+}
+
+.card-box h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    padding: 0;
+    text-align: left;
+}
+
+.card-box p {
+    font-size: 15px;
+}
+
+.card-box .icon {
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 5px;
+    z-index: 0;
+    font-size: 72px;
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.card-box .card-box-footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-decoration: none;
+}
+
+.card-box:hover .card-box-footer {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.bg-blue {
+    background-color: #00c0ef !important;
+}
+
+.bg-green {
+    background-color: #00a65a !important;
+}
+
+.bg-orange {
+    background-color: #f39c12 !important;
+}
+
+.bg-red {
+    background-color: #d9534f !important;
+}
+
+.bg-teal {
+    background-color: #05c46b !important;
+}
+
+.sub {
+    margin-left: 63px;
+}
+
+.estado-tarea {
+    border-radius: 40px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-color: none;
+    border: none;
+    width: 70px; 
+    height: 20px;
+}
+
+.estado-tarea:hover {
+    cursor: none;
+    margin-top: -60px;
+}
+
+.estado-tarea:focus {
+    outline: none;
+    box-shadow: none;
+    border:2px solid transparent;
+}
+
+.subtitulo {
+    margin-top: -15px;
+}
+
+.notificaciones {
+    cursor: pointer;
+}
+
+.notificaciones:hover {
+    transition: transform 0.2s ease-out;
+    transform: scale(1.1);
+}
