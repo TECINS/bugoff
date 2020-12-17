@@ -1,3 +1,46 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog"   >
+      <div class="modal-content">
+        <div class="modal-header">
+            <div class="row d-flex justify-content-left">
+                <div class="tituloModal" style="height: 50px;">
+                    <h1 style="font-weight: bold;" class="modal-title ml-4" id="exampleModalLongTitle"><span> <i class="fas fa-bell bell mr-2"></i> </span> Notificaciones</h1>
+                    <div class="subtitulo">
+                        <h5 class="sub mb-5" style="font-size: 14px; color: rgb(117, 86, 143);" >Actividades recientes</h5>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="notificaciones mt-2">
+                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#555 Error en la carga de imagenes. <span style="color: rgb(117, 86, 143); font-size: 12px;">Angel Catedral</span></h3>
+                <h4 class="ml-5"><span><i class="far fa-eye-slash"></i></span> No se muestran las imagenes en orden</h4>
+                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(0, 175, 0);"><span style="font-size: 10px; color: white; ">Realizado</span></button>
+            </div>
+            <hr>
+            <div class="notificaciones mt-2">
+                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#666 No funciona nada. <span style="color: rgb(117, 86, 143); font-size: 12px;">Miguel Hernandez</span></h3>
+                <h4 class="ml-5"><span><i class="fas fa-exclamation-triangle"></i></span> Revisar de urgencia</h4>
+                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(175, 0, 146);"><span style="font-size: 10px; color: white; ">Retrasado</span></button>
+            </div>
+            <hr>
+            <div class="notificaciones mt-2">
+                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#666 Notificacion de prueba. <span style="color: rgb(117, 86, 143); font-size: 12px;">Luis Antonio</span></h3>
+                <h4 class="ml-5"><span><i class="fas fa-exclamation-circle"></i></span> Revisar de urgencia</h4>
+                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(17, 0, 175);"><span style="font-size: 10px; color: white; ">En espera</span></button>
+            </div>
+            <hr>
+            <div class="notificaciones mt-2">
+                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#666 Notificacion de prueba. <span style="color: rgb(117, 86, 143); font-size: 12px;">Jose Medellin</span></h3>
+                <h4 class="ml-5"><span><i class="fas fa-exclamation-circle"></i></span> Revisar de urgencia</h4>
+                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(17, 0, 175);"><span style="font-size: 10px; color: white; ">En espera</span></button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar style="background-color: #1A303E;">
         <mat-toolbar-row>
@@ -9,7 +52,8 @@
             <button mat-icon-button class="example-icon " style="background-color: blue;">
                 <i class="fas fa-plus" (click)="perfil()"></i>
             </button>
-            <button mat-icon-button class="example-icon">
+            <button mat-icon-button class="example-icon btn btn-primary " type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                
                 <i class="fas fa-bell"></i>
             </button>
             <button mat-icon-button class="example-icon">
