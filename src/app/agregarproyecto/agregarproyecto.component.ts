@@ -12,17 +12,16 @@ import Swal from 'sweetalert2';
 })
 export class AgregarproyectoComponent implements OnInit {
   date = new Date();
-
-  @ViewChild("image", {
+  imgLogo = '';
+  @ViewChild('image', {
     read: ElementRef
   }) imagen: ElementRef;
-  
   formProyecto: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private proyecto: AgregaProyecto
-  ) { 
+  ) {
 
     this.formProyecto = formBuilder.group({
       id_proyectos: '',
@@ -35,35 +34,27 @@ export class AgregarproyectoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    
   }
 
-  registrarProyecto(e) {
-
-    let imagen = this.imagen.nativeElement.files[0];
-    let valores: any = new FormData();
-    let clave_global = this.date.getDate() +''+ this.date.getDay() +''+ this.date.getHours() +''+ this.date.getMinutes() +''+ this.date.getMilliseconds();
-    
-    valores.append("id_proyectos", clave_global);
-    valores.append("nombre", this.formProyecto.value.nombre);
-    valores.append("descripcion", this.formProyecto.value.descripcion);
-    valores.append("repositorio", this.formProyecto.value.repositorio);
-    valores.append("logo", imagen);
-    
-    console.log(valores);
-    
-    
+  registrarProyecto(_: any): void {
+    const imagen = this.imagen.nativeElement.files[0];
+    const valores = new FormData();
+    const claveGlobal = this.date.getDate() + '' + this.date.getDay() + '' + this.date.getHours()
+      + '' + this.date.getMinutes() + '' + this.date.getMilliseconds();
+    valores.append('id_proyectos', claveGlobal);
+    valores.append('nombre', this.formProyecto.value.nombre);
+    valores.append('descripcion', this.formProyecto.value.descripcion);
+    valores.append('repositorio', this.formProyecto.value.repositorio);
+    valores.append('logo', imagen);
     this.proyecto.registerProject(valores).subscribe(
       data => {
-        if(data) {
+        if (data) {
           Swal.fire({
             icon: 'success',
             title: 'Proyecto registrado'
           });
         }
         console.log(data);
-        
       },
       err => {
         Swal.fire({
@@ -71,28 +62,15 @@ export class AgregarproyectoComponent implements OnInit {
           title: 'Algo ha ocurrido, proyecto no registrado'
         });
         console.log(err);
-        
       }
     );
   }
-
- /* public img = (e) => {
-    let reader = this.imagen.nativeElement.files[0];
-    this.formProyecto['logo'] = reader;
-    console.log(this.formProyecto['logo']);
-    
-    console.log(reader);
-  }*/
-
-
- /* img(e){
-    let img:any = e.target;
-    if(img.files.length > 0){
-      this.formProyecto['logo'] = img.files[0];
-      console.log(this.formProyecto.value);
-      
-      
+  readURL(event: Event): void {
+    if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files[0]) {
+      const file = (event.target as HTMLInputElement).files[0];
+      const reader = new FileReader();
+      reader.onload = e => this.imgLogo = reader.result.toString();
+      reader.readAsDataURL(file);
     }
-
-  }*/
+  }
 }

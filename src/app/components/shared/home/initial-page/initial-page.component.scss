@@ -1,0 +1,22 @@
+.titulo {
+    font-size: 40px;
+}
+
+.bug {
+    color: #fcb207 ;
+}
+
+.text-initial {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    &-min {
+        color: #1a303e;
+        font-size: medium;
+    }
+}
+.divider {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fcb207;
+}
