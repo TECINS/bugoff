@@ -1,63 +1,129 @@
-<div class="container-fluid">
-  <div class="row">
-    <form action="datos" method="POST" class="form" [formGroup]="formProyecto" (submit)="registrarProyecto($event)">
-      <h2 class="title">Crear proyecto</h2>
-      <hr class="linea">
-      <div class="col-12">
-        <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Nombre del proyecto</mat-label>
-          <input matInput placeholder="Nombre del proyecto" class="" formControlName="nombre">
-          <mat-icon matSuffix>
-            <i class="fas fa-edit text-primary"></i>
-          </mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-12">
-        <mat-form-field appearance="fill" style="width: 100%;">
-          <mat-label>Descripción del proyecto</mat-label>
-          <textarea class="" formControlName="descripcion" matInput style="min-height: 100px;"></textarea>
-        </mat-form-field>
-      </div>
-      <div class="col-12">
-        <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Enlace de repositorio</mat-label>
-          <input class="" formControlName="repositorio" matInput placeholder="Enlace del repo en github">
-          <mat-icon matSuffix>
-            <i class="fas fa-link text-primary"></i>
-          </mat-icon>
-        </mat-form-field>
-      </div>
-      <div class="col-12 mb-3">
-        <div class="row align-items-center">
-          <div class="col-12 mb-2">
-            <strong style="font-size: 20px;">Logotipo</strong>
+<div style="width: 100%; padding: 25px 25px 25px 25px;">
+  <ul class="nav nav-pills flex-column flex-sm-row" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation" style="width: 50%;">
+      <a class="flex-sm-fill text-sm-center nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Crear proyecto</a>
+    </li>
+    <li class="nav-item" role="presentation" style="width: 50%;">
+      <a class="flex-sm-fill text-sm-center nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Inivitar a proyecto</a>
+    </li>
+  </ul>
+</div>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="container-fluid">
+      <div class="row">
+        <form action="datos" method="POST" class="form" [formGroup]="formProyecto" (submit)="registrarProyecto($event)">
+          <h2 class="title">Crear proyecto</h2>
+          <hr class="linea">
+          <div class="col-12">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Nombre del proyecto</mat-label>
+              <input matInput placeholder="Nombre del proyecto" class="" formControlName="nombre">
+              <mat-icon matSuffix>
+                <i class="fas fa-edit text-primary"></i>
+              </mat-icon>
+            </mat-form-field>
           </div>
           <div class="col-12">
-            <div class="custom-file">
-              <input #image formControlName="logo" type="file" class="custom-file-input" id="inputGroupFile01"
-                aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
-              <label class="custom-file-label" for="inputGroupFile01">Elegir imagen</label>
-            </div>
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-label>Descripción del proyecto</mat-label>
+              <textarea class="" formControlName="descripcion" matInput style="min-height: 100px;"></textarea>
+            </mat-form-field>
           </div>
           <div class="col-12">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Enlace de repositorio</mat-label>
+              <input class="" formControlName="repositorio" matInput placeholder="Enlace del repo en github">
+              <mat-icon matSuffix>
+                <i class="fas fa-link text-primary"></i>
+              </mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col-12 mb-3">
             <div class="row align-items-center">
-              <div class="col-1">
-                <strong style="font-size: 14px;">Seleccionado:</strong>
+              <div class="col-12 mb-2">
+                <strong style="font-size: 20px;">Logotipo</strong>
               </div>
-              <div class="col-11 mt-2">
-                <div class="zoomimage" style="width: 7%;">
-                  <img
-                    [src]="imgLogo || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQriTpUmR3mkHQmmbSCvL5g3ulF9xjfvMYYTQ&usqp=CAU'"
-                    alt="your image" width="100%" />
+              <div class="col-12">
+                <div class="custom-file">
+                  <input #image formControlName="logo" type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
+                  <label class="custom-file-label" for="inputGroupFile01">Elegir imagen</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="row align-items-center">
+                  <div class="col-1">
+                    <strong style="font-size: 14px;">Seleccionado:</strong>
+                  </div>
+                  <div class="col-11 mt-2">
+                    <div class="zoomimage" style="width: 7%;">
+                      <img
+                        [src]="imgLogo || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQriTpUmR3mkHQmmbSCvL5g3ulF9xjfvMYYTQ&usqp=CAU'"
+                        alt="your image" width="100%" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="col-12 text-center">
+            <button mat-flat-button color="primary" type="submit" [disabled]="formProyecto.invalid" style="width: 50%;">Crear proyecto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade mt-4" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <div class="container-fluid">
+      <div class="invitation-container">
+        <div style="width: 75%;">
+          <form action="datos-sendinvitation" method="POST" class="form" [formGroup]="formInvitation" (submit)="sendInvitation()">
+            <div class="row">
+              <div class="col-9 mt-3">
+                <h2 class="title">Invitación para colaborar</h2>
+                <small>Envia invitaciones por correo electronico para colaborar en tus proyectos</small>
+              </div>
+              <div class="col-3">
+                <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
+                  <mat-label>Cambiar de proyecto</mat-label>
+                  <mat-select #projctvalue (selectionChange)="changeProject($event.value)">
+                      <mat-option *ngFor="let project of projects" [value]="project.value">
+                          {{project.viewValue}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <hr class="linea">
+            <div style="width: 100%; ">
+              <div>
+                <h3>Invitar a  {{ projectName }} </h3>
+              </div>
+              <div style="width: 100%;">
+                <mat-form-field apparence="fill" style="width: 100%;">
+                  <mat-label>Invitar a: </mat-label>
+                  <mat-chip-list #chipListTest aria-label="Probadoen">
+                    <mat-chip *ngFor="let email of emails" [selectable]="selectable"
+                             [removable]="removable" (removed)="removeEmail(email)">
+                      {{email.name}}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Correo electronico..."
+                           [matChipInputFor]="chipListTest"
+                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                           [matChipInputAddOnBlur]="addOnBlur"
+                           (matChipInputTokenEnd)="addEmail($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+              </div>
+              <div style="width: 100%; margin-top: 25px;">
+                <button mat-raised-button color="primary" style="width: 100%;">Enviar invitación a colaborar en  {{ projectName }} </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="col-12 text-center">
-        <button mat-flat-button color="primary" type="submit" [disabled]="formProyecto.invalid" style="width: 50%;">Crear proyecto</button>
-      </div>
-    </form>
+    </div>
   </div>
 </div>

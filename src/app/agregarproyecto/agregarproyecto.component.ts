@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { UtilService } from '../services/util.service';
 
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-agregarproyecto',
   templateUrl: './agregarproyecto.component.html',
@@ -17,7 +19,21 @@ export class AgregarproyectoComponent implements OnInit {
   @ViewChild('image', {
     read: ElementRef
   }) imagen: ElementRef;
+  formInvitation: FormGroup;
   formProyecto: FormGroup;
+  id_proyecto: string;
+  projectName = 'proyecto';
+  projects: any[] = [
+    {value: '1', viewValue: 'BugOff'},
+    {value: '2', viewValue: 'Kabum'},
+    {value: '3', viewValue: 'SIIA'}
+  ];
+  visible= true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  emails: any[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -32,12 +48,16 @@ export class AgregarproyectoComponent implements OnInit {
       repositorio: ['', Validators.required],
       logo: ''
     });
+    this.formInvitation = formBuilder.group({
+      proyecto: ['', Validators.required],
+      email: ['', Validators.required],
+    });
 
   }
 
   ngOnInit(): void {
   }
-
+  //registrar
   registrarProyecto(_: any): void {
     this.utilService._loading = true;
     const imagen = this.imagen.nativeElement.files[0];
@@ -68,6 +88,7 @@ export class AgregarproyectoComponent implements OnInit {
       }
     ).add (() => this.utilService._loading = false);
   }
+  //image preview
   readURL(event: Event): void {
     if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files[0]) {
       const file = (event.target as HTMLInputElement).files[0];
@@ -75,5 +96,32 @@ export class AgregarproyectoComponent implements OnInit {
       reader.onload = e => this.imgLogo = reader.result.toString();
       reader.readAsDataURL(file);
     }
+  }
+  addEmail(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add emails
+    if ((value || '').trim()) {
+      this.emails.push({name: value.trim()});
+    }
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeEmail(email: string): void {
+    const index = this.emails.indexOf(email);
+
+    if (index >= 0) {
+      this.emails.splice(index, 1);
+    }
+  }
+  changeProject(value){
+    this.projectName = this.projects[this.projects.findIndex(x => x.value === value)].viewValue;
+  }
+  sendInvitation(){
+
+
   }
 }
