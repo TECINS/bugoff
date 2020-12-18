@@ -78,21 +78,38 @@
     <div class="container-fluid">
       <div class="invitation-container">
         <div style="width: 75%;">
-          <form action="datos-sendinvitation" method="POST" class="form" [formGroup]="formInvitation" (submit)="sendInvitation()">
+          <form action="datos-sendinvitation" method="POST" class="form" [formGroup]="formInvitacion" (submit)="sendInvitation()">
             <div class="row">
-              <div class="col-9 mt-3">
+              <div class="col-6 mt-3">
                 <h2 class="title">Invitación para colaborar</h2>
                 <small>Envia invitaciones por correo electronico para colaborar en tus proyectos</small>
               </div>
-              <div class="col-3">
-                <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
-                  <mat-label>Cambiar de proyecto</mat-label>
-                  <mat-select #projctvalue (selectionChange)="changeProject($event.value)">
-                      <mat-option *ngFor="let project of projects" [value]="project.value">
-                          {{project.viewValue}}
-                      </mat-option>
-                  </mat-select>
-                </mat-form-field>
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-6">
+                    <mat-form-field appearance="fill" style="height: 100%;">
+                      <mat-label>Cambiar de proyecto</mat-label>
+                      <mat-select formControlName="id_proyectos" #projctvalue (selectionChange)="changeProject($event.value)">
+                          <mat-option *ngFor="let project of projects" [value]="project.id_proyectos">
+                              {{project.nombre}}
+                          </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-6">
+                    <mat-form-field appearance="fill" style="height: 100%;">
+                      <mat-label>Seleccionar area</mat-label>
+                      <mat-select formControlName="id_areas" >
+                          <mat-option value="2">
+                              Desarrollador
+                          </mat-option>
+                          <mat-option value="3">
+                              Tester
+                          </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
               </div>
             </div>
             <hr class="linea">
@@ -105,15 +122,15 @@
                   <mat-label>Invitar a: </mat-label>
                   <mat-chip-list #chipListTest aria-label="Probadoen">
                     <mat-chip *ngFor="let email of emails" [selectable]="selectable"
-                             [removable]="removable" (removed)="removeEmail(email)">
+                            [removable]="removable" (removed)="removeEmail(email)">
                       {{email.name}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
-                    <input placeholder="Correo electronico..."
-                           [matChipInputFor]="chipListTest"
-                           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                           [matChipInputAddOnBlur]="addOnBlur"
-                           (matChipInputTokenEnd)="addEmail($event)">
+                    <input formControlName="correo" placeholder="Correo electronico..."
+                          [matChipInputFor]="chipListTest"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                          [matChipInputAddOnBlur]="addOnBlur"
+                          (matChipInputTokenEnd)="addEmail($event)">
                     </mat-chip-list>
                 </mat-form-field>
               </div>

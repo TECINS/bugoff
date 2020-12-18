@@ -1,13 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AgregaProyecto } from '../services/agregar-proyecto';
-import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
-import { UtilService } from '../services/util.service';
+import { UtilService } from '../../../../services/util.service';
 
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { ProyectosService } from '../../../../services/proyectos.service';
 @Component({
   selector: 'app-agregarproyecto',
   templateUrl: './agregarproyecto.component.html',
@@ -19,45 +18,56 @@ export class AgregarproyectoComponent implements OnInit {
   @ViewChild('image', {
     read: ElementRef
   }) imagen: ElementRef;
-  formInvitation: FormGroup;
   formProyecto: FormGroup;
-  id_proyecto: string;
+  formInvitacion: FormGroup;
+  idProyecto: string;
   projectName = 'proyecto';
-  projects: any[] = [
-    {value: '1', viewValue: 'BugOff'},
-    {value: '2', viewValue: 'Kabum'},
-    {value: '3', viewValue: 'SIIA'}
-  ];
-  visible= true;
+  projects = [];
+  visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   emails: any[] = [];
+  sessionData: any;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private utilService: UtilService,
-    private proyecto: AgregaProyecto
+    private proyectosService: ProyectosService,
   ) {
-
-    this.formProyecto = formBuilder.group({
+    this.sessionData = JSON.parse(localStorage.getItem('session-bugoff'));
+    this.formInvitacion = this.formBuilder.group({
+      id_proyectos: ['', [Validators.required]],
+      correo: ['', [Validators.required]],
+      id_areas: ['', Validators.required]
+    });
+    this.formProyecto = this.formBuilder.group({
       id_proyectos: '',
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       repositorio: ['', Validators.required],
       logo: ''
     });
-    this.formInvitation = formBuilder.group({
-      proyecto: ['', Validators.required],
-      email: ['', Validators.required],
-    });
-
   }
 
   ngOnInit(): void {
+    this.utilService._loading = true;
+    this.proyectosService.obtenerProyectosPorId(this.sessionData.id_usuarios)
+      .subscribe( data => {
+        if (!data.error) {
+          this.projects = data.proyectos;
+        } else {
+          Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            text: 'Ocurrio un error al obtener los proyectos'
+          });
+        }
+      }, err => console.log(err))
+      .add(() => this.utilService._loading = false);
   }
-  //registrar
+  // registrar
   registrarProyecto(_: any): void {
     this.utilService._loading = true;
     const imagen = this.imagen.nativeElement.files[0];
@@ -65,30 +75,30 @@ export class AgregarproyectoComponent implements OnInit {
     const claveGlobal = this.date.getDate() + '' + this.date.getDay() + '' + this.date.getHours()
       + '' + this.date.getMinutes() + '' + this.date.getMilliseconds();
     valores.append('id_proyectos', claveGlobal);
+    valores.append('id_usuarios', this.sessionData.id_usuarios);
     valores.append('nombre', this.formProyecto.value.nombre);
     valores.append('descripcion', this.formProyecto.value.descripcion);
     valores.append('repositorio', this.formProyecto.value.repositorio);
     valores.append('logo', imagen);
-    this.proyecto.registerProject(valores).subscribe(
+    this.proyectosService.registerProject(valores).subscribe(
       data => {
-        if (data) {
+        if (!data.error) {
           Swal.fire({
             icon: 'success',
-            title: 'Proyecto registrado'
+            title: 'Proyecto registrado',
+            text: 'Ahora ve a invitar colavoradores al proyecto'
+          });
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Algo ha ocurrido, proyecto no registrado'
           });
         }
         console.log(data);
-      },
-      err => {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Algo ha ocurrido, proyecto no registrado'
-        });
-        console.log(err);
-      }
-    ).add (() => this.utilService._loading = false);
+      }, err => console.log(err)
+    ).add(() => this.utilService._loading = false);
   }
-  //image preview
+  // image preview
   readURL(event: Event): void {
     if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files[0]) {
       const file = (event.target as HTMLInputElement).files[0];
@@ -103,7 +113,7 @@ export class AgregarproyectoComponent implements OnInit {
 
     // Add emails
     if ((value || '').trim()) {
-      this.emails.push({name: value.trim()});
+      this.emails.push({ name: value.trim() });
     }
     if (input) {
       input.value = '';
@@ -117,11 +127,29 @@ export class AgregarproyectoComponent implements OnInit {
       this.emails.splice(index, 1);
     }
   }
-  changeProject(value){
-    this.projectName = this.projects[this.projects.findIndex(x => x.value === value)].viewValue;
+  changeProject(value: any): void {
+    this.projectName = this.projects[this.projects.findIndex((x: any) => x.id_proyectos === value)].nombre;
   }
-  sendInvitation(){
-
-
+  sendInvitation(): void {
+    console.log(this.formInvitacion.value);
+    this.utilService._loading = true;
+    this.proyectosService.enviarInvitacionAlProyecto(this.formInvitacion.value)
+      .subscribe( data => {
+        console.log(data);
+        if (!data.error) {
+          Swal.fire({
+            title: 'Se envio la invitación',
+            icon: 'success',
+            text: 'Dile a la persona invitada que revise su correo'
+          });
+        } else {
+          Swal.fire({
+            title: 'Ocurrio un imprevisto',
+            icon: 'warning',
+            text: data.message
+          });
+        }
+      }, err => console.log(err))
+      .add(() => this.utilService._loading = false);
   }
 }

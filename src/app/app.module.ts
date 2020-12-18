@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { LoadingComponent } from './components/shared/loading/loading.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +17,7 @@ import { ErrorReportComponent } from './components/pages/tester/error-report/err
 import { CreateProfileComponent } from './components/shared/create-profile/create-profile.component';
 import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
 import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
-import { AgregarproyectoComponent } from './agregarproyecto/agregarproyecto.component';
+import { AgregarproyectoComponent } from './components/shared/home/agregarproyecto/agregarproyecto.component';
 import { HistoricErrorsComponent } from './components/pages/tester/historic-errors/historic-errors.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { InitialPageComponent } from './components/shared/home/initial-page/initial-page.component';
@@ -27,7 +26,6 @@ import { InitialPageComponent } from './components/shared/home/initial-page/init
   declarations: [
     AppComponent,
     LoginComponent,
-    LoadingComponent,
     RegisterComponent,
     RecoveryPassComponent,
     SidebarComponent,
