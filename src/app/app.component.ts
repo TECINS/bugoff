@@ -9,7 +9,7 @@ import { UtilService } from './services/util.service';
 })
 export class AppComponent implements OnInit {
   title = 'bugOff';
-  constructor(private router: Router, private utilService: UtilService) { }
+  constructor(private router: Router, public utilService: UtilService) { }
 
   ngOnInit(): void{
     if (localStorage.getItem('session-bugoff')) {
