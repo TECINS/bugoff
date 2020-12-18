@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AgregaProyecto } from '../services/agregar-proyecto';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import { UtilService } from '../services/util.service';
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -36,6 +37,7 @@ export class AgregarproyectoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private utilService: UtilService,
     private proyecto: AgregaProyecto
   ) {
 
@@ -57,6 +59,7 @@ export class AgregarproyectoComponent implements OnInit {
   }
   //registrar
   registrarProyecto(_: any): void {
+    this.utilService._loading = true;
     const imagen = this.imagen.nativeElement.files[0];
     const valores = new FormData();
     const claveGlobal = this.date.getDate() + '' + this.date.getDay() + '' + this.date.getHours()
@@ -83,7 +86,7 @@ export class AgregarproyectoComponent implements OnInit {
         });
         console.log(err);
       }
-    );
+    ).add (() => this.utilService._loading = false);
   }
   //image preview
   readURL(event: Event): void {

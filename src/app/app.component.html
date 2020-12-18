@@ -1,5 +1,5 @@
-<!-- <div class="center mx-auto loading-body" style="">
-    <app-loading></app-loading>
-</div> -->
+<div *ngIf="utilService.loading" class="loading-body">
+    <img src="../assets/imgs/sb-icon-logo.png" alt="logo" class="img-fluid loader" width="100px">
+</div>
 
 <router-outlet></router-outlet>

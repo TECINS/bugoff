@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilService } from './services/util.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'bugOff';
-  constructor(private router: Router) { }
+  constructor(private router: Router, public utilService: UtilService) { }
 
   ngOnInit(): void{
     if (localStorage.getItem('session-bugoff')) {
