@@ -21,6 +21,7 @@ import { AgregarproyectoComponent } from './components/shared/home/agregarproyec
 import { HistoricErrorsComponent } from './components/pages/tester/historic-errors/historic-errors.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { InitialPageComponent } from './components/shared/home/initial-page/initial-page.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { InitialPageComponent } from './components/shared/home/initial-page/init
     MaterialModule
   ],
   providers: [
-    ServerPoint
+    ServerPoint,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
