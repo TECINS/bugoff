@@ -49,7 +49,7 @@ export class ErrorReportComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  testings = [ 'Web 1980x720', 'iPhone XS Max', 'Mi Note 10 lite' ];
+  testings = [];
 
   // Add testings
   addTest(event: MatChipInputEvent): void {
@@ -73,7 +73,7 @@ export class ErrorReportComponent implements OnInit {
   }
   //#endregion
   //#region Chips for Branchgithub
-  branches = [ '0.0.1' ];
+  branches = [];
 
   addBranch(event: MatChipInputEvent): void {
     const input = event.input;
