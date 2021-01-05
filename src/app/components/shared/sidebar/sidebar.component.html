@@ -8,45 +8,58 @@
                         <i class="fas fa-user-circle"></i>
                     </button>
                 </button>
-                <a matLine> Angel Catedral </a>
+                <a matLine> @{{ localsession.user_name }} </a>
             </mat-list-item>
 
             <mat-list-item style="margin-top: 20px; margin-right: 80px;">
                 <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
                     <mat-label>Cambiar de proyecto</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let food of foods" [value]="food.value">
-                            {{food.viewValue}}
+                    <mat-select >
+                        <mat-option *ngFor="let project of loadprojectsinfo" [value]="project.id_project" (click)="selectProject(project)">
+                            {{ project.project_name }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </mat-list-item>
 
-            <mat-list-item routerLink="/home/tester-home" style="margin-top: 20px; margin-right: 80px;">
+            <mat-list-item routerLink="/home/tester-home" class="first-item" *ngIf="visiblecomponent == 2">
                 <button mat-icon-button>
                     <mat-icon>info</mat-icon>
                 </button>
                 <a matLine > Menu Principal </a>
             </mat-list-item>
 
+            <mat-list-item matLine routerLink="/home/initial-page" class="first-item">
+                <button mat-icon-button>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </button>
+                <a matLine > Pantalla inicial </a>
+            </mat-list-item>
+
             <mat-list-item matLine routerLink="/home/crear-proyecto">
                 <button mat-icon-button>
                     <i class="far fa-plus-square"></i>
                 </button>
-                <a > Crear proyecto </a>
+                <a matLine > Crear proyecto </a>
             </mat-list-item>
 
-            <mat-list-item routerLink="/home/historial-errors">
+            <mat-list-item routerLink="/home/historial-errors" *ngIf="visiblecomponent > 0">
                 <button mat-icon-button>
                     <i class="fas fa-vial"></i>
                 </button>
                 <a matLine > Historial de errores </a>
             </mat-list-item>
-            <mat-list-item  routerLink="/home/tester-report">
+            <mat-list-item  routerLink="/home/tester-report" *ngIf="visiblecomponent == 2 ">
                 <button mat-icon-button>
                     <i class="fas fa-bomb"></i>
                 </button>
                 <a matLine> Reportar Error </a>
+            </mat-list-item>
+            <mat-list-item  routerLink="/home/initial-page" *ngIf="visiblecomponent == 1">
+                <button mat-icon-button>
+                    <i class="fas fa-edit"></i>
+                </button>
+                <a matLine> Editar projecto </a>
             </mat-list-item>
             <mat-list-item routerLink="/login" style="margin-top: 5rem;">
                 <button mat-icon-button>

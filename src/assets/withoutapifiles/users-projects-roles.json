@@ -1,0 +1,29 @@
+{
+    "id_user": 1,
+    "projects": {
+        "0": {
+            "id_project": 1,
+            "project_name": "kabuum",
+            "role_project": 1,
+            "role_name": "admin"
+        },
+        "1": {
+            "id_project": 2,
+            "project_name": "socketin",
+            "role_project": 2,
+            "role_name": "tester"
+        },
+        "3": {
+            "id_project": 20,
+            "project_name": "bugooff",
+            "role_project": 3,
+            "role_name": "dev"
+        },
+        "4": {
+            "id_project": 201,
+            "project_name": "tecdevs",
+            "role_project": 1,
+            "role_name": "admin"
+        }
+    }
+}
