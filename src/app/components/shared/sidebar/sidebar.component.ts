@@ -2,6 +2,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LoadprojectsService } from '../../../services/shared-Services/loadprojects.service';
 
 interface Food {
   value: string;
@@ -16,9 +17,9 @@ interface Food {
 export class SidebarComponent implements OnInit {
 
   foods: Food[] = [
-    {value: 'steak-0', viewValue: 'BugOff'},
-    {value: 'pizza-1', viewValue: 'Kabum'},
-    {value: 'tacos-2', viewValue: 'SIIA'}
+    {value: '0', viewValue: 'BugOff'},
+    {value: '1', viewValue: 'Kabum'},
+    {value: '2', viewValue: 'SIIA'}
   ];
 
 
@@ -26,27 +27,37 @@ export class SidebarComponent implements OnInit {
   mobileQuery: MediaQueryList;
   
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-  
-  fillerContent = Array.from(
-    {length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-  );
+  localsession: any;
+  loadprojectsinfo = [];
+  visiblecomponent = 0;
   private _mobileQueryListener: () => void;
-  private router: Router
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  private router: Router;
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private loadprojects: LoadprojectsService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.localsession = JSON.parse(localStorage.getItem('session-bugoff'));
+    this.loadprojects.loadProject(1)
+      .subscribe((resp) => {
+        this.loadprojectsinfo = resp.projects;
+        //only reason for use file json static without api.
+        var me = this;
+        me.loadprojectsinfo = Object.keys(me.loadprojectsinfo ).map(function(key) {return me.loadprojectsinfo [key];});
+        console.log(this.loadprojectsinfo);
+      });
   }
   ngOnInit(): void {
   }
   cerrar(){
     localStorage.setItem('session-bugoff', '');
-    
   }
-
+  selectProject(projectselected: any) {
+    this.visiblecomponent = projectselected.role_project;
+    console.log(projectselected);
+    console.log(this.visiblecomponent);
+  }
 }
