@@ -31,7 +31,7 @@
                                 <div class=" col-sm-12 col-lg-9 col-md-12">
                                     <mat-form-field appearance="fill" style="width: 100%">
                                         <mat-label>Nombre del error</mat-label>
-                                        <input matInput placeholder="Titulo del error" formControlName="titulo" autocomplete="off">
+                                        <input matInput placeholder="Titulo del error" formControlName="titulo_error" autocomplete="off">
                                         <mat-icon matSuffix>
                                             <i class="fas fa-bug text-primary"></i>
                                         </mat-icon>
@@ -40,7 +40,7 @@
                                 <div class=" col-sm-12 col-lg-3 col-md-12">
                                     <mat-form-field appearance="fill" style="width: 100%;">
                                         <mat-label>Proridad del error</mat-label>
-                                        <mat-select formControlName="prioridad" autocomplete="off">
+                                        <mat-select formControlName="id_prioridades" autocomplete="off">
                                           <mat-option value="1">Baja</mat-option>
                                           <mat-option value="2">Media</mat-option>
                                           <mat-option value="3">Alta</mat-option>
@@ -62,7 +62,7 @@
                                 <div class=" col-sm-12 col-lg-6 col-md-12">
                                     <mat-form-field appearance="fill" style="width: 100%">
                                         <mat-label>% del error</mat-label>
-                                        <input matInput placeholder="Porcentaje de las veces que el error aparece" formControlName="porcentaje" autocomplete="off">
+                                        <input matInput placeholder="Porcentaje de las veces que el error aparece" formControlName="porcentaje_aparicion" autocomplete="off">
                                         <mat-icon matSuffix>
                                             <i class="fas fa-percentage text-primary"></i>
                                         </mat-icon>
@@ -84,7 +84,7 @@
                                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                                  [matChipInputAddOnBlur]="addOnBlur"
                                                  (matChipInputTokenEnd)="addTest($event)"
-                                                 formControlName="dispositivos" autocomplete="off"
+                                                 formControlName="dispositivo_uso" autocomplete="off"
                                                  >
                                         </mat-chip-list>
                                       </mat-form-field>
@@ -103,7 +103,7 @@
                                                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                                  [matChipInputAddOnBlur]="addOnBlur"
                                                  (matChipInputTokenEnd)="addBranch($event)"
-                                                 formControlName="ramas" autocomplete="off"
+                                                 formControlName="rama_repositorio" autocomplete="off"
                                                  >
                                         </mat-chip-list>
                                       </mat-form-field>
@@ -127,7 +127,7 @@
                             <span class="input-group-text" id="inputGroupFileAddon01">Evidencia</span>
                         </div>
                         <div class="custom-file">
-                            <input formControlName="anexo" autocomplete="off" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
+                            <input #anexo autocomplete="off" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
                             <label class="custom-file-label" for="inputGroupFile01">Elegir imagen</label>
                         </div>
                     </div>
