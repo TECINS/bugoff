@@ -16,7 +16,6 @@ import { MaterialModule } from './material.module';
 import { ErrorReportComponent } from './components/pages/tester/error-report/error-report.component';
 import { CreateProfileComponent } from './components/shared/create-profile/create-profile.component';
 import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
-import { CreateProjectComponent } from './components/shared/create-project/create-project.component';
 import { AgregarproyectoComponent } from './components/shared/home/agregarproyecto/agregarproyecto.component';
 import { HistoricErrorsComponent } from './components/pages/tester/historic-errors/historic-errors.component';
 import { HomeComponent } from './components/shared/home/home.component';
@@ -34,7 +33,6 @@ import { DatePipe } from '@angular/common';
     ErrorReportComponent,
     CreateProfileComponent,
     HomeworkComponent,
-    CreateProjectComponent,
     AgregarproyectoComponent,
     HistoricErrorsComponent,
     HomeComponent,

@@ -3,8 +3,6 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ErrorReportService } from 'src/app/services/tester-Services/tester-report.service';
-import { Router } from '@angular/router';
-import { errorReport } from '../../../../models/tester-reporterror';
 import { UtilService } from 'src/app/services/util.service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
@@ -22,6 +20,16 @@ export class ErrorReportComponent implements OnInit {
     read: ElementRef
   }) img: ElementRef;
   date: Date;
+    // Chips for Test devices
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    testings = [];
+    // Chips for Branchgithub
+    branches = [];
+    imageSrc = 'https://scontent.frex1-1.fna.fbcdn.net/v/t1.0-9/60448348_2188457861222810_257805742654881792_o.jpg?_nc_cat=101&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeGzH1r1DSACU8LOsowxysLYql9H1etFXR6qX0fV60VdHvTLXZJvqsAJPT3T7YbHmSXUhGAb7m7Ur0381ijl1_D5&_nc_ohc=nep7fHZJzKIAX_JZbSd&_nc_ht=scontent.frex1-1.fna&oh=6076f6184390b08d23b7eddd7c93c825&oe=5FFF461E';
   constructor(
     private reportErrorService: ErrorReportService,
     public fb: FormBuilder,
@@ -48,13 +56,6 @@ export class ErrorReportComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  //#region Chips for Test devices
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  testings = [];
 
   // Add testings
   addTest(event: MatChipInputEvent): void {
@@ -76,10 +77,6 @@ export class ErrorReportComponent implements OnInit {
       this.testings.splice(index, 1);
     }
   }
-  //#endregion
-  //#region Chips for Branchgithub
-  branches = [];
-
   addBranch(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -102,9 +99,7 @@ export class ErrorReportComponent implements OnInit {
       this.branches.splice(index, 1);
     }
   }
-  //#endregion
   //#region image preview
-  imageSrc = 'https://scontent.frex1-1.fna.fbcdn.net/v/t1.0-9/60448348_2188457861222810_257805742654881792_o.jpg?_nc_cat=101&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeGzH1r1DSACU8LOsowxysLYql9H1etFXR6qX0fV60VdHvTLXZJvqsAJPT3T7YbHmSXUhGAb7m7Ur0381ijl1_D5&_nc_ohc=nep7fHZJzKIAX_JZbSd&_nc_ht=scontent.frex1-1.fna&oh=6076f6184390b08d23b7eddd7c93c825&oe=5FFF461E';
   readURL(event: Event): void {
     if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files[0]) {
       const file = (event.target as HTMLInputElement).files[0];

@@ -1,0 +1,11 @@
+export interface ProyectosSelect {
+    id_proyectos: string;
+    nombre: string;
+}
+
+export interface ProyectInfo {
+    area: string;
+    id_areas: string;
+    nombre: string;
+    user_name: string;
+}

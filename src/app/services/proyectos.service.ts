@@ -21,4 +21,8 @@ export class ProyectosService {
   enviarInvitacionAlProyecto(body: any): Observable<any> {
     return this.http.post(this.appConfig.URL_API + 'proyectos-usuarios/send-invitation', body);
   }
+
+  obtenerInformacionDelProyecto(idProyectos: string, idUsuarios: string): Observable<any> {
+    return this.http.post(this.appConfig.URL_API + 'proyectos/select-one-by-id', {id_proyectos: idProyectos, id_usuarios: idUsuarios});
+  }
 }

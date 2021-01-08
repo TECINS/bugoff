@@ -1,13 +1,11 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoadprojectsService } from '../../../services/shared-Services/loadprojects.service';
+import { ProyectosService } from 'src/app/services/proyectos.service';
+import { ProyectosSelect, ProyectInfo } from '../../../models/proyectos.model';
+import Swal from 'sweetalert2';
+import { UtilService } from '../../../services/util.service';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-sidebar',
@@ -16,48 +14,64 @@ interface Food {
 })
 export class SidebarComponent implements OnInit {
 
-  foods: Food[] = [
-    {value: '0', viewValue: 'BugOff'},
-    {value: '1', viewValue: 'Kabum'},
-    {value: '2', viewValue: 'SIIA'}
-  ];
-
 
   @Input() toggleside: Observable<boolean>;
   mobileQuery: MediaQueryList;
-  
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
   localsession: any;
   loadprojectsinfo = [];
   visiblecomponent = 0;
-  private _mobileQueryListener: () => void;
-  private router: Router;
+  private mobileQueryListener: () => void;
+  proyectos: ProyectosSelect[];
+  proyectInfo: ProyectInfo;
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    private loadprojects: LoadprojectsService
+    private proyectosService: ProyectosService,
+    private utilService: UtilService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this.mobileQueryListener);
     this.localsession = JSON.parse(localStorage.getItem('session-bugoff'));
-    this.loadprojects.loadProject(1)
-      .subscribe((resp) => {
-        this.loadprojectsinfo = resp.projects;
-        //only reason for use file json static without api.
-        var me = this;
-        me.loadprojectsinfo = Object.keys(me.loadprojectsinfo ).map(function(key) {return me.loadprojectsinfo [key];});
-        console.log(this.loadprojectsinfo);
-      });
+    this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
   }
   ngOnInit(): void {
+    if (this.proyectInfo) {
+      this.visiblecomponent = Number(this.proyectInfo.id_areas);
+    }
+    this.utilService._loading = true;
+    this.proyectosService.obtenerProyectosPorId(this.localsession.id_usuarios)
+      .subscribe( data => {
+        if (!data.error) {
+          this.proyectos = data.proyectos;
+        } else {
+          Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            text: 'ocurrio un error al obtener los proyectos'
+          });
+        }
+      }, err => console.log(err)).add ( () => this.utilService._loading = false);
   }
-  cerrar(){
-    localStorage.setItem('session-bugoff', '');
+  cerrar(): void{
+    localStorage.removeItem('session-bugoff');
   }
-  selectProject(projectselected: any) {
-    this.visiblecomponent = projectselected.role_project;
-    console.log(projectselected);
-    console.log(this.visiblecomponent);
+  selectProject(proyecto: ProyectosSelect): void {
+    this.utilService._loading = true;
+    this.proyectosService.obtenerInformacionDelProyecto(proyecto.id_proyectos, this.localsession.id_usuarios)
+      .subscribe( data => {
+        if (!data.error) {
+            this.visiblecomponent = data.message.id_areas;
+            localStorage.setItem('proyect-info', JSON.stringify(data.message));
+            window.location.reload();
+        } else {
+          Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            text: 'ocurrio un error al traer la informacion del proyecto'
+          });
+        }
+      }, err => console.log(err)).add( () => this.utilService._loading = false);
   }
 }

@@ -47,7 +47,9 @@
             <button mat-icon-button class="example-icon" style="color: white;" aria-label="Example icon-button with menu icon">
                 <button mat-icon-button (click)="activateSide()"><mat-icon>menu</mat-icon></button>
             </button>
-            <span style="color: white;">Dashboard</span>
+            <span *ngIf="proyectInfo" style="color: white;">{{proyectInfo.nombre}}</span>
+            <span *ngIf="proyectInfo" style="color: white; font-size: 12px;">({{proyectInfo.area}})</span>
+            <span *ngIf="!proyectInfo" style="color: white;">Dashboard</span>
             <span class="example-spacer"></span>
             <button mat-icon-button class="example-icon " style="background-color: blue;">
                 <i class="fas fa-plus" (click)="perfil()"></i>

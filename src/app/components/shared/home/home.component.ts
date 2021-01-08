@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { ProyectInfo } from '../../../models/proyectos.model';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   activate = false;
   mobileQuery: MediaQueryList;
-
+  proyectInfo: ProyectInfo;
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
 
   fillerContent = Array.from(
@@ -27,15 +28,16 @@ export class HomeComponent implements OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
   }
 
-  activateSide() {
+  activateSide(): void {
     this.activate = !this.activate;
     console.log(this.activate);
   }
   ngOnInit(): void {
   }
-  perfil() {
+  perfil(): void {
     this.router.navigateByUrl('/crear-perfil');
   }
 }

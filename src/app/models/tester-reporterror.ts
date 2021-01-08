@@ -1,4 +1,4 @@
-export class errorReport {
+export interface ErrorReport {
     titulo_error: string;
     autor_reporte: string;
     iteraciones: number;
