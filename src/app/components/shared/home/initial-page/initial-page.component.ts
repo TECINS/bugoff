@@ -16,6 +16,7 @@ export class InitialPageComponent implements OnInit {
   proyects: ProyectosSelect[];
   localSession: LocalSession;
   proyectInfo: ProyectInfo;
+  areaActual = '0';
   constructor(
     private router: Router,
     private utilService: UtilService,
@@ -26,6 +27,9 @@ export class InitialPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.proyectInfo) {
+      this.areaActual = this.proyectInfo.id_areas;
+    }
     this.utilService._loading = true;
     this.proyectosService.obtenerProyectosPorId(this.localSession.id_usuarios)
       .subscribe( data => {

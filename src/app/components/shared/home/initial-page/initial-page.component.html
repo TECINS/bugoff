@@ -6,18 +6,18 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-initial" *ngIf="!proyectInfo">
+                    <p class="text-initial" *ngIf="areaActual == '0'">
                         Para comenzar es necesario crear un proyecto o seleccionar un proyecto ya existente.
                     </p>
                     <p class="text-initial-min" *ngIf="proyectInfo">
                         Estas en <b>{{proyectInfo.nombre}}</b> con rol de <b>{{proyectInfo.area}}</b>
                     </p>
                     <div class="col-12 text-center">
-                        <p class="text-initial-min" *ngIf="!proyectInfo"> Seleccionar un proyecto</p>
-                        <p class="text-initial-min" *ngIf="proyectInfo.id_areas == '3'"> ¿Qué deseas hacer?</p>
+                        <p class="text-initial-min" *ngIf="areaActual == '0'"> Seleccionar un proyecto</p>
+                        <p class="text-initial-min" *ngIf="areaActual == '3'"> ¿Qué deseas hacer?</p>
                     </div>
                     <div class="col-12 text-center">
-                        <button *ngIf="proyectInfo.id_areas == '3'" mat-flat-button color="primary" (click)="clickCreate()" style="width: 50%;">Ver Historial de errores</button>
+                        <button *ngIf="areaActual == '3'" mat-flat-button color="primary" (click)="clickCreate()" style="width: 50%;">Ver Historial de errores</button>
                         <mat-form-field appearance="fill" style="min-width: 50%;" *ngIf="!proyectInfo">
                             <mat-label>Seleccionar proyecto</mat-label>
                             <mat-select>
@@ -28,7 +28,7 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="col-12 text-center mb-2 mt-2" *ngIf="proyectInfo.id_areas == '3'">
+                <div class="col-12 text-center mb-2 mt-2" *ngIf="areaActual == '3'">
                     <strong class="divider">o</strong>
                 </div>
                 <div class="col-12 text-center">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-12 text-center">
                     <button *ngIf="!proyectInfo" mat-flat-button color="primary" (click)="clickCreate()" style="width: 50%;">Crear proyecto</button>
-                    <button *ngIf="proyectInfo.id_areas == '3'" mat-flat-button color="primary" (click)="clickCreate()" style="width: 50%;">Reportar Error</button>
+                    <button *ngIf="areaActual == '3'" mat-flat-button color="primary" (click)="clickCreate()" style="width: 50%;">Reportar Error</button>
                 </div>
             </div>
             <div class="col-12 text-center mt-3">
