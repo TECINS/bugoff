@@ -1,5 +1,5 @@
 
-<div class="" style="width: 100%; padding: 25px 35px 25px 35px ;">
+<div class="container-fluid" style="width: 100%; padding: 25px 35px 25px 35px ;">
 
     <div class="row" style="justify-content: space-between;">
         <div class="col-10 ">
@@ -10,134 +10,134 @@
             <i class="fas fa-bug fa-2x"></i>
         </div>
     </div>
-    <div class="col-12 mt-3">
-        <div class="row">
-            <form [formGroup]="formReport" name="formReport" autocomplete="off" class="form-group">
-            <div class="col-9 col-sm-12 col-lg-9 mt-2">
-                    <mat-card class="example-card" >
-                        <mat-card-content>
-                            <div class="row" style="justify-content: space-between; padding: 10px 10px 10px 10px;">
-                                <p style="font-size: 16px; font-weight: 700; color: black;">Datos del reporte.</p>
-                                <div>
-                                    <p style="color: teal; font-style: italic; margin-bottom: 0;">
-                                        Fecha del reporte. {{date | date:'dd-MM-yyyy'}}
-                                    </p>
-                                    <p style="color: darkslategray; font-weight: 600; margin-top: 0; text-align: end;">
-                                        @{{ localsession.user_name }}
-                                    </p>
+    <div class="row justify-content-center">
+        <div class="col-12 mt-3">
+            <div class="row justify-content-center">
+                <form [formGroup]="formReport" name="formReport" autocomplete="off" class="form-group">
+                <div class="col-12 mt-2">
+                        <mat-card class="example-card" >
+                            <mat-card-content>
+                                <div class="row" style="justify-content: space-between; padding: 10px 10px 10px 10px;">
+                                    <p style="font-size: 16px; font-weight: 700; color: black;">Datos del reporte.</p>
+                                    <div>
+                                        <p style="color: teal; font-style: italic; margin-bottom: 0;">
+                                            Fecha del reporte. {{date | date:'dd-MM-yyyy'}}
+                                        </p>
+                                        <p style="color: darkslategray; font-weight: 600; margin-top: 0; text-align: end;">
+                                            @{{ localsession.user_name }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class=" col-sm-12 col-lg-9 col-md-12">
-                                    <mat-form-field appearance="fill" style="width: 100%">
-                                        <mat-label>Nombre del error</mat-label>
-                                        <input matInput placeholder="Titulo del error" formControlName="titulo_error" autocomplete="off">
-                                        <mat-icon matSuffix>
-                                            <i class="fas fa-bug text-primary"></i>
-                                        </mat-icon>
-                                    </mat-form-field>
+                                <div class="row">
+                                    <div class=" col-sm-12 col-lg-9 col-md-12">
+                                        <mat-form-field appearance="fill" style="width: 100%">
+                                            <mat-label>Nombre del error</mat-label>
+                                            <input matInput placeholder="Titulo del error" formControlName="titulo_error" autocomplete="off">
+                                            <mat-icon matSuffix>
+                                                <i class="fas fa-bug text-primary"></i>
+                                            </mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class=" col-sm-12 col-lg-3 col-md-12">
+                                        <mat-form-field appearance="fill" style="width: 100%;">
+                                            <mat-label>Proridad del error</mat-label>
+                                            <mat-select formControlName="id_prioridades" autocomplete="off">
+                                                <mat-option value="1">Baja</mat-option>
+                                                <mat-option value="2">Media</mat-option>
+                                                <mat-option value="3">Alta</mat-option>
+                                                <mat-option value="4">Blocxer</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
                                 </div>
-                                <div class=" col-sm-12 col-lg-3 col-md-12">
+                                <div class="row">
+                                    <div class=" col-sm-12 col-lg-6 col-md-12">
+                                        <mat-form-field appearance="fill" style="width: 100%">
+                                            <mat-label># Número de iteraciones</mat-label>
+                                            <input matInput placeholder="Intentos para provocar el error" formControlName="iteraciones" autocomplete="off">
+                                            <mat-icon matSuffix>
+                                                <i class="fas fa-sync text-primary"></i>
+                                            </mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class=" col-sm-12 col-lg-6 col-md-12">
+                                        <mat-form-field appearance="fill" style="width: 100%">
+                                            <mat-label>% del error</mat-label>
+                                            <input matInput placeholder="Porcentaje de las veces que el error aparece" formControlName="porcentaje_aparicion" autocomplete="off">
+                                            <mat-icon matSuffix>
+                                                <i class="fas fa-percentage text-primary"></i>
+                                            </mat-icon>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-sm-12 col-lg-6 col-md-12">
+                                        <mat-form-field apparence="fill" style="width: 100%;">
+                                            <mat-label>El error surgió en: </mat-label>
+                                            <mat-chip-list #chipListTest aria-label="Probadoen" >
+                                              <mat-chip *ngFor="let test of testings" [selectable]="selectable"
+                                                        [removable]="removable" (removed)="removeTest(test)">
+                                                {{test}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                                </mat-chip>
+                                                <input placeholder="Error probado en..."
+                                                        [matChipInputFor]="chipListTest"
+                                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                        [matChipInputAddOnBlur]="addOnBlur"
+                                                        (matChipInputTokenEnd)="addTest($event)"
+                                                        formControlName="dispositivo_uso" autocomplete="off"
+                                                        >
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class=" col-sm-12 col-lg-6 col-md-12">
+                                        <mat-form-field apparence="fill" style="width: 100%;">
+                                            <mat-label>Rama de github</mat-label>
+                                            <mat-chip-list #chipListBranch aria-label="Rama" >
+                                              <mat-chip *ngFor="let branch of branches" [selectable]="selectable"
+                                                        [removable]="removable" (removed)="removeBranch(branch)">
+                                                {{branch}}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input placeholder="Error en la rama..."
+                                                        [matChipInputFor]="chipListBranch"
+                                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                                        [matChipInputAddOnBlur]="addOnBlur"
+                                                        (matChipInputTokenEnd)="addBranch($event)"
+                                                        formControlName="rama_repositorio" autocomplete="off"
+                                                        >
+                                            </mat-chip-list>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12" style="width: 100%;">
                                     <mat-form-field appearance="fill" style="width: 100%;">
-                                        <mat-label>Proridad del error</mat-label>
-                                        <mat-select formControlName="id_prioridades" autocomplete="off">
-                                          <mat-option value="1">Baja</mat-option>
-                                          <mat-option value="2">Media</mat-option>
-                                          <mat-option value="3">Alta</mat-option>
-                                          <mat-option value="4">Blocxer</mat-option>
-                                        </mat-select>
+                                        <mat-label>Descripción</mat-label>
+                                        <textarea matInput formControlName="descripcion" autocomplete="off" ></textarea>
                                     </mat-form-field>
                                 </div>
+                            </mat-card-content>
+                            <mat-card-actions >
+                                <button mat-flat-button color="primary" style="width: 100%;" type="submit" (click)="reportarerrorEvent()">REPORTAR</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div class="col-3 col-sm-12 col-lg-3 mt-3" >
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Evidencia</span>
                             </div>
-                            <div class="row">
-                                <div class=" col-sm-12 col-lg-6 col-md-12">
-                                    <mat-form-field appearance="fill" style="width: 100%">
-                                        <mat-label># Número de iteraciones</mat-label>
-                                        <input matInput placeholder="Intentos para provocar el error" formControlName="iteraciones" autocomplete="off">
-                                        <mat-icon matSuffix>
-                                            <i class="fas fa-sync text-primary"></i>
-                                        </mat-icon>
-                                    </mat-form-field>
-                                </div>
-                                <div class=" col-sm-12 col-lg-6 col-md-12">
-                                    <mat-form-field appearance="fill" style="width: 100%">
-                                        <mat-label>% del error</mat-label>
-                                        <input matInput placeholder="Porcentaje de las veces que el error aparece" formControlName="porcentaje_aparicion" autocomplete="off">
-                                        <mat-icon matSuffix>
-                                            <i class="fas fa-percentage text-primary"></i>
-                                        </mat-icon>
-                                    </mat-form-field>
-                                </div>
+                            <div class="custom-file">
+                                <input #anexo autocomplete="off" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
+                                <label class="custom-file-label" for="inputGroupFile01">Elegir imagen</label>
                             </div>
-                            <div class="row">
-                                <div class=" col-sm-12 col-lg-6 col-md-12">
-                                    <mat-form-field apparence="fill" style="width: 100%;">
-                                        <mat-label>El error surgió en: </mat-label>
-                                        <mat-chip-list #chipListTest aria-label="Probadoen" >
-                                          <mat-chip *ngFor="let test of testings" [selectable]="selectable"
-                                                   [removable]="removable" (removed)="removeTest(test)">
-                                            {{test}}
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                          </mat-chip>
-                                          <input placeholder="Error probado en..."
-                                                 [matChipInputFor]="chipListTest"
-                                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                                 [matChipInputAddOnBlur]="addOnBlur"
-                                                 (matChipInputTokenEnd)="addTest($event)"
-                                                 formControlName="dispositivo_uso" autocomplete="off"
-                                                 >
-                                        </mat-chip-list>
-                                      </mat-form-field>
-                                </div>
-                                <div class=" col-sm-12 col-lg-6 col-md-12">
-                                    <mat-form-field apparence="fill" style="width: 100%;">
-                                        <mat-label>Rama de github</mat-label>
-                                        <mat-chip-list #chipListBranch aria-label="Rama" >
-                                          <mat-chip *ngFor="let branch of branches" [selectable]="selectable"
-                                                   [removable]="removable" (removed)="removeBranch(branch)">
-                                            {{branch}}
-                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                                          </mat-chip>
-                                          <input placeholder="Error en la rama..."
-                                                 [matChipInputFor]="chipListBranch"
-                                                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                                 [matChipInputAddOnBlur]="addOnBlur"
-                                                 (matChipInputTokenEnd)="addBranch($event)"
-                                                 formControlName="rama_repositorio" autocomplete="off"
-                                                 >
-                                        </mat-chip-list>
-                                      </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-12" style="width: 100%;">
-                                <mat-form-field appearance="fill" style="width: 100%;">
-                                    <mat-label>Descripción</mat-label>
-                                    <textarea matInput formControlName="descripcion" autocomplete="off" ></textarea>
-                                </mat-form-field>
-                            </div>
-                        </mat-card-content>
-                        <mat-card-actions >
-                            <button mat-flat-button color="primary" style="width: 100%;" type="submit" (click)="reportarerrorEvent()">REPORTAR</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-                <div class="col-3 col-sm-12 col-lg-3" >
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Evidencia</span>
                         </div>
-                        <div class="custom-file">
-                            <input #anexo autocomplete="off" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
-                            <label class="custom-file-label" for="inputGroupFile01">Elegir imagen</label>
+                        <div class="zoomimage" style="width: 100%;">
+                            <img  id="previewfile" [src]="imageSrc || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQriTpUmR3mkHQmmbSCvL5g3ulF9xjfvMYYTQ&usqp=CAU'" alt="your image" width="100%" />
                         </div>
                     </div>
-                    <div class="zoomimage" style="width: 100%;">
-                        <img  id="previewfile" [src]="imageSrc || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQriTpUmR3mkHQmmbSCvL5g3ulF9xjfvMYYTQ&usqp=CAU'" alt="your image" width="100%" />
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-    
-
 </div>

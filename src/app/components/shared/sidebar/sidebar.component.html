@@ -15,8 +15,8 @@
                 <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
                     <mat-label>Cambiar de proyecto</mat-label>
                     <mat-select >
-                        <mat-option *ngFor="let project of loadprojectsinfo" [value]="project.id_project" (click)="selectProject(project)">
-                            {{ project.project_name }}
+                        <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.id_proyectos" (click)="selectProject(proyecto)">
+                            {{ proyecto.nombre }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -49,7 +49,7 @@
                 </button>
                 <a matLine > Historial de errores </a>
             </mat-list-item>
-            <mat-list-item  routerLink="/home/tester-report" *ngIf="visiblecomponent == 2 ">
+            <mat-list-item  routerLink="/home/tester-report" *ngIf="visiblecomponent == 3 ">
                 <button mat-icon-button>
                     <i class="fas fa-bomb"></i>
                 </button>
@@ -70,9 +70,7 @@
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content style="background-color: white; color: black; height: 100vh; width: 100%;">
-        <div>
+    <mat-sidenav-content style="background-color: white; color: black; height: 90vh; width: 100%;">
             <router-outlet></router-outlet>
-        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
