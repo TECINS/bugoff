@@ -1,9 +1,9 @@
 export interface ErrorData {
     id_errores: number;
-    id_prioridades: number;
-    id_proyectos: string;
-    id_estados_errores?: any;
-    autor_reporte: number;
+    grado_prioridad: string;
+    nombre_proyecto: string;
+    estado: string;
+    autor_reporte: string;
     titulo_error: string;
     descripcion: string;
     iteraciones: number;
@@ -24,4 +24,6 @@ export interface ErrorList {
     nombre: string;
     grado_prioridad: string;
     estado: string;
+    id_estados_errores: string;
+    confirmado: string;
 }

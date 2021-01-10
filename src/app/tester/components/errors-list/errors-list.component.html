@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid error-list-border">
     <div class="row mt-4">
         <div style="padding-left: 5%;" class="col-lg-10 col-md-3">
             <h1> <strong> LISTA DE ERRORES </strong></h1>
@@ -12,42 +12,57 @@
         </div>
     </div>
     
-    <div class="row">
-        <div style="padding-left: 5%;" class="col-lg-12 col-md-6">
+    <div class="row text-center align-items-center">
+        <div style="padding-left: 5%;" class="col-6">
             <mat-form-field appearance="fill">
-                <mat-label><i class="fas fa-filter"></i> Ordenar Por:</mat-label>
+                <mat-label><i class="fas fa-filter"></i> Ordenar por estado:</mat-label>
                 <mat-select>
-                    <mat-option *ngFor="let estado of estados" [value]="estados.id_estados">
+                    <mat-option (click)="selectEstado(estado.id_estados_errores)" *ngFor="let estado of estados" [value]="estado.id_estados_errores">
                         {{estado.estado}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
+        <div style="padding-right: 5%;" class="col-6">
+            <mat-checkbox #v (change)="onChangeCb(v.checked)"><span style="font-weight: bold; font-size: 16px;">Confirmados</span></mat-checkbox>
+        </div>
     </div>
     
-    <div class="row mt-2" *ngFor="let error of errores">
-        <div class="col-lg-1 col-md-1">
-    
-        </div>
-        <div class="col-lg-10 col-md-6">
-            <div class="alert alert-dark" role="alert">
-                <div class="row justify-content-center align-items-center m-0">
-                    <div class="col-3">
-                        <h3 class="m-0"> <strong> Id: </strong> {{error.id_errores}} </h3>
+    <div class="row error-list" *ngIf="erroresFilter.length > 0">
+        <div class="col-12">
+            <div class="row mt-2" *ngFor="let error of erroresFilter">
+                <div class="col-lg-1 col-md-1">
+            
+                </div>
+                <div class="col-lg-10 col-md-6">
+                    <div class="alert alert-dark" role="alert" (click)="verError(error)">
+                        <div class="row justify-content-center align-items-center m-0">
+                            <div class="col-3">
+                                <h3 class="m-0"> <strong> Id: </strong> {{error.id_errores}} </h3>
+                            </div>
+                            <div class="col-3">
+                                <h3 class="m-0"> <strong> Nombre: </strong> {{error.titulo_error}} </h3>
+                            </div>
+                            <div class="col-3">
+                                <h3 class="m-0"> <strong> Prioridad: </strong> <span class="badge badge-pill badge-info">{{error.grado_prioridad}}</span> </h3>
+                            </div>
+                            <div class="col-3">
+                                <h3 class="m-0"> <strong> Fecha de reporte: </strong> <span style="font-size: 14px;">{{error.fecha_reporte | date}}</span> </h3>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <h3 class="m-0"> <strong> Nombre: </strong> {{error.titulo_error}} </h3>
-                    </div>
-                    <div class="col-3">
-                        <h3 class="m-0"> <strong> Prioridad: </strong> <span class="badge badge-pill badge-info">{{error.grado_prioridad}}</span> </h3>
-                    </div>
-                    <div class="col-3">
-                        <h3 class="m-0"> <strong> Fecha de reporte: </strong> <span style="font-size: 14px;">{{error.fecha_reporte | date}}</span> </h3>
-                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1">
                 </div>
             </div>
         </div>
-        <div class="col-lg-1 col-md-1">
+    </div>
+    <div class="row" *ngIf="erroresFilter.length === 0">
+        <div class="col-12 text-center">
+            <h1 class="badge badge-warning" style="font-weight: bold;">La lista esta vacía</h1>
+        </div>
+        <div class="col-12 text-center">
+            <img src="../../../../assets/imgs/not-found-logo.png" alt="not-found" class="img-fluid">
         </div>
     </div>
 </div>
