@@ -20,23 +20,27 @@
                     </mat-select>
                 </mat-form-field>
             </mat-list-item>
-            <mat-list-item matLine [routerLink]="principalRoute" class="first-item">
+
+            <mat-list-item matLine routerLink="/app/usuario/crear-proyecto" class="first-item">
                 <button mat-icon-button>
-                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <i class="fas fa-plus-square"></i>
+                </button>
+                <a matLine > Crear proyecto </a>
+            </mat-list-item>
+            
+            <h3 class="m-0 ml-2 p-0" style="font-weight: bold;">{{area}}</h3>
+            <div class="divider"></div>
+
+            <mat-list-item matLine [routerLink]="principalRoute">
+                <button mat-icon-button>
+                    <i class="fas fa-home" aria-hidden="true"></i>
                 </button>
                 <a matLine > Pantalla inicial </a>
             </mat-list-item>
 
-            <mat-list-item matLine routerLink="/app/crear-proyecto" *ngIf="visiblecomponent == 0">
-                <button mat-icon-button>
-                    <i class="far fa-plus-square"></i>
-                </button>
-                <a matLine > Crear proyecto </a>
-            </mat-list-item>
-
             <mat-list-item routerLink="/app/tester/lista-errores" *ngIf="visiblecomponent == 3">
                 <button mat-icon-button>
-                    <i class="fas fa-vial"></i>
+                    <i class="fas fa-history"></i>
                 </button>
                 <a matLine > Historial de errores </a>
             </mat-list-item>
@@ -54,13 +58,13 @@
             </mat-list-item>
             <mat-list-item  routerLink="/app/lider/gestionar-proyecto" *ngIf="visiblecomponent == 1">
                 <button mat-icon-button>
-                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-business-time"></i>
                 </button>
                 <a matLine> Gestionar proyecto </a>
             </mat-list-item>
-            <mat-list-item routerLink="/login" style="margin-top: 5rem;">
+            <mat-list-item routerLink="/app/auth" style="position: absolute;bottom: 0;">
                 <button mat-icon-button>
-                    <i class="fas fa-door-open" style="color: #ffb142;"></i>
+                    <i class="fas fa-door-closed" style="color: #ffb142;"></i>
                 </button>
                 <a matLine  style="color: #ffb142;" (click)="cerrar()"> Cerrar Sesión </a>
             </mat-list-item>

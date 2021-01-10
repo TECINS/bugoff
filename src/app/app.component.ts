@@ -21,8 +21,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (this.localSession) {
       if (this.proyectInfo) {
-        console.log('si hay proyecto info');
-        console.log(this.proyectInfo.id_areas);
         switch (Number(this.proyectInfo.id_areas)) {
           // lider
           case 1:

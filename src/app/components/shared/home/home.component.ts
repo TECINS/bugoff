@@ -36,7 +36,4 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  perfil(): void {
-    this.router.navigateByUrl('/crear-perfil');
-  }
 }

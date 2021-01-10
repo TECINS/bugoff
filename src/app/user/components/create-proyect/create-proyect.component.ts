@@ -52,7 +52,9 @@ export class CreateProyectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.utilService._loading = true;
+    setTimeout(() => {
+      this.utilService._loading = true;
+    });
     this.proyectosService.obtenerProyectosPorId(this.sessionData.id_usuarios)
       .subscribe( data => {
         if (!data.error) {

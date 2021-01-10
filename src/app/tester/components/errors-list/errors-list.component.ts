@@ -16,7 +16,7 @@ export class ErrorsListComponent implements OnInit {
   proyectInfo: ProyectInfo;
   areaActual = 0;
   errores: ErrorList[];
-  erroresFilter: ErrorList[];
+  erroresFilter: ErrorList[] = [];
   errorInfo: ErrorData;
   estados = [
     { id_estados_errores: '3', estado: 'En espera' },
@@ -32,7 +32,9 @@ export class ErrorsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.utilService._loading = true;
+    setTimeout(() => {
+      this.utilService._loading = true;
+    });
     this.errorsService.obtenerErroresDeUsuarioTester(this.localSession.id_usuarios, this.proyectInfo.id_proyectos)
       .subscribe(data => {
         console.log(data);

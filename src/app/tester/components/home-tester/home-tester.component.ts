@@ -26,9 +26,9 @@ export class HomeTesterComponent implements OnInit {
     }
   }
   viewHistorial(): void {
-    this.router.navigateByUrl('/tester/lista-errores');
+    this.router.navigateByUrl('/app/tester/lista-errores');
   }
   toReportIssue(): void {
-    this.router.navigateByUrl('/tester/reportar-error');
+    this.router.navigateByUrl('/app/tester/reportar-error');
   }
 }
