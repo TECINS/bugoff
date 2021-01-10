@@ -5,6 +5,7 @@ export interface ProyectosSelect {
 
 export interface ProyectInfo {
     area: string;
+    id_proyectos: string;
     id_areas: string;
     nombre: string;
     user_name: string;

@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
 
   activateSide(): void {
     this.activate = !this.activate;
-    console.log(this.activate);
   }
   ngOnInit(): void {
   }

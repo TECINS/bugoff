@@ -24,6 +24,7 @@ export class SidebarComponent implements OnInit {
   private mobileQueryListener: () => void;
   proyectos: ProyectosSelect[];
   proyectInfo: ProyectInfo;
+  principalRoute = '';
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -40,6 +41,7 @@ export class SidebarComponent implements OnInit {
     if (this.proyectInfo) {
       this.visiblecomponent = Number(this.proyectInfo.id_areas);
     }
+    this.obtenerRutaPrincipal();
     this.utilService._loading = true;
     this.proyectosService.obtenerProyectosPorId(this.localsession.id_usuarios)
       .subscribe( data => {
@@ -54,8 +56,25 @@ export class SidebarComponent implements OnInit {
         }
       }, err => console.log(err)).add ( () => this.utilService._loading = false);
   }
+  obtenerRutaPrincipal(): void {
+    switch (Number(this.visiblecomponent)) {
+      case 0:
+        this.principalRoute = '/app/usuario';
+        break;
+      case 1:
+        this.principalRoute = '/app/lider';
+        break;
+      case 2:
+        this.principalRoute = '/app/desarrollador';
+        break;
+      case 3:
+        this.principalRoute = '/app/tester';
+        break;
+    }
+  }
   cerrar(): void{
     localStorage.removeItem('session-bugoff');
+    localStorage.removeItem('proyect-info');
   }
   selectProject(proyecto: ProyectosSelect): void {
     this.utilService._loading = true;

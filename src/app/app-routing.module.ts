@@ -1,57 +1,35 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { RecoveryPassComponent } from './components/auth/recovery-pass/recovery-pass.component';
-import { HomeTesterComponent } from './components/pages/tester/home-tester/home-tester.component';
-import { ErrorReportComponent } from './components/pages/tester/error-report/error-report.component';
-import { CreateProfileComponent } from './components/shared/create-profile/create-profile.component';
-import { HomeworkComponent } from './components/pages/dev/homework/homework.component';
-import { AgregarproyectoComponent } from './components/shared/home/agregarproyecto/agregarproyecto.component';
-import { HistoricErrorsComponent } from './components/pages/tester/historic-errors/historic-errors.component';
 import { HomeComponent } from './components/shared/home/home.component';
-import { InitialPageComponent } from './components/shared/home/initial-page/initial-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: 'login', component: LoginComponent
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
   },
   {
-    path: 'register', component: RegisterComponent
-  },
-  {
-    path: 'recovery', component: RecoveryPassComponent
-  },
-  {
-    path: 'crear-perfil', component: CreateProfileComponent
-  },
-  {
-    path: 'home', component: HomeComponent, children: [
+    path: 'app', component: HomeComponent, children: [
       {
-        path: 'initial-page', component: InitialPageComponent
+        path: 'tester',
+        loadChildren: () => import('./tester/tester.module').then( m => m.TesterModule)
       },
       {
-      path: 'crear-proyecto', component: AgregarproyectoComponent
+        path: 'usuario',
+        loadChildren: () => import('./user/user.module').then( m => m.UserModule)
       },
       {
-        path: 'tester-home', component: HomeTesterComponent
+        path: 'lider',
+        loadChildren: () => import('./leader/leader.module').then(m => m.LeaderModule)
       },
       {
-        path: 'tester-report', component: ErrorReportComponent
+        path: 'desarrollador',
+        loadChildren: () => import('./developer/developer.module').then(m => m.DeveloperModule)
       },
       {
-        path: 'historial-errors', component: HistoricErrorsComponent
+        path: 'perfil', component: ProfileComponent
       },
-      {
-        path: 'hw', component: HomeworkComponent
-      }
     ]
-  },
-  {
-    path: '**', pathMatch: 'full', redirectTo: 'tester'
-  },
-  {
-    path: '', pathMatch: 'full', redirectTo: 'tester'
   }
 ];
 

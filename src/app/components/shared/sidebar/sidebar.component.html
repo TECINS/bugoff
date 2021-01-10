@@ -2,7 +2,7 @@
     <mat-sidenav #snav [opened]="toggleside" [mode]="mobileQuery.matches ? 'over' : 'side'"
         [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-            <mat-list-item routerLink="/crear-perfil" style="margin-top: 20px; margin-right: 80px;">
+            <mat-list-item routerLink="/app/perfil" style="margin-top: 20px; margin-right: 80px;">
                 <button mat-icon-button>
                     <button mat-icon-button>
                         <i class="fas fa-user-circle"></i>
@@ -10,7 +10,6 @@
                 </button>
                 <a matLine> @{{ localsession.user_name }} </a>
             </mat-list-item>
-
             <mat-list-item style="margin-top: 20px; margin-right: 80px;">
                 <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
                     <mat-label>Cambiar de proyecto</mat-label>
@@ -21,45 +20,43 @@
                     </mat-select>
                 </mat-form-field>
             </mat-list-item>
-
-            <mat-list-item routerLink="/home/tester-home" class="first-item" *ngIf="visiblecomponent == 2">
-                <button mat-icon-button>
-                    <mat-icon>info</mat-icon>
-                </button>
-                <a matLine > Menu Principal </a>
-            </mat-list-item>
-
-            <mat-list-item matLine routerLink="/home/initial-page" class="first-item">
+            <mat-list-item matLine [routerLink]="principalRoute" class="first-item">
                 <button mat-icon-button>
                     <i class="fa fa-home" aria-hidden="true"></i>
                 </button>
                 <a matLine > Pantalla inicial </a>
             </mat-list-item>
 
-            <mat-list-item matLine routerLink="/home/crear-proyecto">
+            <mat-list-item matLine routerLink="/app/crear-proyecto" *ngIf="visiblecomponent == 0">
                 <button mat-icon-button>
                     <i class="far fa-plus-square"></i>
                 </button>
                 <a matLine > Crear proyecto </a>
             </mat-list-item>
 
-            <mat-list-item routerLink="/home/historial-errors" *ngIf="visiblecomponent > 0">
+            <mat-list-item routerLink="/app/tester/lista-errores" *ngIf="visiblecomponent == 3">
                 <button mat-icon-button>
                     <i class="fas fa-vial"></i>
                 </button>
                 <a matLine > Historial de errores </a>
             </mat-list-item>
-            <mat-list-item  routerLink="/home/tester-report" *ngIf="visiblecomponent == 3 ">
+            <mat-list-item  routerLink="/app/tester/reportar-error" *ngIf="visiblecomponent == 3">
                 <button mat-icon-button>
                     <i class="fas fa-bomb"></i>
                 </button>
                 <a matLine> Reportar Error </a>
             </mat-list-item>
-            <mat-list-item  routerLink="/home/initial-page" *ngIf="visiblecomponent == 1">
+            <mat-list-item  routerLink="/app/lider/editar-proyecto" *ngIf="visiblecomponent == 1">
                 <button mat-icon-button>
                     <i class="fas fa-edit"></i>
                 </button>
-                <a matLine> Editar projecto </a>
+                <a matLine> Editar proyecto </a>
+            </mat-list-item>
+            <mat-list-item  routerLink="/app/lider/gestionar-proyecto" *ngIf="visiblecomponent == 1">
+                <button mat-icon-button>
+                    <i class="fas fa-edit"></i>
+                </button>
+                <a matLine> Gestionar proyecto </a>
             </mat-list-item>
             <mat-list-item routerLink="/login" style="margin-top: 5rem;">
                 <button mat-icon-button>

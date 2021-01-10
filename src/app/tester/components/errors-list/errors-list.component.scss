@@ -1,0 +1,9 @@
+.alert {
+    background: linear-gradient(to right,#ffcf60, #ffba53);
+    border: none;
+    cursor: pointer;
+    transition: all ease 2s;
+}
+.alert:hover {
+    background: linear-gradient(to left,#ffcf60, #ffffff);
+}
