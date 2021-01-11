@@ -144,10 +144,7 @@ export class ErrorReportComponent implements OnInit {
               });
             }
           },
-          err => {
-            console.log(err);
-          }
-        ).add(() => this.utilService._loading = false);
+          err => console.log(err)).add(() => this.utilService._loading = false);
     }
   }
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/shared/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -25,10 +24,7 @@ const routes: Routes = [
       {
         path: 'desarrollador',
         loadChildren: () => import('./developer/developer.module').then(m => m.DeveloperModule)
-      },
-      {
-        path: 'perfil', component: ProfileComponent
-      },
+      }
     ]
   }
 ];

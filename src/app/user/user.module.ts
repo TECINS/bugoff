@@ -7,10 +7,11 @@ import { HomeUserComponent } from './components/home-user/home-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
+import { PorfileComponent } from './components/porfile/porfile.component';
 
 
 @NgModule({
-  declarations: [CreateProyectComponent, HomeUserComponent],
+  declarations: [CreateProyectComponent, HomeUserComponent, PorfileComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
