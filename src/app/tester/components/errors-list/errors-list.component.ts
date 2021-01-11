@@ -5,6 +5,7 @@ import { LocalSession } from '../../../models/session.model';
 import { ProyectInfo } from '../../../models/proyectos.model';
 import { ErrorData, ErrorList } from '../../../models/error.model';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-errors-list',
@@ -25,7 +26,8 @@ export class ErrorsListComponent implements OnInit {
   ];
   constructor(
     private errorsService: ErroresService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private router: Router
   ) {
     this.localSession = JSON.parse(localStorage.getItem('session-bugoff'));
     this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
@@ -37,7 +39,6 @@ export class ErrorsListComponent implements OnInit {
     });
     this.errorsService.obtenerErroresDeUsuarioTester(this.localSession.id_usuarios, this.proyectInfo.id_proyectos)
       .subscribe(data => {
-        console.log(data);
         if (!data.error) {
           this.errores = data.erroresTester;
           this.erroresFilter = data.erroresTester;
@@ -63,7 +64,6 @@ export class ErrorsListComponent implements OnInit {
     return erroresTemp;
   }
   selectEstado(idEstadoError: string): void{
-    console.log(idEstadoError);
     this.erroresFilter = this.filterEstado(Number(idEstadoError));
   }
   filterEstado(idEstados: number): ErrorList[] {
@@ -76,19 +76,6 @@ export class ErrorsListComponent implements OnInit {
     return erroresTemp;
   }
   verError(error: ErrorList): void {
-    this.utilService._loading = true;
-    this.errorsService.obtenerErrorPorId(error.id_errores)
-      .subscribe(data => {
-        console.log(data);
-        if (!data.error) {
-          this.errorInfo = data.errorInfo;
-        } else {
-          Swal.fire({
-            title: 'Error al obtener la información',
-            icon: 'error',
-            text: data.message
-          });
-        }
-      }, err => console.log(err)).add(() => this.utilService._loading = false);
+    this.router.navigateByUrl('/app/tester/error-info/' + error.id_errores);
   }
 }

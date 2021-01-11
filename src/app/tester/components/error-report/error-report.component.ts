@@ -28,7 +28,7 @@ export class ErrorReportComponent implements OnInit {
     testings = [];
     // Chips for Branchgithub
     branches = [];
-    imageSrc = 'https://scontent.frex1-1.fna.fbcdn.net/v/t1.0-9/60448348_2188457861222810_257805742654881792_o.jpg?_nc_cat=101&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeGzH1r1DSACU8LOsowxysLYql9H1etFXR6qX0fV60VdHvTLXZJvqsAJPT3T7YbHmSXUhGAb7m7Ur0381ijl1_D5&_nc_ohc=nep7fHZJzKIAX_JZbSd&_nc_ht=scontent.frex1-1.fna&oh=6076f6184390b08d23b7eddd7c93c825&oe=5FFF461E';
+    imageSrc: string;
   constructor(
     private reportErrorService: ErrorReportService,
     public fb: FormBuilder,

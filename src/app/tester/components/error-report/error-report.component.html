@@ -10,10 +10,9 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-12 mt-3">
+        <div class="col-11 mt-2">
             <div class="row justify-content-center">
-                <form [formGroup]="formReport" name="formReport" autocomplete="off" class="form-group">
-                <div class="col-12 mt-2">
+                <form [formGroup]="formReport" name="formReport" autocomplete="off" class="form-group col-12 mt-2">
                         <mat-card class="example-card" >
                             <mat-card-content>
                                 <div class="row" style="justify-content: space-between; padding: 10px 10px 10px 10px;">
@@ -115,26 +114,28 @@
                                         <textarea matInput formControlName="descripcion" autocomplete="off" ></textarea>
                                     </mat-form-field>
                                 </div>
+                                <div class="col-12 mt-3" >
+                                    <div class="row justify-content-center">
+                                        <div class="col-12">
+                                            <div class="input-group mb-3">
+                                                <div class="custom-file">
+                                                    <input #anexo autocomplete="off" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Adjuntar evitencia o anexo</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center" *ngIf="imageSrc">
+                                            <div class="zoomimage" style="width: 500px;">
+                                                <img class="img-fluid"  id="previewfile" [src]="imageSrc" alt="your image" width="100%" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </mat-card-content>
                             <mat-card-actions >
                                 <button mat-flat-button color="primary" style="width: 100%;" type="submit" (click)="reportarerrorEvent()">REPORTAR</button>
                             </mat-card-actions>
                         </mat-card>
-                    </div>
-                    <div class="col-3 col-sm-12 col-lg-3 mt-3" >
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Evidencia</span>
-                            </div>
-                            <div class="custom-file">
-                                <input #anexo autocomplete="off" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" (change)="readURL($event);">
-                                <label class="custom-file-label" for="inputGroupFile01">Elegir imagen</label>
-                            </div>
-                        </div>
-                        <div class="zoomimage" style="width: 100%;">
-                            <img  id="previewfile" [src]="imageSrc || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQriTpUmR3mkHQmmbSCvL5g3ulF9xjfvMYYTQ&usqp=CAU'" alt="your image" width="100%" />
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>

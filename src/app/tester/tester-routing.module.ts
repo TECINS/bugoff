@@ -19,10 +19,10 @@ const routes: Routes = [
         path: 'lista-errores', component: ErrorsListComponent
       },
       {
-        path: 'error-info', component: ErrorsInfoComponent
+        path: 'error-info/:id_errores', component: ErrorsInfoComponent
       },
       {
-        path: '**', redirectTo: 'home'
+        path: '**', redirectTo: 'reportar-error'
       }
     ]
   }
