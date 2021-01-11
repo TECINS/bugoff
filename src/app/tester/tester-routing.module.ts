@@ -22,7 +22,7 @@ const routes: Routes = [
         path: 'error-info/:id_errores', component: ErrorsInfoComponent
       },
       {
-        path: '**', redirectTo: 'reportar-error'
+        path: '**', redirectTo: 'home'
       }
     ]
   }
