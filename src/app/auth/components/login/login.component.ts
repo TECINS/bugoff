@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.formLogin.value).subscribe(
       data => {
         if (!data.error){
-          this.route.navigateByUrl('/home/initial-page');
+          this.route.navigateByUrl('/app/usuario');
           localStorage.setItem('session-bugoff', JSON.stringify(data.message));
         } else {
           Swal.fire({
