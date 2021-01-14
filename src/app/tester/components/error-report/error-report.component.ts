@@ -6,6 +6,8 @@ import { ErrorReportService } from '../../services/tester-report.service';
 import { UtilService } from '../../../services/util.service';
 import { DatePipe } from '@angular/common';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { ProyectInfo } from '../../../models/proyectos.model';
+import { LocalSession } from '../../../models/session.model';
 
 @Component({
   selector: 'app-error-report',
@@ -14,7 +16,8 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 })
 export class ErrorReportComponent implements OnInit {
   formReport: FormGroup;
-  localsession: any;
+  localsession: LocalSession;
+  proyectInfo: ProyectInfo;
   @ViewChild('anexo', {
     read: ElementRef
   }) img: ElementRef;
@@ -51,6 +54,7 @@ export class ErrorReportComponent implements OnInit {
     });
     this.date = new Date();
     this.localsession = JSON.parse(localStorage.getItem('session-bugoff'));
+    this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
   }
 
   ngOnInit(): void {
@@ -122,10 +126,20 @@ export class ErrorReportComponent implements OnInit {
       data.append('anexo', anexo);
       this.formReport.get('fecha_reporte').setValue(this.datePipe.transform(this.date, 'yyyy-MM-dd'));
       this.formReport.get('autor_reporte').setValue(this.localsession.id_usuarios);
+      this.formReport.get('id_proyectos').setValue(this.proyectInfo.id_proyectos);
       this.formReport.get('anexo').setValue(anexo);
       this.utilService._loading = true;
-      console.log(this.formReport.value);
-      this.reportErrorService.errorReport(this.formReport.value)
+      data.append('fecha_reporte', this.formReport.get('fecha_reporte').value);
+      data.append('autor_reporte', this.formReport.get('autor_reporte').value);
+      data.append('titulo_error', this.formReport.get('titulo_error').value);
+      data.append('iteraciones', this.formReport.get('iteraciones').value);
+      data.append('porcentaje_aparicion', this.formReport.get('porcentaje_aparicion').value);
+      data.append('dispositivo_uso', this.formReport.get('dispositivo_uso').value);
+      data.append('descripcion', this.formReport.get('descripcion').value);
+      data.append('id_prioridades', this.formReport.get('id_prioridades').value);
+      data.append('rama_repositorio', this.formReport.get('rama_repositorio').value);
+      data.append('id_proyectos', this.formReport.get('id_proyectos').value);
+      this.reportErrorService.errorReport(data)
         .subscribe(
           (resp) => {
             console.log(resp);

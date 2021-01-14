@@ -17,7 +17,4 @@ export class ErroresService {
     };
     return this.http.post(this.appService.URL_API + 'errores/errores-tester', body);
   }
-  obtenerErrorPorId(idErrores: string): Observable<any> {
-    return this.http.post(this.appService.URL_API + 'errores/error-by-id', {id_errores: idErrores});
-  }
 }

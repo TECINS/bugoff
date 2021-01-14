@@ -8,10 +8,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 import { PorfileComponent } from './components/porfile/porfile.component';
+import { ViewErrorComponent } from './components/view-error/view-error.component';
+import { ViewErrorAsignedComponent } from './components/view-error-asigned/view-error-asigned.component';
 
 
 @NgModule({
-  declarations: [CreateProyectComponent, HomeUserComponent, PorfileComponent],
+  declarations: [
+    CreateProyectComponent,
+    HomeUserComponent,
+    PorfileComponent,
+    ViewErrorComponent,
+    ViewErrorAsignedComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,

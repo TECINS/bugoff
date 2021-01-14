@@ -76,6 +76,6 @@ export class ErrorsListComponent implements OnInit {
     return erroresTemp;
   }
   verError(error: ErrorList): void {
-    this.router.navigateByUrl('/app/tester/error-info/' + error.id_errores);
+    this.router.navigateByUrl('/app/usuario/ver-error/' + error.id_errores);
   }
 }

@@ -1,23 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ErrorData } from '../../../models/error.model';
 import { UtilService } from '../../../services/util.service';
-import { ErroresService } from '../../services/errores.service';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ErrorsService } from '../../services/errors.service';
 
 @Component({
-  selector: 'app-errors-info',
-  templateUrl: './errors-info.component.html',
-  styleUrls: ['./errors-info.component.scss']
+  selector: 'app-view-error',
+  templateUrl: './view-error.component.html',
+  styleUrls: ['./view-error.component.scss']
 })
-export class ErrorsInfoComponent implements OnInit {
+export class ViewErrorComponent implements OnInit {
 
   errorInfo: ErrorData;
+  paramsPage: any;
   constructor(
     private utilService: UtilService,
     private activateRoute: ActivatedRoute,
-    private errorsService: ErroresService
-  ) { }
+    private errorsService: ErrorsService
+  ) {
+    this.paramsPage = this.activateRoute.snapshot.paramMap;
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -36,5 +39,6 @@ export class ErrorsInfoComponent implements OnInit {
         }
       }, err => console.log(err)).add(() => this.utilService._loading = false);
   }
+
 
 }

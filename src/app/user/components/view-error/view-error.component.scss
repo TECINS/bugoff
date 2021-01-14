@@ -1,0 +1,112 @@
+#Nombre{
+    margin-top: 10px;
+}
+.cont{
+    margin: 25px;
+}
+.imgRedonda{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn-todos{ 
+    margin-left: 25px;
+    background: #FFFFFF; 
+	border: solid #BDBDBD 0; 
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)  ; 
+    border-radius: 5px;
+    font-size: 14px;
+    font-style: bold;
+    color: rgb(33, 132, 189);
+}
+.btn-mios{ 
+    margin-left: 10px;
+    background: #FFFFFF; 
+	border: solid #BDBDBD 0; 
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)  ; 
+    border-radius: 5px;
+    font-size: 14px;
+    font-style: bold;
+    color: rgb(93, 93, 93);
+}
+
+hr{
+    height: .5px;
+    background-color: rgba(77, 77, 77, 0.705);
+}
+#titulo{
+    margin-top: 5px;
+
+font-size: 18px;
+font-weight: 500px;
+}
+#fecha{
+    margin-top: 5px;
+
+    font-size: 14px;
+    font-weight: 500px;
+    }
+    
+    #responsable{
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: 500px;
+        }
+        .prioridad{
+            width:auto;
+            height:30px;
+            border-radius: 50%; 
+            background: #fb4f4f; 
+            border: solid #BDBDBD 0; 
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)  ; 
+            border-radius: 5px;
+        }
+        .letrablanca{
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500px;
+            color: white;
+        }
+        .letrablancagrande{
+            line-height: 30px;
+            text-align: center;
+            font-size: 48px;
+            font-weight: 900px;
+            color: white;
+        }
+        .descripcion{
+            font-size: 18px;
+            font-weight: 500px;
+            color: rgb(87, 87, 87);
+        }
+        .descripcion{
+            font-size: 14px;
+            font-weight: 500px;
+            color: rgb(87, 87, 87);
+        }
+        .foto{
+            width:100px;
+            height:400px;
+            border-radius: 15px;
+            // background-image: url("../../assets/imgs/referencia.png");
+            margin: 20px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .trabajo{
+            width: 70px;
+            height: 100px;
+            background-color: #fb4f4f; 
+            margin-top: 10px;
+            margin-left: 10px;
+            border-radius: 10px;
+ 
+        }
+        .mini-box{
+            background-color: aquamarine;
+            height: 50px;
+            width: 50px;
+        }
