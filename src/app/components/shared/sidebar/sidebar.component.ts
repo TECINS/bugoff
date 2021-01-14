@@ -5,6 +5,7 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 import { ProyectosSelect, ProyectInfo } from '../../../models/proyectos.model';
 import Swal from 'sweetalert2';
 import { UtilService } from '../../../services/util.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class SidebarComponent implements OnInit {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private proyectosService: ProyectosService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private route: Router,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -82,6 +84,7 @@ export class SidebarComponent implements OnInit {
   cerrar(): void{
     localStorage.removeItem('session-bugoff');
     localStorage.removeItem('proyect-info');
+    this.route.navigateByUrl('/');
   }
   selectProject(proyecto: ProyectosSelect): void {
     this.utilService._loading = true;

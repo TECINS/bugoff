@@ -18,7 +18,7 @@ const routes: Routes = [
         path: 'gestionar-proyecto', component: ManageProyectComponent
       },
       {
-        path: '**', redirectTo: 'gestionar-proyecto'
+        path: '**', redirectTo: 'home'
       }
     ]
   }

@@ -1,1 +1,33 @@
-<p>home-leader works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center mt-5">
+            <h1 class="titulo">BIENVENIDO A <strong class="bug">BUG</strong><strong class="off">OFF</strong></h1>
+        </div>
+        <div class="col-12" style="margin-top: 5%;">
+            <div class="row">
+                <div class="col-lg-6 text-center col-md-12 mt-3" >
+                    <img src="../../../../../assets/illustrations/undraw_teamwork_hpdk.svg" alt="logo" class="img-fluid mb-2" width="500px">
+                </div>
+
+                <div class="col-lg-6 col-md-12 ">
+                    <p class="text-initial-min "style="margin-left: 10%;">
+                        Estas en <b>{{proyectInfo.nombre}}</b> con rol de <b>{{proyectInfo.area}}</b>
+                    </p>
+                    <div class="col-12 ">
+                        <p class="text-initial-min" style="margin-left: 18%;"> ¿Qué deseas hacer?</p>
+                    </div>
+                    <div class="col-12 ">
+                        <button mat-flat-button color="primary" (click)="viewHistorial()" style="width: 50%;">Ver Historial de errores</button>
+                    </div>
+                    <div class="col-12 mb-2 mt-2 ">
+                        <strong class="divider" style="margin-left: 24%;">o</strong>
+                    </div>
+                    <div class="col-12 " >
+                        <button mat-flat-button color="primary" (click)="toReportIssue()" style="width: 50%;">Reportar Error</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
