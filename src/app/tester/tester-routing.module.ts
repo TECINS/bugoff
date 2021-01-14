@@ -18,7 +18,7 @@ const routes: Routes = [
         path: 'lista-errores', component: ErrorsListComponent
       },
       {
-        path: '**', redirectTo: 'home'
+        path: '**', redirectTo: 'reportar-error'
       }
     ]
   }

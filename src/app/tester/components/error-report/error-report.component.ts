@@ -40,8 +40,7 @@ export class ErrorReportComponent implements OnInit {
   ) {
     this.formReport = fb.group({
       autor_reporte: [''],
-      // TODO: sacar el id_proyectos dependiendo del proyecto actual
-      id_proyectos: ['1851147215'],
+      id_proyectos: [''],
       fecha_reporte: [''],
       titulo_error: ['', [Validators.required]],
       iteraciones: ['', [Validators.required]],
@@ -142,18 +141,19 @@ export class ErrorReportComponent implements OnInit {
       this.reportErrorService.errorReport(data)
         .subscribe(
           (resp) => {
-            console.log(resp);
             if (!resp.error) {
               Swal.fire({
                 allowOutsideClick: false,
-                icon: 'info',
-                title: 'Error reportado',
+                icon: 'success',
+                title: 'Error reportado correctamente',
               });
               this.formReport.reset();
+              this.imageSrc = null;
             } else {
+              console.log(resp);
               Swal.fire({
                 allowOutsideClick: false,
-                icon: 'info',
+                icon: 'error',
                 title: 'Ocurrio un error al reportar',
               });
             }
