@@ -12,14 +12,13 @@
     background-size: cover;
 }
 .btn-todos{ 
-    margin-left: 25px;
-    background: #FFFFFF; 
+    margin-left: 15px;
+    background: #dbd9d9; 
 	border: solid #BDBDBD 0; 
-	box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)  ; 
     border-radius: 5px;
     font-size: 14px;
     font-style: bold;
-    color: rgb(33, 132, 189);
+    color: #c28d12;
 }
 .btn-mios{ 
     margin-left: 10px;
@@ -110,3 +109,24 @@ font-weight: 500px;
             height: 50px;
             width: 50px;
         }
+.badge-custom {
+    background-color: #fcb207;
+    font-size: 16px;
+    &-danger {
+        font-size: 16px;
+        color: #FFFFFF;
+        background-color: #fb4f4f;
+    }
+    &-success {
+        font-size: 16px;
+        color: #FFFFFF;
+        background-color: green;
+    }
+}
+.divider {
+    width: 100%;
+    height: 4px;
+    border-radius: 10px;
+    background: #c28d12;
+    margin-top: 5px;
+}
