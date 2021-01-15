@@ -110,3 +110,18 @@ font-weight: 500px;
             height: 50px;
             width: 50px;
         }
+
+        .badge-custom {
+            background-color: #fcb207;
+            font-size: 16px;
+            &-danger {
+                font-size: 16px;
+                color: #FFFFFF;
+                background-color: #fb4f4f;
+            }
+            &-success {
+                font-size: 16px;
+                color: #FFFFFF;
+                background-color: green;
+            }
+        }

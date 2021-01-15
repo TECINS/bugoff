@@ -8,15 +8,21 @@ import { Observable } from 'rxjs';
 })
 export class LeaderService {
 
-  constructor(private appSerice: AppService, private http: HttpClient) { }
+  constructor(private appService: AppService, private http: HttpClient) { }
 
   obtenerListaErroresAsignados(idProyectos: string): Observable<any> {
-    return this.http.post(this.appSerice.URL_API + 'errores/errors-asigned', {id_proyectos: idProyectos});
+    return this.http.post(this.appService.URL_API + 'errores/errors-asigned', {id_proyectos: idProyectos});
   }
   obtenerListaErroresNoAsignados(idProyectos: string): Observable<any> {
-    return this.http.post(this.appSerice.URL_API + 'errores/errors-not-asigned', {id_proyectos: idProyectos});
+    return this.http.post(this.appService.URL_API + 'errores/errors-not-asigned', {id_proyectos: idProyectos});
   }
   obtenerTodosLosErroresDelProyecto(idProyectos: string): Observable<any> {
-    return this.http.post(this.appSerice.URL_API + 'errores/all-errors-by-proyect', {id_proyectos: idProyectos});
+    return this.http.post(this.appService.URL_API + 'errores/all-errors-by-proyect', {id_proyectos: idProyectos});
+  }
+  obtenerErrorPorId(idErrores: string): Observable<any> {
+    return this.http.post(this.appService.URL_API + 'errores/error-by-id', {id_errores: idErrores});
+  }
+  obtenerErrorPorIdAsignado(idErrores: string, idUsuarios: string): Observable<any> {
+    return this.http.post(this.appService.URL_API + 'errores/error-by-id-asigned', {id_errores: idErrores, id_usuarios: idUsuarios});
   }
 }

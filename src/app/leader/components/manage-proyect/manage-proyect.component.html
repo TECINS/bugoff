@@ -41,9 +41,9 @@
         </div>
         <div class="col-12 error-list">
             <div class="row justify-content-center">
-                <div class="col-10" *ngFor="let error of erroresProyectoFiltrado" (click)="viewError(error)">
+                <div class="col-10" *ngFor="let error of erroresProyectoFiltrado">
                     <div class="row mt-2">
-                        <div class="col-10">
+                        <div class="col-10"  (click)="viewError(error)">
                             <div class="alert alert-dark" role="alert">
                                 <div class="row justify-content-center align-items-center m-0">
                                     <div class="col-3">
@@ -64,10 +64,10 @@
                         <div class="col-2">
                             <div class="row align-items-center h-100 pb-3 justify-content-around">
                                 <div class="col-4">
-                                    <button class="btn btn-custom"> <i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-custom" (click)="openEdit(content, error)"> <i class="fa fa-edit"></i></button>
                                 </div>
                                 <div class="col-4">
-                                    <button class="btn btn-custom"> <i class="fa fa-tasks"></i></button>
+                                    <button [disabled]="error.id_errores_usuarios != null" class="btn btn-custom" (click)="openAsing(asignContent, error)"> <i class="fa fa-tasks"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -77,3 +77,146 @@
         </div>
     </div>
 </div>
+
+<!-- modals -->
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title" style="font-weight: bold;">Editar Error reportado</h1>
+        <button class="close" type="button" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row justify-content-center mt-2 mb-2">
+                <div class="col-6 d-flex align-items-center">
+                    <h4 style="font-weight: bold; margin: 0; margin-right: 4px;">Autor:</h4>
+                    <span>{{errorInfo.autor_reporte}}</span>
+                </div>
+                <div class="col-6 d-flex align-items-center">
+                    <h4 style="font-weight: bold; margin: 0; margin-right: 4px;">Fecha de reporte:</h4>
+                    <span>{{errorInfo.fecha_reporte | date:'dd-MM-yyyy'}}</span>
+                </div>
+            </div>
+            <form [formGroup]="formError" class="row">
+                <div class="col-6">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label>Nombre del error</mat-label>
+                        <input matInput placeholder="Titulo del error" formControlName="titulo_error" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-bug text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Proridad del error</mat-label>
+                        <mat-select formControlName="id_prioridades" autocomplete="off">
+                            <mat-option value="1">Baja</mat-option>
+                            <mat-option value="2">Media</mat-option>
+                            <mat-option value="3">Alta</mat-option>
+                            <mat-option value="4">Blocxer</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label># Número de iteraciones</mat-label>
+                        <input matInput placeholder="Intentos para provocar el error" formControlName="iteraciones" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-sync text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label>% del error</mat-label>
+                        <input matInput placeholder="Porcentaje de las veces que el error aparece" formControlName="porcentaje_aparicion" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-percentage text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label>Dispositivo de uso</mat-label>
+                        <input matInput placeholder="Dispositivo en el que se probo" formControlName="dispositivo_uso" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-mobile text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label>Rama en la que se encotro</mat-label>
+                        <input matInput placeholder="Rama del repositorio en la que se encontro" formControlName="rama_repositorio" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-code-branch text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-12">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Descripción</mat-label>
+                        <textarea style="height: 100px; max-height: 300px; min-height: 100px;" matInput formControlName="descripcion" autocomplete="off" ></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 d-flex justify-content-center" *ngIf="errorInfo.anexo">
+                    <img src="../../../../assets/imgs/not-found-logo.png" class="img-fluid" width="200px" alt="anexo">
+                </div>
+                <div class="col-12 text-center">
+                    <button mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="editarErrorReportado()">EDITAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #asignContent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title" style="font-weight: bold;">Asignar error reportado</h1>
+        <button class="close" type="button" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <form class="row" [formGroup]="formAsignarError">
+                <div class="col-12 text-center mb-2">
+                    <h2 style="font-weight: bold; margin: 0;">{{errorActual.titulo_error}}</h2>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center mb-2">
+                    <h4 style="font-weight: bold; margin: 0;">Prioridad:</h4>
+                    <span class="badge badge-custom d-inline ml-2">{{errorActual.grado_prioridad}}</span>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center mb-2">
+                    <h4 style="font-weight: bold; margin: 0;">Id error:</h4>
+                    <span class="badge badge-custom d-inline ml-2">{{errorActual.id_errores}}</span>
+                </div>
+                <div class="col-12 text-center">
+                    <mat-form-field appearance="fill" style="width: 80%;">
+                        <mat-label>Desarrollador:</mat-label>
+                        <mat-select autocomplete="off" formControlName="id_usuarios">
+                            <mat-option value="1">Kt dev</mat-option>
+                            <mat-option value="2">Arman dev</mat-option>
+                            <mat-option value="3">Kbo dev</mat-option>
+                            <mat-option value="4">Ana dev</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 text-center">
+                    <mat-form-field appearance="fill" style="width: 80%">
+                        <mat-label>Fecha de entrega:</mat-label>
+                        <input matInput type="date"  autocomplete="off" formControlName="fecha_de_entrega">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-calendar-day text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 text-center">
+                    <button [disabled]="formAsignarError.invalid" mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="asignarErrorReportado()">AIGNAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
