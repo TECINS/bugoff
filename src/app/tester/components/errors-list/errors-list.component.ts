@@ -6,6 +6,8 @@ import { ProyectInfo } from '../../../models/proyectos.model';
 import { ErrorData, ErrorList } from '../../../models/error.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ViewErrorComponent } from '../../../user/components/view-error/view-error.component';
 
 @Component({
   selector: 'app-errors-list',
@@ -27,10 +29,13 @@ export class ErrorsListComponent implements OnInit {
   constructor(
     private errorsService: ErroresService,
     private utilService: UtilService,
-    private router: Router
+    private modalService: NgbModal,
+    config: NgbModalConfig,
   ) {
     this.localSession = JSON.parse(localStorage.getItem('session-bugoff'));
     this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
 
   ngOnInit(): void {
@@ -76,6 +81,7 @@ export class ErrorsListComponent implements OnInit {
     return erroresTemp;
   }
   verError(error: ErrorList): void {
-    this.router.navigateByUrl('/app/usuario/ver-error/' + error.id_errores);
+    const modalRef = this.modalService.open(ViewErrorComponent, {size: 'xl'});
+    modalRef.componentInstance.idErrores = error.id_errores;
   }
 }

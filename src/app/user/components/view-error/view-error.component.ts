@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ErrorData } from '../../../models/error.model';
 import { UtilService } from '../../../services/util.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ErrorsService } from '../../services/errors.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-view-error',
@@ -13,20 +14,18 @@ import { ErrorsService } from '../../services/errors.service';
 export class ViewErrorComponent implements OnInit {
 
   errorInfo: ErrorData;
-  paramsPage: any;
+  @Input() idErrores: string;
   constructor(
     private utilService: UtilService,
-    private activateRoute: ActivatedRoute,
-    private errorsService: ErrorsService
-  ) {
-    this.paramsPage = this.activateRoute.snapshot.paramMap;
-  }
+    private errorsService: ErrorsService,
+    public activeModal: NgbActiveModal
+  ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.utilService._loading = true;
     });
-    this.errorsService.obtenerErrorPorId(this.activateRoute.snapshot.paramMap.get('id_errores'))
+    this.errorsService.obtenerErrorPorId(this.idErrores)
       .subscribe(data => {
         if (!data.error) {
           this.errorInfo = data.errorInfo;

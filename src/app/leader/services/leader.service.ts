@@ -25,4 +25,10 @@ export class LeaderService {
   obtenerErrorPorIdAsignado(idErrores: string, idUsuarios: string): Observable<any> {
     return this.http.post(this.appService.URL_API + 'errores/error-by-id-asigned', {id_errores: idErrores, id_usuarios: idUsuarios});
   }
+  obtenerDesarrolladoresPorProyecto(idProyectos: string): Observable<any> {
+    return this.http.post(this.appService.URL_API + 'usuarios/desarrolladores-proyecto', {id_proyectos: idProyectos});
+  }
+  cambiarPrioridadError(idErrores: string, idPrioridades: string): Observable<any> {
+    return this.http.put(this.appService.URL_API + 'errores/cambiar-prioridad', {id_errores: idErrores, id_prioridades: idPrioridades});
+  }
 }

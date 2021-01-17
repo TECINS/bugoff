@@ -73,8 +73,8 @@ font-weight: 500px;
         .letrablancagrande{
             line-height: 30px;
             text-align: center;
-            font-size: 48px;
-            font-weight: 900px;
+            font-size: 30px;
+            font-weight: bold;
             color: white;
         }
         .descripcion{
@@ -124,4 +124,12 @@ font-weight: 500px;
                 color: #FFFFFF;
                 background-color: green;
             }
+        }
+
+        .divider {
+            width: 50%;
+            height: 4px;
+            border-radius: 10px;
+            background: #fcb207;
+            margin-top: 5px;
         }

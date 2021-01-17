@@ -1,66 +1,67 @@
-<div class="container-fluid p-4" *ngIf="errorInfo">
-    <div class="row mb-3">
-        <div class="col-12 d-flex align-content-center">
-            <button routerLink="/app/lider/gestionar-proyecto" class="btn-todos mr-3" style="height: 35px; font-weight: 500;"><i class="fas fa-arrow-left mr-1"></i>Volver </button>
-            <h1 style="font-weight: bold;">Información del error</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
-            <div class="row mb-3">
-                <div class="col-12">
-                    <h1 style="font-weight: bold; font-size: 30px; margin: 0;"> {{errorInfo.titulo_error}} </h1>
-                </div>
-                <div class="col-12">
-                    <strong>Prioridad: </strong> <span class="badge badge-custom mt-2"> {{errorInfo.grado_prioridad}}</span>
-                    <p id="fecha"> <strong>Fecha de reporte: </strong> <span class="badge badge-custom">{{errorInfo.fecha_reporte | date:'dd-MM-yyyy'}}</span> </p>
-                </div>
-            </div>
-            <div class="row justify-content-between">
-                <div class="col-6 text-left">
-                    <p id="responsable"> <strong>Autor: </strong> <span class="badge badge-custom">{{errorInfo.autor_reporte}}</span> </p>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-12">
-                    <h3 style="font-weight: bold;">Descripción:</h3>
-                </div>
-                <div class="col-12">
-                    <p class="descripcion">
-                        {{errorInfo.descripcion}}
-                    </p>    
-                </div>
-            </div>
-        
-            <div class="row p-3">
-                <div class="col-6 d-flex justify-content-center">
-                    <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col trabajo">
-                            <p class="letrablanca">Rama en la que se trabajo</p>
-                            <p class="letrablancagrande">{{errorInfo.rama_repositorio}}</p>
-                        </div>
+<div class="modal-header">
+    <h1 class="modal-title" style="font-weight: bold;">Información del error</h1>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid" *ngIf="errorInfo">
+        <div class="row">
+            <div class="col-12">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <h1 style="font-weight: bold; font-size: 30px; margin: 0;"> {{errorInfo.titulo_error}} </h1>
                     </div>
-                    <div class="row">
-                        <div class="col trabajo">
-                            <p class="letrablanca">Iteraciones</p>
-                            <p class="letrablancagrande">{{errorInfo.iteraciones}}</p>
-                        </div>
-                        <div class="col trabajo">
-                            <p class="letrablanca">% Aparecer</p>
-                            <p class="letrablancagrande">{{errorInfo.porcentaje_aparicion}}</p>
-                        </div>
-                        <div class="col trabajo">
-                            <p class="letrablanca">Dispositivo</p>
-                            <p class="letrablancagrande">{{errorInfo.dispositivo_uso}}</p>
-                        </div>
+                    <div class="divider"></div>
+                    <div class="col-12">
+                        <strong>Prioridad: </strong> <span class="badge badge-custom mt-2"> {{errorInfo.grado_prioridad}}</span>
+                        <p id="fecha"> <strong>Fecha de reporte: </strong> <span class="badge badge-custom">{{errorInfo.fecha_reporte | date:'dd-MM-yyyy'}}</span> </p>
                     </div>
                 </div>
+                <div class="row justify-content-between">
+                    <div class="col-6 text-left">
+                        <p id="responsable"> <strong>Autor: </strong> <span class="badge badge-custom">{{errorInfo.autor_reporte}}</span> </p>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <h3 style="font-weight: bold;">Descripción:</h3>
+                    </div>
+                    <div class="col-12">
+                        <p class="descripcion">
+                            {{errorInfo.descripcion}}
+                        </p>    
+                    </div>
+                </div>
+            
+                <div class="row p-2">
+                    <div class="col-6 d-flex justify-content-center">
+                        <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col trabajo">
+                                <p class="letrablanca">Rama en la que se trabajo</p>
+                                <p class="letrablancagrande">{{errorInfo.rama_repositorio}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col trabajo">
+                                <p class="letrablanca">Iteraciones</p>
+                                <p class="letrablancagrande">{{errorInfo.iteraciones}}</p>
+                            </div>
+                            <div class="col trabajo">
+                                <p class="letrablanca">% Aparecer</p>
+                                <p class="letrablancagrande">{{errorInfo.porcentaje_aparicion}}</p>
+                            </div>
+                            <div class="col trabajo">
+                                <p class="letrablanca">Dispositivo</p>
+                                <p class="letrablancagrande">{{errorInfo.dispositivo_uso}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-1"></div>
 </div>

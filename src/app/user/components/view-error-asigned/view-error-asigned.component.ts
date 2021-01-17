@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UtilService } from '../../../services/util.service';
 import { ActivatedRoute } from '@angular/router';
 import { ErrorsService } from '../../services/errors.service';
@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { UsersService } from '../../services/users.service';
 import { UserInfo } from '../../../models/users.model';
 import { forkJoin } from 'rxjs';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-view-error-asigned',
@@ -16,23 +17,22 @@ import { forkJoin } from 'rxjs';
 export class ViewErrorAsignedComponent implements OnInit {
 
   errorInfo: ErrorDataAsigned;
-  paramsPage: any;
   infoAsignado: UserInfo;
   infoAutor: UserInfo;
+  @Input() idErrores: string;
+  @Input() idUsuarios: string;
   constructor(
     private utilService: UtilService,
-    private activateRoute: ActivatedRoute,
     private errorsService: ErrorsService,
-    private usersService: UsersService
-  ) {
-    this.paramsPage = this.activateRoute.snapshot.paramMap;
-  }
+    private usersService: UsersService,
+    public activeModal: NgbActiveModal
+  ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.utilService._loading = true;
     });
-    this.errorsService.obtenerErrorPorIdAsignado(this.paramsPage.get('id_errores'), this.paramsPage.get('id_usuarios'))
+    this.errorsService.obtenerErrorPorIdAsignado(this.idErrores, this.idUsuarios)
       .subscribe(data => {
         console.log(data);
         if (!data.error) {

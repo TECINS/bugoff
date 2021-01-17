@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaderService } from '../../services/leader.service';
-import { ErrorList, ErrorAsignedList, ErrorData, ErrorDataAsigned } from '../../../models/error.model';
+import { ErrorList, ErrorData, ErrorDataAsigned } from '../../../models/error.model';
 import { UtilService } from '../../../services/util.service';
 import { LocalSession } from '../../../models/session.model';
 import { ProyectInfo } from '../../../models/proyectos.model';
-import { Router } from '@angular/router';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { stringify } from '@angular/compiler/src/util';
+import { forkJoin } from 'rxjs';
+import { ViewErrorComponent } from '../../../user/components/view-error/view-error.component';
+import { ViewErrorAsignedComponent } from '../../../user/components/view-error-asigned/view-error-asigned.component';
 
 @Component({
   selector: 'app-manage-proyect',
@@ -28,6 +30,7 @@ export class ManageProyectComponent implements OnInit {
   errorInfoAsigned: ErrorDataAsigned;
   errorInfo: ErrorData;
   errorActual: ErrorList;
+  listaDesarrolladores: any[];
   prioridades = [
     { id_prioridades: 0, prioridad: 'Sin filtro'},
     { id_prioridades: 1, prioridad: 'Baja'},
@@ -44,7 +47,6 @@ export class ManageProyectComponent implements OnInit {
   constructor(
     private leaderService: LeaderService,
     private utilService: UtilService,
-    private router: Router,
     private modalService: NgbModal,
     config: NgbModalConfig,
     private fb: FormBuilder
@@ -68,7 +70,7 @@ export class ManageProyectComponent implements OnInit {
       });
       this.formAsignarError = this.fb.group({
         id_usuarios: ['', [Validators.required]],
-        id_errores: ['', [Validators.required]],
+        id_errores: ['1', [Validators.required]],
         fecha_de_entrega: ['', [Validators.required]]
       });
     }
@@ -77,13 +79,32 @@ export class ManageProyectComponent implements OnInit {
     setTimeout(() => {
       this.utilService._loading = true;
     });
-    this.leaderService.obtenerListaErroresNoAsignados(this.proyectInfo.id_proyectos)
-      .subscribe(data => {
-        if (!data.error) {
-          this.erroresProyecto = data.erroresNoAsignados;
-          this.erroresProyectoFiltrado = data.erroresNoAsignados;
-        }
-      }, err => console.log(err)).add(() => this.utilService._loading = false);
+    forkJoin({
+      erroresNoAsignados: this.leaderService.obtenerListaErroresNoAsignados(this.proyectInfo.id_proyectos),
+      listaDesarrolladores: this.leaderService.obtenerDesarrolladoresPorProyecto(this.proyectInfo.id_proyectos)
+    }).subscribe(data => {
+      if (!data.erroresNoAsignados.error) {
+        this.erroresProyecto = data.erroresNoAsignados.erroresNoAsignados;
+        this.erroresProyectoFiltrado = data.erroresNoAsignados.erroresNoAsignados;
+      } else {
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'Ocurrio un error al traer los proyectos'
+        });
+        console.log(data.erroresNoAsignados);
+      }
+      if (!data.listaDesarrolladores.error) {
+        this.listaDesarrolladores = data.listaDesarrolladores.desarrolladores;
+      } else {
+        console.log(data.listaDesarrolladores);
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'Ocurrio un error al traer los proyectos'
+        });
+      }
+    }, err => console.log(err)).add(() => this.utilService._loading = false);
   }
   filterAsignacion(asignacion: string): void {
     switch (Number(asignacion)) {
@@ -133,9 +154,12 @@ export class ManageProyectComponent implements OnInit {
   viewError(error: any): void {
     if (this.asignacion === 1) {
       console.log(error);
-      this.router.navigateByUrl('/app/usuario/ver-error-asignado/' + error.id_errores + '/' + error.id_usuarios);
+      const modalRef = this.modalService.open(ViewErrorAsignedComponent, {size: 'xl'});
+      modalRef.componentInstance.idErrores = error.id_errores;
+      modalRef.componentInstance.idUsuarios = error.id_usuarios;
     } else {
-      this.router.navigateByUrl('/app/usuario/ver-error/' + error.id_errores);
+      const modalRef = this.modalService.open(ViewErrorComponent, {size: 'xl'});
+      modalRef.componentInstance.idErrores = error.id_errores;
     }
   }
   openEdit(content: any, error: ErrorList): void {
@@ -169,8 +193,17 @@ export class ManageProyectComponent implements OnInit {
     this.modalService.open(content, {size: 'md', centered: true});
   }
   editarErrorReportado(): void {
-    // TODO: servicio para editar error
-    console.log('se edita el error');
+    this.utilService._loading = true;
+    this.leaderService.cambiarPrioridadError(this.errorInfo.id_errores.toString(), this.formError.get('id_prioridades').value)
+      .subscribe(data => {
+        if (!data.error) {
+          Swal.fire ({
+            title: 'El error se edito correctamente',
+            icon: 'success'
+          });
+          this.ngOnInit();
+        }
+      }, err => console.log(err)).add(() => this.utilService._loading = false);
   }
   asignarErrorReportado(): void {
     // TODO: servicio para asignar error
