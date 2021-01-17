@@ -11,15 +11,12 @@ import { LocalSession } from '../../../models/session.model';
 })
 export class HomeDeveloperComponent implements OnInit {
 
-   
   proyects: ProyectosSelect[];
   localSession: LocalSession;
   proyectInfo: ProyectInfo;
   areaActual = '0';
 
-  constructor(
-    private router: Router
-  ) {
+  constructor( ) {
     this.localSession = JSON.parse(localStorage.getItem('session-bugoff'));
     this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
   }
@@ -28,12 +25,6 @@ export class HomeDeveloperComponent implements OnInit {
     if (this.proyectInfo) {
       this.areaActual = this.proyectInfo.id_areas;
     }
-  }
-  viewHistorial(): void {
-    this.router.navigateByUrl('/app/leader/lista-errores');
-  }
-  toReportIssue(): void {
-    this.router.navigateByUrl('/app/leader/reportar-error');
   }
 
 }

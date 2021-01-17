@@ -10,20 +10,22 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 ">
-                    <p class="text-initial-min "style="margin-left: 10%;">
-                        Estas en <b>{{proyectInfo.nombre}}</b> con rol de <b>{{proyectInfo.area}}</b>
-                    </p>
-                    <div class="col-12 ">
-                        <p class="text-initial-min" style="margin-left: 18%;"> ¿Qué deseas hacer?</p>
-                    </div>
-                    <div class="col-12 ">
-                        <button mat-flat-button color="primary" (click)="viewHistorial()" style="width: 50%;">Ver Historial de errores</button>
-                    </div>
-                    <div class="col-12 mb-2 mt-2 ">
-                        <strong class="divider" style="margin-left: 24%;">o</strong>
-                    </div>
-                    <div class="col-12 " >
-                        <button mat-flat-button color="primary" (click)="toReportIssue()" style="width: 50%;">Reportar Error</button>
+                    <div class="row text-center">
+                        <p class="text-initial-min col-12">
+                            Estas en <b>{{proyectInfo.nombre}}</b> con rol de <b>{{proyectInfo.area}}</b>
+                        </p>
+                        <div class="col-12 ">
+                            <p class="text-initial-min"> ¿Qué deseas hacer?</p>
+                        </div>
+                        <div class="col-12 ">
+                            <button mat-flat-button color="primary" (click)="viewHistorial()" style="width: 50%;">Ver Historial de errores</button>
+                        </div>
+                        <div class="col-12 mb-2 mt-2 ">
+                            <strong class="divider">o</strong>
+                        </div>
+                        <div class="col-12 " >
+                            <button mat-flat-button color="primary" (click)="toReportIssue()" style="width: 50%;">Reportar Error</button>
+                        </div>
                     </div>
                 </div>
             </div>
