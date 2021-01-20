@@ -1,1 +1,93 @@
-<p>view-assigned-error works!</p>
+<div class="modal-header">
+    <h1 class="modal-title" style="font-weight: bold;">Información del error</h1>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid" *ngIf="errorInfo && infoAsignado && infoAutor">
+        <div class="row">
+            <div class="col-12">
+                <div class="row mb-3">
+                    <div class="col-12 d-flex align-items-center">
+                        <h1 style="font-weight: bold; font-size: 30px; margin: 0;"> {{errorInfo.titulo_error}} </h1>
+                        <div class="ml-auto">
+                            <span class="badge badge-custom-danger mr-2" *ngIf="errorInfo.confirmado === 0">No confirmado</span>
+                            <span class="badge badge-custom-success mr-2" *ngIf="errorInfo.confirmado === 1">Confirmado</span>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+                <div class="row" style="background: rgb(218, 221, 221);">
+                    <div class="col-6">
+                        <strong class="mr-2"><i class="fa fa-exclamation-circle mr-2"></i>Prioridad: </strong> 
+                        <span class="badge badge-custom mt-2"> {{errorInfo.grado_prioridad}}</span>
+                        <p id="fecha"> <strong class="mr-2"> <i class="fa fa-calendar-plus mr-2"> </i>Fecha de reporte: </strong> 
+                            <span class="badge badge-custom">{{errorInfo.fecha_reporte | date:'dd-MM-yyyy'}}</span> </p>
+                        <p id="fecha"> <strong class="mr-2"><i class="fa fa-calendar-day mr-2"></i>Fecha de entrega: </strong> 
+                            <span class="badge badge-custom">{{errorInfo.fecha_de_entrega | date:'dd-MM-yyyy'}}</span> </p>
+                    </div>
+                    <div class="col-6">
+                        <p id="responsable"> <strong>Autor: </strong> <span class="badge badge-custom mt-2">{{infoAutor.nombre}}</span> </p>
+                        <p id="responsable"> <strong>Responsable: </strong> <span class="badge badge-custom">{{infoAsignado.nombre}}</span> </p>
+                        <p id="responsable"> <strong>Estado: </strong> <span class="badge badge-custom">{{errorInfo.estado}}</span> </p>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="fa fa-align-right mr-2"></div>
+                        <h3 class="m-0" style="font-weight: bold;">Descripción:</h3>
+                    </div>
+                    <div class="col-12">
+                        <p class="descripcion">
+                            {{errorInfo.descripcion}}
+                        </p>    
+                    </div>
+                </div>
+            
+                <div class="row p-2">
+                    <div class="col-6 d-flex justify-content-center" *ngIf="!errorInfo.anexo" >
+                        <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
+                        <!-- <img *ngIf="errorInfo.anexo" class="img-fluid" src={{ 'https://tecdevsmx.com/' + errorInfo.anexo}} alt="not found"> -->
+                    </div>
+                    <div class="col-6 d-flex justify-content-center" *ngIf="errorInfo.anexo">
+                        <img class="img-fluid" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}"  alt="not found">
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col trabajo">
+                                <p class="letrablanca">Rama en la que se trabajo</p>
+                                <p class="letrablancagrande">{{errorInfo.rama_repositorio}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col trabajo">
+                                <p class="letrablanca">Iteraciones</p>
+                                <p class="letrablancagrande">{{errorInfo.iteraciones}}</p>
+                            </div>
+                            <div class="col trabajo">
+                                <p class="letrablanca">% Aparecer</p>
+                                <p class="letrablancagrande">{{errorInfo.porcentaje_aparicion}}</p>
+                            </div>
+                            <div class="col trabajo">
+                                <p class="letrablanca">Dispositivo</p>
+                                <p class="letrablancagrande">{{errorInfo.dispositivo_uso}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <mat-form-field appearance="fill" style="width: 30%;">
+        <mat-label><i class="fas fa-filter mr-2"></i> Cambiar de estado:</mat-label>
+        <mat-select>
+            <mat-option (click)="cambiarEstado(estado.id_estados_errores, estado.estado)" [value]="estado.id_estados_errores" *ngFor="let estado of estados">
+                {{estado.estado}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button class="btn btn-custom" type="button" (click)="terminarError()">Terminar</button>
+</div>

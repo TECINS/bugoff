@@ -111,7 +111,8 @@ font-weight: 500px;
         }
 .badge-custom {
     background-color: #fcb207;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 10px;
     &-danger {
         font-size: 16px;
         color: #FFFFFF;
@@ -129,4 +130,13 @@ font-weight: 500px;
     border-radius: 10px;
     background: #fcb207;
     margin-top: 5px;
+}
+.badge-people {
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 12px;
+    width: 33px;
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #0771fc;
 }

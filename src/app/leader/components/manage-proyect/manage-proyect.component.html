@@ -45,18 +45,18 @@
                     <div class="row mt-2">
                         <div class="col-10"  (click)="viewError(error)">
                             <div class="alert alert-dark" role="alert">
-                                <div class="row justify-content-center align-items-center m-0">
+                                <div class="row justify-content-center align-items-center m-0 p-4">
                                     <div class="col-3">
                                         <h3 class="m-0"> <strong> Id: </strong> {{error.id_errores}} </h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="m-0"> <strong> Nombre: </strong> {{error.titulo_error}} </h3>
+                                        <h3 class="m-0" data-toggle="tooltip" data-placement="top" title="Titulo del errror"> <i class="fa fa-file-signature mr-2" ></i> {{error.titulo_error}} </h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="m-0"> <strong> Prioridad: </strong> <span class="badge badge-pill badge-custom">{{error.grado_prioridad}}</span> </h3>
+                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="m-0"> <strong> Fecha de reporte: </strong> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
+                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de reporte"> <i class="fa fa-calendar mr-2"> </i> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
                                     </div>
                                 </div>
                             </div>

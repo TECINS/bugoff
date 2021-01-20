@@ -31,4 +31,10 @@ export class LeaderService {
   cambiarPrioridadError(idErrores: string, idPrioridades: string): Observable<any> {
     return this.http.put(this.appService.URL_API + 'errores/cambiar-prioridad', {id_errores: idErrores, id_prioridades: idPrioridades});
   }
+  asignarError(body: any): Observable<any> {
+    return this.http.post(this.appService.URL_API + 'errores_usuarios/asignar', body);
+  }
+  editarErrorAsignado(body: any): Observable<any> {
+    return this.http.post(this.appService.URL_API + 'errores_usuarios/cambiar', body);
+  }
 }

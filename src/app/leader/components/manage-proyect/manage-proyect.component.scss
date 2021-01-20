@@ -8,7 +8,7 @@
     transition: all 0.4s ease 0s;
 }
 .alert:hover {
-    background: linear-gradient(to left,#ffcf60, #ffe1a1);
+    background: linear-gradient(to left,#ffc43a, #fceccb);
 }
 .error-list {
     height: 430px;
@@ -51,6 +51,10 @@
     margin-top: 5px;
 }
 .badge-custom {
+    font-weight: bold;
     background-color: #ffcf60;
     font-size: 15px;
+    & > i {
+        color: #302304;
+    }
 }

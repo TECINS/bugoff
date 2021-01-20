@@ -16,7 +16,7 @@ import { HistoryErrorsComponent } from './components/history-errors/history-erro
     HomeDeveloperComponent,
     AssignedErrorsComponent,
     ViewAssignedErrorComponent,
-    HistoryErrorsComponent
+    HistoryErrorsComponent,
   ],
   imports: [
     CommonModule,
