@@ -202,11 +202,34 @@ export class ManageProyectComponent implements OnInit {
             icon: 'success'
           });
           this.ngOnInit();
+        } else {
+          console.log(data);
+          Swal.fire ({
+            title: 'Ocurrio un error al editar',
+            icon: 'error'
+          });
         }
       }, err => console.log(err)).add(() => this.utilService._loading = false);
   }
   asignarErrorReportado(): void {
-    // TODO: servicio para asignar error
-    console.log('se asigna el error');
+    this.formAsignarError.get('id_errores').setValue(this.errorActual.id_errores);
+    this.utilService._loading = true;
+    this.leaderService.asignarError(this.formAsignarError.value)
+      .subscribe (data => {
+        if (!data.error) {
+          Swal.fire({
+            title: 'Asignado',
+            icon: 'success',
+            text: 'El error se asigno correctamente se envio un correo'
+          });
+        } else {
+          console.log(data);
+          Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            text: 'Ocurrio un error al asignar el error'
+          });
+        }
+      }, err => console.log(err)).add(() => this.utilService._loading = false);
   }
 }

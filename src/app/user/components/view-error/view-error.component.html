@@ -19,13 +19,15 @@
                     </div>
                 </div>
                 <div class="row justify-content-between">
-                    <div class="col-6 text-left">
-                        <p id="responsable"> <strong>Autor: </strong> <span class="badge badge-custom">{{errorInfo.autor_reporte}}</span> </p>
+                    <div class="col-6">
+                        <strong>Autor: </strong>
+                        <span class="badge badge-people" data-toggle="tooltip" data-placement="top" [title]="errorInfo.autor_reporte">{{errorInfo.autor_reporte | texto}}</span>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-12">
-                        <h3 style="font-weight: bold;">Descripción:</h3>
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="fa fa-align-right mr-2"></div>
+                        <h3 class="m-0" style="font-weight: bold;">Descripción:</h3>
                     </div>
                     <div class="col-12">
                         <p class="descripcion">
@@ -35,8 +37,11 @@
                 </div>
             
                 <div class="row p-2">
-                    <div class="col-6 d-flex justify-content-center">
+                    <div class="col-6 d-flex justify-content-center" *ngIf="!errorInfo.anexo">
                         <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
+                    </div>
+                    <div class="col-6 d-flex justify-content-center" *ngIf="errorInfo.anexo">
+                        <img class="img-fluid" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}" alt="img-anexo">
                     </div>
                     <div class="col-6">
                         <div class="row">

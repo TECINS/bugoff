@@ -10,7 +10,7 @@ import { MaterialModule } from '../material.module';
 import { PorfileComponent } from './components/porfile/porfile.component';
 import { ViewErrorComponent } from './components/view-error/view-error.component';
 import { ViewErrorAsignedComponent } from './components/view-error-asigned/view-error-asigned.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TextoPipe } from '../pipes/texto.pipe';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeUserComponent,
     PorfileComponent,
     ViewErrorComponent,
-    ViewErrorAsignedComponent
+    ViewErrorAsignedComponent,
+    TextoPipe
   ],
   imports: [
     CommonModule,

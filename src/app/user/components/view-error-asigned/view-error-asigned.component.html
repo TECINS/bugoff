@@ -17,23 +17,25 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <div class="col-12">
-                        <strong>Prioridad: </strong> <span class="badge badge-custom mt-2"> {{errorInfo.grado_prioridad}}</span>
-                        <p id="fecha"> <strong>Fecha de reporte: </strong> <span class="badge badge-custom">{{errorInfo.fecha_reporte | date:'dd-MM-yyyy'}}</span> </p>
+                </div>
+                <div class="row" style="background: rgb(218, 221, 221);">
+                    <div class="col-6">
+                        <strong class="mr-2"><i class="fa fa-exclamation-circle mr-2"></i>Prioridad:</strong> 
+                        <span class="badge badge-custom mt-2"> {{errorInfo.grado_prioridad}}</span>
+                        <p id="fecha"> <strong class="mr-2"> <i class="fa fa-calendar-plus mr-2"> </i>Fecha de reporte:</strong> 
+                            <span class="badge badge-custom">{{errorInfo.fecha_reporte | date:'dd-MM-yyyy'}}</span> 
+                        </p>
                         <p id="fecha" *ngIf="errorInfo.fecha_de_resolucion"> <strong>Fecha de resolucion: </strong> <span class="badge badge-custom" *ngIf="errorInfo.fecha_de_resolucion">{{errorInfo.fecha_de_resolucion | date:'dd-MM-yyyy'}}</span> </p>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-6 text-right">
-                        <p id="responsable"> <strong>Autor: </strong> <span class="badge badge-custom">{{infoAutor.nombre}}</span> </p>
-                    </div>
-                    <div class="col-6 text-left">
-                        <p id="responsable"> <strong>Responsable: </strong> <span class="badge badge-custom">{{infoAsignado.nombre}}</span> </p>
+                    <div class="col-6">
+                        <p id="responsable"> <strong>Autor: </strong> <span class="badge badge-people mt-2" data-toggle="tooltip" data-placement="top" [title]="infoAutor.nombre">{{infoAutor.nombre | texto}}</span> </p>
+                        <p id="responsable"> <strong>Responsable: </strong> <span class="badge badge-people" data-toggle="tooltip" data-placement="top" [title]="infoAsignado.nombre">{{infoAsignado.nombre | texto}}</span> </p>
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-12">
-                        <h3 style="font-weight: bold;">Descripción:</h3>
+                    <div class="col-12 d-flex align-items-center">
+                        <div class="fa fa-align-right mr-2"></div>
+                        <h3 class="m-0" style="font-weight: bold;">Descripción:</h3>
                     </div>
                     <div class="col-12">
                         <p class="descripcion">
@@ -43,8 +45,11 @@
                 </div>
             
                 <div class="row p-2">
-                    <div class="col-6 d-flex justify-content-center">
+                    <div class="col-6 d-flex justify-content-center" *ngIf="!errorInfo.anexo">
                         <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
+                    </div>
+                    <div class="col-6 d-flex justify-content-center" *ngIf="errorInfo.anexo">
+                        <img class="img-fluid" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}" alt="not found">
                     </div>
                     <div class="col-6">
                         <div class="row">

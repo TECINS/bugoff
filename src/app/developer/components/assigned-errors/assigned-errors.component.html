@@ -1,1 +1,62 @@
-<p>assigned-errors works!</p>
+<div class="container-fluid">
+    <div class="row p-2 mt-3">
+        <div class="col-12">
+            <h1 style="font-weight: bold;">Errores asignados</h1>
+        </div>
+        <div class="col-12">
+            <h4>Lista de errores que te han asignado</h4>
+        </div>
+        <div class="col-12">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label><i class="fas fa-filter mr-2"></i> Fitrar por prioridad:</mat-label>
+                        <mat-select>
+                            <mat-option (click)="filterPrioridad(prioridad.prioridad)" value={{prioridad.prioridad}} *ngFor="let prioridad of prioridades">
+                                {{prioridad.prioridad}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row align-items-center">
+                <div class="col-12 d-flex align-items-center">
+                    <h1 class="title-list m-0">Lista de errores asignados</h1>
+                    <span class="badge badge-custom ml-3">Filtrado: {{filtroSpan}}</span>
+                </div>
+            </div>
+            <div class="divider mb-2"></div>
+        </div>
+        <div class="col-12 error-list">
+            <div class="row">
+                <div class="col-12" *ngFor="let error of erroresDevFiltrado">
+                    <div class="row mt-2 justify-content-center">
+                        <div class="col-10"  (click)="viewError(error)">
+                            <div class="alert alert-dark" role="alert">
+                                <div class="row justify-content-center align-items-center m-0 p-3">
+                                    <div class="col-2">
+                                        <h3 class="m-0"> <strong> Id: </strong> {{error.id_errores}} </h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <h3 class="m-0" data-toggle="tooltip" data-placement="top" title="Titulo del error"> <i class="fa fa-file-signature mr-2"></i> {{error.titulo_error}} </h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de reporte"> <i class="fa fa-calendar-plus mr-2"> </i> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
+                                    </div>
+                                    <div class="col-2">
+                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de entrega"> <i class="fa fa-calendar-day mr-2"></i> <span style="font-size: 14px;">{{error.fecha_de_entrega | date:'dd-MM-yyyy'}}</span> </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
