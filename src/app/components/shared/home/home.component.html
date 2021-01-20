@@ -44,21 +44,30 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar style="background-color: #1A303E;">
         <mat-toolbar-row>
-            <button mat-icon-button class="example-icon" style="color: white;" aria-label="Example icon-button with menu icon">
-                <button mat-icon-button (click)="activateSide()"><mat-icon>menu</mat-icon></button>
+            <button mat-icon-button class="example-icon buton-menu" style="color: white;" aria-label="Example icon-button with menu icon">
+                <button mat-icon-button class="buton-menu" (click)="activateSide()"><mat-icon>menu</mat-icon></button>
             </button>
-            <span *ngIf="proyectInfo" style="color: white;">{{proyectInfo.nombre}}</span>
-            <span *ngIf="proyectInfo" style="color: white; font-size: 12px;">({{proyectInfo.area}})</span>
-            <span *ngIf="!proyectInfo" style="color: white;">Dashboard</span>
+            <div class="d-flex align-items-center">
+                <span style="color: white;">Menu</span>
+            <!-- <span *ngIf="proyectInfo" style="color: white; font-size: 13px; margin-left: 5px;">({{proyectInfo.area}})</span> -->
+            <div class="dropdown">
+                <button class="btn btn-drop dropdown-toggle" type="button" id="dropDonwMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{proyectoActual}} ({{proyectInfo.area}})
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropDownMenu">
+                    <a (click)="selectProject(proyecto)" style="cursor: pointer;" class="dropdown-item" [value]="proyecto.id_proyectos" *ngFor="let proyecto of proyectos">{{proyecto.nombre}}</a>
+                </div>
+            </div>
+            </div>
             <span class="example-spacer"></span>
-            <button mat-icon-button class="example-icon " style="background-color: blue;">
+            <button  routerLink="/app/usuario/crear-proyecto" mat-icon-button class="example-icon mr-2 buton-menu" style="background-color: #fcb207; color: white;">
                 <i class="fas fa-plus"></i>
             </button>
-            <button style="color: white;" mat-icon-button class="F-icon btn btn-primary " type="button" data-toggle="modal" data-target="#exampleModalCenter">
+            <button style="color: white;" mat-icon-button class="F-icon btn btn-primary buton-menu" type="button" data-toggle="modal" data-target="#exampleModalCenter">
                 
                 <i class="fas fa-bell"></i>
             </button>
-            <button style="color: white;" mat-icon-button class="example-icon">
+            <button style="color: white;" mat-icon-button class="example-icon ml-2 buton-menu">
                 <i class="fas fa-cogs"></i>
             </button>
         </mat-toolbar-row>

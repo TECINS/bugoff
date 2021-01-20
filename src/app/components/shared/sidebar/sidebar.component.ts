@@ -45,21 +45,6 @@ export class SidebarComponent implements OnInit {
       this.visiblecomponent = Number(this.proyectInfo.id_areas);
     }
     this.obtenerRutaPrincipal();
-    setTimeout(() => {
-      this.utilService._loading = true;
-    });
-    this.proyectosService.obtenerProyectosPorId(this.localsession.id_usuarios)
-      .subscribe( data => {
-        if (!data.error) {
-          this.proyectos = data.proyectos;
-        } else {
-          Swal.fire({
-            title: 'Error',
-            icon: 'error',
-            text: 'ocurrio un error al obtener los proyectos'
-          });
-        }
-      }, err => console.log(err)).add ( () => this.utilService._loading = false);
   }
   obtenerRutaPrincipal(): void {
     switch (Number(this.visiblecomponent)) {
@@ -85,22 +70,5 @@ export class SidebarComponent implements OnInit {
     localStorage.removeItem('session-bugoff');
     localStorage.removeItem('proyect-info');
     this.route.navigateByUrl('/');
-  }
-  selectProject(proyecto: ProyectosSelect): void {
-    this.utilService._loading = true;
-    this.proyectosService.obtenerInformacionDelProyecto(proyecto.id_proyectos, this.localsession.id_usuarios)
-      .subscribe( data => {
-        if (!data.error) {
-            this.visiblecomponent = data.message.id_areas;
-            localStorage.setItem('proyect-info', JSON.stringify(data.message));
-            window.location.reload();
-        } else {
-          Swal.fire({
-            title: 'Error',
-            icon: 'error',
-            text: 'ocurrio un error al traer la informacion del proyecto'
-          });
-        }
-      }, err => console.log(err)).add( () => this.utilService._loading = false);
   }
 }

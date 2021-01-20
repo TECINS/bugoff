@@ -118,24 +118,16 @@
                   <h3>Invitar a  {{ projectName }} </h3>
                 </div>
                 <div style="width: 100%;">
-                  <mat-form-field apparence="fill" style="width: 100%;">
-                    <mat-label>Invitar a: </mat-label>
-                    <mat-chip-list #chipListTest aria-label="Probadoen">
-                      <mat-chip *ngFor="let email of emails" [selectable]="selectable"
-                              [removable]="removable" (removed)="removeEmail(email)">
-                        {{email.name}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                      </mat-chip>
-                      <input formControlName="correo" placeholder="Correo electronico..."
-                            [matChipInputFor]="chipListTest"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            [matChipInputAddOnBlur]="addOnBlur"
-                            (matChipInputTokenEnd)="addEmail($event)">
-                      </mat-chip-list>
+                  <mat-form-field appearance="fill" style="width: 100%">
+                    <mat-label>Correo electronico</mat-label>
+                    <input formControlName="correo" matInput placeholder="Correo electronico a invitar">
+                    <mat-icon matSuffix>
+                      <i class="fas fa-at text-primary"></i>
+                    </mat-icon>
                   </mat-form-field>
                 </div>
                 <div style="width: 100%; margin-top: 25px;">
-                  <button mat-raised-button color="primary" style="width: 100%;">Enviar invitación a colaborar en  {{ projectName }} </button>
+                  <button [disabled]="formInvitacion.invalid" mat-raised-button color="primary" style="width: 100%;">Enviar invitación a colaborar en  {{ projectName }} </button>
                 </div>
               </div>
             </form>

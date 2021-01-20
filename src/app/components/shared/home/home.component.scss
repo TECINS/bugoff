@@ -157,3 +157,21 @@ h1.example-app-name {
     transition: transform 0.2s ease-out;
     transform: scale(1.1);
 }
+.btn-drop {
+    color: white;
+    transition: all ease 0.3s;
+    &:hover {
+        color: #ffbb4f;
+    }
+    &:focus {
+        box-shadow: none;
+        color: #ffbb4f;
+    }
+}
+.buton-menu {
+    &:focus {
+        box-shadow: none;
+        border: none;
+        outline: none;
+    }
+}

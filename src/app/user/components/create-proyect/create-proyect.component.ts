@@ -39,7 +39,7 @@ export class CreateProyectComponent implements OnInit {
     this.sessionData = JSON.parse(localStorage.getItem('session-bugoff'));
     this.formInvitacion = this.formBuilder.group({
       id_proyectos: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]],
       id_areas: ['', Validators.required]
     });
     this.formProyecto = this.formBuilder.group({
@@ -90,13 +90,15 @@ export class CreateProyectComponent implements OnInit {
             title: 'Proyecto registrado',
             text: 'Ahora ve a invitar colavoradores al proyecto'
           });
+          this.ngOnInit();
         } else {
+          console.log(data);
           Swal.fire({
             icon: 'warning',
-            title: 'Algo ha ocurrido, proyecto no registrado'
+            title: 'Algo ha ocurrido, proyecto no registrado',
+            text: data.message
           });
         }
-        console.log(data);
       }, err => console.log(err)
     ).add(() => this.utilService._loading = false);
   }
@@ -107,26 +109,6 @@ export class CreateProyectComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = e => this.imgLogo = reader.result.toString();
       reader.readAsDataURL(file);
-    }
-  }
-  addEmail(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add emails
-    if ((value || '').trim()) {
-      this.emails.push({ name: value.trim() });
-    }
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeEmail(email: string): void {
-    const index = this.emails.indexOf(email);
-
-    if (index >= 0) {
-      this.emails.splice(index, 1);
     }
   }
   changeProject(value: any): void {

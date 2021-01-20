@@ -1,8 +1,14 @@
 <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [opened]="toggleside" [mode]="mobileQuery.matches ? 'over' : 'side'"
         [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <div class="header">
+            <div class="bug">Bug</div><div class="off mr-2">off</div>
+            <img src="../../../../assets/imgs/sb-icon-logo.png" alt="logo" width="50px">
+        </div>
+        <h3 class="m-0 ml-2 p-0" style="font-weight: bold;">Usuario</h3>
+        <div class="divider"></div>
         <mat-nav-list>
-            <mat-list-item routerLink="/app/usuario/perfil" style="margin-top: 20px; margin-right: 80px;">
+            <mat-list-item routerLink="/app/usuario/perfil" style="margin-right: 80px;">
                 <button mat-icon-button>
                     <button mat-icon-button>
                         <i class="fas fa-user-circle"></i>
@@ -10,7 +16,7 @@
                 </button>
                 <a matLine> @{{ localsession.user_name }} </a>
             </mat-list-item>
-            <mat-list-item style="margin-top: 20px; margin-right: 80px;">
+            <!-- <div style="margin-top: 10px;">
                 <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
                     <mat-label>Cambiar de proyecto</mat-label>
                     <mat-select >
@@ -19,8 +25,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-            </mat-list-item>
-
+            </div> -->
             <mat-list-item matLine routerLink="/app/usuario/crear-proyecto" class="first-item">
                 <button mat-icon-button>
                     <i class="fas fa-plus-square"></i>
