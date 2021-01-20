@@ -12,7 +12,7 @@ import { UtilService } from '../../../services/util.service';
 })
 export class RegisterComponent implements OnInit {
   formRegistro: FormGroup;
-
+  
   formConfirmacion: FormGroup;
 
   constructor(

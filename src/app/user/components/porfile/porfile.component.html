@@ -4,7 +4,7 @@
             <div class="titulo">
                 Hi, <br>
                 <div class="subtitulo">
-                    {{nickname}}
+                    {{secionlocal.user_name}}
                 </div>
             </div>
         </div>
@@ -35,13 +35,13 @@
                     <span>Sobre mí</span>
                     <a href="" style=" margin-right: 10px; color: blue;" > Editar </a>
                 </div> 
+                <form >
                 <div class="parrafo">
-                    <p for="" class="descripcion">
-                        "Desarrollador nato, nacido en el mante <br>
-                        dedicado al desarrollo y a ser kt xdxdxd <br>
-                        solo dire lorem ipsum".
+                    <p  class="descripcion">
+                          {{secionlocal.descripcion}}
                     </p> 
                 </div>
+            </form>
             </div>
     </div>
 </div>
@@ -65,52 +65,63 @@
     </div>
 </div>
 <div class="row mt-4">
+  
         <div class="col-5">
+            <form  [formGroup]="actualizarinfo">
             <div class="row">
                 <div class="col-12">
                     <div class="mt-2">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="{{nombres}}"/>
+                        <input class="form-control campo " type="text" formControlName="nombre" id=""/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="mt-3">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="{{nickname}}"/>
+                        <input class="form-control campo " type="text" formControlName="apellido_paterno" />
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="mt-3">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="{{contrasena}}"/> 
+                        <input class="form-control campo " type="text" formControlName="apellido_materno" id=""/> 
                     </div>
-                </div>
+                </div> 
             </div>
+        </form>
         </div>
+    
+
+   
         <div class="col-5">
+            <form  [formGroup]="actualizarinfo">
             <div class="row">
                 <div class="col-12">
                     <div class="mt-2">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="{{apellido_Materno + apellido_Paterno}}"/>
+                        <input class="form-control campo " type="text" formControlName="user_name" id=""/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="mt-3">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="{{Correo}}"/>
+                        <input class="form-control campo " type="text" formControlName="correo" id=""/>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="mt-3">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="{{contrasena}}"/> 
+                        <input class="form-control campo " type="text" formControlName="contrasenia" id="" /> 
                     </div>
                 </div>
             </div>
+        </form>
         </div>
+    
+
         <div class="col-10">
         <div class="mt-5 boton mb-3 btn-block">
-            <button class="btn btn-primary" >Guardar Cambios</button>
+            <button class="btn btn-primary "  [disabled]="actualizarinfo.invalid" (click)="_ActualizarInfo()" >Guardar Cambios</button>
         </div>
     </div>
 
 </div>
 
 </div>
+
 </div>
 
