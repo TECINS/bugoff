@@ -35,6 +35,9 @@ export class LeaderService {
     return this.http.post(this.appService.URL_API + 'errores_usuarios/asignar', body);
   }
   editarErrorAsignado(body: any): Observable<any> {
-    return this.http.post(this.appService.URL_API + 'errores_usuarios/cambiar', body);
+    return this.http.put(this.appService.URL_API + 'errores_usuarios/cambiar', body);
+  }
+  obtenerErrorAsignado(body: any): Observable<any> {
+    return this.http.post(this.appService.URL_API + 'errores_usuarios/select-by-id', body);
   }
 }

@@ -19,7 +19,7 @@ export class AssignedErrorsComponent implements OnInit {
     { id_prioridades: 1, prioridad: 'Baja'},
     { id_prioridades: 2, prioridad: 'Media'},
     { id_prioridades: 3, prioridad: 'Alta'},
-    { id_prioridades: 4, prioridad: 'Blocker'},
+    { id_prioridades: 4, prioridad: 'Blocxer'},
   ];
   filtroSpan = 'Sin filtro';
   erroresDev = [];
@@ -44,7 +44,6 @@ export class AssignedErrorsComponent implements OnInit {
     });
     this.developerService.obtenerErroresAsigndosDev(this.localSession.id_usuarios, this.projectInfo.id_proyectos)
       .subscribe(data => {
-        console.log(data);
         if (!data.error) {
           this.erroresDev = data.errores_asignados;
           this.erroresDevFiltrado = data.errores_asignados;

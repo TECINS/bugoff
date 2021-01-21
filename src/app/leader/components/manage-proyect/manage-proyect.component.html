@@ -1,7 +1,14 @@
 <div class="container-fluid">
     <div class="row p-2 mt-3">
         <div class="col-12">
-            <h1 style="font-weight: bold;">Gestionar proyecto</h1>
+            <div class="row justify-content-between align-items-center">
+                <div class="col-11">
+                    <h1 style="font-weight: bold;">Gestionar proyecto</h1>
+                </div>
+                <div class="col-1">
+                    <img src="../../../../assets/imgs/logo-black.png" width="100px" alt="logo" class="img-fluid">
+                </div>
+            </div>
         </div>
         <div class="col-12">
             <h4>Lista de errores reportados para editarlos o asignar a desarrolladores</h4>
@@ -39,6 +46,28 @@
             </div>
             <div class="divider mb-2"></div>
         </div>
+        <div class="col-12">
+            <div class="row justify-content-center mb-3 mt-2">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="row justify-content-center m-0">
+                        <div class="col-2">
+                            <h3 style="font-weight: bold;" class="m-0">Id</h3>
+                        </div>
+                        <div class="col-2">
+                            <h3 style="font-weight: bold;" class="m-0"> Titulo</h3>
+                        </div>
+                        <div class="col-2">
+                            <h3 style="font-weight: bold;" class="m-0 pl-2">Prioridad</h3>
+                        </div>
+                        <div class="col-4">
+                            <h3 style="font-weight: bold;" class="m-0">Fecha de reporte</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
         <div class="col-12 error-list">
             <div class="row justify-content-center">
                 <div class="col-10" *ngFor="let error of erroresProyectoFiltrado">
@@ -53,7 +82,10 @@
                                         <h3 class="m-0" data-toggle="tooltip" data-placement="top" title="Titulo del errror"> <i class="fa fa-file-signature mr-2" ></i> {{error.titulo_error}} </h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
+                                        <h3 *ngIf="error.grado_prioridad == 'Baja'" class="m-0 badge badge-pill badge-custom baja" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
+                                        <h3 *ngIf="error.grado_prioridad == 'Media'" class="m-0 badge badge-pill badge-custom media" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
+                                        <h3 *ngIf="error.grado_prioridad == 'Alta'" class="m-0 badge badge-pill badge-custom alta" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
+                                        <h3 *ngIf="error.grado_prioridad == 'Blocxer'" class="m-0 badge badge-pill badge-custom blocker" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                     </div>
                                     <div class="col-3">
                                         <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de reporte"> <i class="fa fa-calendar mr-2"> </i> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
@@ -66,8 +98,11 @@
                                 <div class="col-4">
                                     <button class="btn btn-custom" (click)="openEdit(content, error)"> <i class="fa fa-edit"></i></button>
                                 </div>
-                                <div class="col-4">
-                                    <button [disabled]="error.id_errores_usuarios != null" class="btn btn-custom" (click)="openAsing(asignContent, error)"> <i class="fa fa-tasks"></i></button>
+                                <div class="col-4" *ngIf="!error.id_errores_usuarios">
+                                    <button class="btn btn-custom" (click)="openAsing(asignContent, error)"> <i class="fa fa-tasks"></i></button>
+                                </div>
+                                <div class="col-4" *ngIf="error.id_errores_usuarios">
+                                    <button class="btn btn-custom" (click)="openEditDate(editContent, error)"> <i class="fa fa-calendar-alt"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -156,6 +191,24 @@
                     </mat-form-field>
                 </div>
                 <div class="col-12">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label>Fecha de reporte:</mat-label>
+                        <input type="date" matInput formControlName="fecha_reporte" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-calendar text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-12" *ngIf="errorInfo.fecha_de_entrega">
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <mat-label>Fecha de entrega:</mat-label>
+                        <input type="date" matInput formControlName="fecha_de_entrega" autocomplete="off">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-calendar text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-12">
                     <mat-form-field appearance="fill" style="width: 100%;">
                         <mat-label>Descripción</mat-label>
                         <textarea style="height: 100px; max-height: 300px; min-height: 100px;" matInput formControlName="descripcion" autocomplete="off" ></textarea>
@@ -169,7 +222,7 @@
     </div>
     <div class="modal-footer">
         <div class="col-12 text-center">
-            <button mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="editarErrorReportado()">EDITAR</button>
+            <button [disabled]="formError" mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="editarErrorReportado()">EDITAR</button>
         </div>
     </div>
 </ng-template>
@@ -218,6 +271,55 @@
     <div class="modal-footer">
         <div class="col-12 text-center">
             <button [disabled]="formAsignarError.invalid" mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="asignarErrorReportado()">AIGNAR</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #editContent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title" style="font-weight: bold;">Editar error asignado</h1>
+        <button class="close" type="button" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <form class="row" [formGroup]="formEditarAsignado">
+                <div class="col-12 text-center mb-2">
+                    <h2 style="font-weight: bold; margin: 0;">{{errorActual.titulo_error}}</h2>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center mb-2">
+                    <h4 style="font-weight: bold; margin: 0;">Prioridad:</h4>
+                    <span class="badge badge-custom d-inline ml-2">{{errorActual.grado_prioridad}}</span>
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center mb-2">
+                    <h4 style="font-weight: bold; margin: 0;">Id error:</h4>
+                    <span class="badge badge-custom d-inline ml-2">{{errorActual.id_errores}}</span>
+                </div>
+                <div class="col-12 text-center">
+                    <mat-form-field appearance="fill" style="width: 80%;">
+                        <mat-label>Desarrollador:</mat-label>
+                        <input matInput type="text"  autocomplete="off" formControlName="id_usuarios">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-person-booth text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 text-center">
+                    <mat-form-field appearance="fill" style="width: 80%">
+                        <mat-label>Fecha de entrega:</mat-label>
+                        <input matInput type="date"  autocomplete="off" formControlName="fecha_de_entrega">
+                        <mat-icon matSuffix>
+                            <i class="fas fa-calendar-day text-primary"></i>
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-12 text-center">
+            <button [disabled]="formEditarAsignado.invalid" mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="editarErrorAsignado()">Editar</button>
         </div>
     </div>
 </ng-template>

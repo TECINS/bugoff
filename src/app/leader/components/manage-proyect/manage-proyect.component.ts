@@ -27,16 +27,15 @@ export class ManageProyectComponent implements OnInit {
   filtroSpan = 'Sin filtro';
   asignacion = 2;
   erroresProyectoFiltrado: any[];
-  errorInfoAsigned: ErrorDataAsigned;
-  errorInfo: ErrorData;
-  errorActual: ErrorList;
+  errorInfo: any;
+  errorActual: any;
   listaDesarrolladores: any[];
   prioridades = [
     { id_prioridades: 0, prioridad: 'Sin filtro'},
     { id_prioridades: 1, prioridad: 'Baja'},
     { id_prioridades: 2, prioridad: 'Media'},
     { id_prioridades: 3, prioridad: 'Alta'},
-    { id_prioridades: 4, prioridad: 'Blocker'},
+    { id_prioridades: 4, prioridad: 'Blocxer'},
   ];
   asignaciones = [
     { id_asignaciones: 1, asignacion: 'Asignado' },
@@ -44,6 +43,7 @@ export class ManageProyectComponent implements OnInit {
   ];
   formError: FormGroup;
   formAsignarError: FormGroup;
+  formEditarAsignado: FormGroup;
   constructor(
     private leaderService: LeaderService,
     private utilService: UtilService,
@@ -67,11 +67,17 @@ export class ManageProyectComponent implements OnInit {
           id_prioridades: ['', [Validators.required]],
           anexo: ['anexo', [Validators.required]],
           rama_repositorio: [{value: '', disabled: true}, [Validators.required]],
+          fecha_de_entrega: [{value: '', disabled: true}, [Validators.required]],
       });
       this.formAsignarError = this.fb.group({
         id_usuarios: ['', [Validators.required]],
         id_errores: ['1', [Validators.required]],
         fecha_de_entrega: ['', [Validators.required]]
+      });
+      this.formEditarAsignado = this.fb.group({
+        id_usuarios: [{value: '', disabled: true}, [Validators.required]],
+        id_errores: [{value: '1', disabled: true}, [Validators.required]],
+        fecha_de_entrega: [{value: '', disabled: false}, [Validators.required]]
       });
     }
 
@@ -154,28 +160,30 @@ export class ManageProyectComponent implements OnInit {
   viewError(error: any): void {
     if (this.asignacion === 1) {
       console.log(error);
-      const modalRef = this.modalService.open(ViewErrorAsignedComponent, {size: 'xl'});
+      const modalRef = this.modalService.open(ViewErrorAsignedComponent, {size: 'xl', centered: true});
       modalRef.componentInstance.idErrores = error.id_errores;
       modalRef.componentInstance.idUsuarios = error.id_usuarios;
     } else {
-      const modalRef = this.modalService.open(ViewErrorComponent, {size: 'xl'});
+      const modalRef = this.modalService.open(ViewErrorComponent, {size: 'xl', centered: true});
       modalRef.componentInstance.idErrores = error.id_errores;
     }
   }
-  openEdit(content: any, error: ErrorList): void {
-    console.log(error);
+  openEdit(content: any, error: any): void {
     this.utilService._loading = true;
-    this.leaderService.obtenerErrorPorId(error.id_errores)
+    if (error.fecha_de_entrega) {
+      this.leaderService.obtenerErrorPorIdAsignado(error.id_errores, error.id_usuarios)
       .subscribe(data => {
         if (!data.error) {
           this.errorInfo = data.errorInfo;
-          this.formError.get('titulo_error').setValue(data.errorInfo.titulo_error);
-          this.formError.get('iteraciones').setValue(data.errorInfo.iteraciones);
-          this.formError.get('descripcion').setValue(data.errorInfo.descripcion);
-          this.formError.get('dispositivo_uso').setValue(data.errorInfo.dispositivo_uso);
-          this.formError.get('porcentaje_aparicion').setValue(data.errorInfo.porcentaje_aparicion);
-          this.formError.get('rama_repositorio').setValue(data.errorInfo.rama_repositorio);
-          this.formError.get('id_prioridades').setValue(stringify(data.errorInfo.id_prioridades));
+          this.formError.get('titulo_error').setValue(this.errorInfo.titulo_error);
+          this.formError.get('iteraciones').setValue(this.errorInfo.iteraciones);
+          this.formError.get('descripcion').setValue(this.errorInfo.descripcion);
+          this.formError.get('dispositivo_uso').setValue(this.errorInfo.dispositivo_uso);
+          this.formError.get('porcentaje_aparicion').setValue(this.errorInfo.porcentaje_aparicion);
+          this.formError.get('rama_repositorio').setValue(this.errorInfo.rama_repositorio);
+          this.formError.get('id_prioridades').setValue(stringify(this.errorInfo.id_prioridades));
+          this.formError.get('fecha_de_entrega').setValue(this.errorInfo.fecha_de_entrega.substring(0, 10));
+          this.formError.get('fecha_reporte').setValue(this.errorInfo.fecha_reporte.substring(0, 10));
           this.modalService.open(content, {size: 'lg', centered: true});
         } else {
           console.log(data);
@@ -186,9 +194,33 @@ export class ManageProyectComponent implements OnInit {
           });
         }
       }, err => console.log(err)).add(() => this.utilService._loading = false);
+    } else {
+      this.leaderService.obtenerErrorPorId(error.id_errores)
+      .subscribe(data => {
+        if (!data.error) {
+          console.log(data.errorInfo);
+          this.errorInfo = data.errorInfo;
+          this.formError.get('titulo_error').setValue(this.errorInfo.titulo_error);
+          this.formError.get('iteraciones').setValue(this.errorInfo.iteraciones);
+          this.formError.get('descripcion').setValue(this.errorInfo.descripcion);
+          this.formError.get('dispositivo_uso').setValue(this.errorInfo.dispositivo_uso);
+          this.formError.get('porcentaje_aparicion').setValue(this.errorInfo.porcentaje_aparicion);
+          this.formError.get('rama_repositorio').setValue(this.errorInfo.rama_repositorio);
+          this.formError.get('id_prioridades').setValue(stringify(this.errorInfo.id_prioridades));
+          this.formError.get('fecha_reporte').setValue(this.errorInfo.fecha_reporte.substring(0, 10));
+          this.modalService.open(content, {size: 'lg', centered: true});
+        } else {
+          console.log(data);
+          Swal.fire({
+            title: 'Error',
+            text: 'Ocurrio un error al obtener la informacion del errro',
+            icon: 'error'
+          });
+        }
+      }, err => console.log(err)).add(() => this.utilService._loading = false);
+    }
   }
   openAsing(content: any, error: any): void {
-    console.log(error);
     this.errorActual = error;
     this.modalService.open(content, {size: 'md', centered: true});
   }
@@ -197,6 +229,7 @@ export class ManageProyectComponent implements OnInit {
     this.leaderService.cambiarPrioridadError(this.errorInfo.id_errores.toString(), this.formError.get('id_prioridades').value)
       .subscribe(data => {
         if (!data.error) {
+          this.ngOnInit();
           Swal.fire ({
             title: 'El error se edito correctamente',
             icon: 'success'
@@ -217,6 +250,7 @@ export class ManageProyectComponent implements OnInit {
     this.leaderService.asignarError(this.formAsignarError.value)
       .subscribe (data => {
         if (!data.error) {
+          this.ngOnInit();
           Swal.fire({
             title: 'Asignado',
             icon: 'success',
@@ -231,5 +265,47 @@ export class ManageProyectComponent implements OnInit {
           });
         }
       }, err => console.log(err)).add(() => this.utilService._loading = false);
+  }
+  editarErrorAsignado(): void {
+    this.utilService._loading = true;
+    this.leaderService.editarErrorAsignado(this.formEditarAsignado.value)
+      .subscribe (data => {
+        console.log(data);
+        if (!data.error) {
+          this.modalService.dismissAll();
+          this.ngOnInit();
+          Swal.fire({
+            title: 'Editado',
+            icon: 'success',
+            text: 'El error asignado se edito correctamente se envio un correo'
+          });
+        } else {
+          console.log(data);
+          Swal.fire({
+            title: 'Error',
+            icon: 'error',
+            text: 'Ocurrio un error al asignar el error'
+          });
+        }
+      }, err => console.log(err)).add(() => this.utilService._loading = false);
+  }
+  openEditDate(content: any, error: any): void {
+    this.errorActual = error;
+    this.utilService._loading = true;
+    this.leaderService.obtenerErrorAsignado({id_errores_usuarios: error.id_errores_usuarios})
+      .subscribe (data => {
+        if (!data.error) {
+          console.log(data);
+          this.formEditarAsignado.get('id_errores').setValue(data.message.id_errores);
+          this.formEditarAsignado.get('fecha_de_entrega').setValue(data.message.fecha_de_entrega.substring(0, 10));
+          this.formEditarAsignado.get('id_usuarios').setValue(data.message.id_usuarios);
+        } else {
+          Swal.fire({
+            title: 'error al obtener informacion',
+            icon: 'error'
+          });
+        }
+      }, err => console.log(err)).add(() => this.utilService._loading = false);
+    this.modalService.open(content, {size: 'md', centered: true});
   }
 }

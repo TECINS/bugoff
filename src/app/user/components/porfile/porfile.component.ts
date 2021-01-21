@@ -19,11 +19,6 @@ export class PorfileComponent implements OnInit {
 
   actualizarinfo:FormGroup;
 
-  
-  id_usuarios:any;
-  
-  nombre:any;
-
   constructor(private formBuilder: FormBuilder, private userService:UsersService, private utilservice:UtilService) {
 
     this.secionlocal = JSON.parse(localStorage.getItem("session-bugoff"));
@@ -35,10 +30,11 @@ export class PorfileComponent implements OnInit {
     user_name: [this.secionlocal.user_name, Validators.required],
     correo: [this.secionlocal.correo, Validators.required], 
     contrasenia: [this.secionlocal.contrasenia, Validators.required],
-    descripcion:[this.secionlocal.descripcion, Validators.required]
+    descripcion:[this.secionlocal.descripcion, Validators.required],
+    id_usuarios: [this.secionlocal.id_usuarios],
     });
-   }
- 
+  }
+
 
   ngOnInit(): void {
     
@@ -48,7 +44,7 @@ export class PorfileComponent implements OnInit {
   _ActualizarInfo(){
   
   this.utilservice._loading = true;
-  
+  console.log(this.actualizarinfo.value);
   this.userService.actualizarUsuario(this.actualizarinfo.value).subscribe( 
     data=>{
     if(!data.error){

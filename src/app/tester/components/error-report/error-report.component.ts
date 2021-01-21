@@ -59,48 +59,6 @@ export class ErrorReportComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Add testings
-  addTest(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      this.testings.push(value.trim());
-    }
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeTest(test: string): void {
-    const index = this.testings.indexOf(test);
-
-    if (index >= 0) {
-      this.testings.splice(index, 1);
-    }
-  }
-  addBranch(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add testings
-    if ((value || '').trim()) {
-      this.branches.push(value.trim());
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeBranch(branch: string): void {
-    const index = this.branches.indexOf(branch);
-
-    if (index >= 0) {
-      this.branches.splice(index, 1);
-    }
-  }
   //#region image preview
   readURL(event: Event): void {
     if ((event.target as HTMLInputElement).files && (event.target as HTMLInputElement).files[0]) {

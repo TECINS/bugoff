@@ -140,3 +140,10 @@ font-weight: 500px;
     color: #FFFFFF;
     background-color: #0771fc;
 }
+.view {
+    transition: all ease-in-out 0.3s;
+}
+.view:hover {
+    z-index: 999;
+    transform: scale(1.3);
+}

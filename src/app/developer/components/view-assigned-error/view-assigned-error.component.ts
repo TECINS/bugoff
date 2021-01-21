@@ -39,7 +39,6 @@ export class ViewAssignedErrorComponent implements OnInit {
     });
     this.errorsService.obtenerErrorPorIdAsignado(this.idErrores, this.idUsuarios)
       .subscribe(data => {
-        console.log(data);
         if (!data.error) {
           this.errorInfo = data.errorInfo;
           forkJoin({
@@ -52,6 +51,7 @@ export class ViewAssignedErrorComponent implements OnInit {
             }
           }, err => console.log(err)).add(() => this.utilService._loading = false);
         } else {
+          console.log(data);
           Swal.fire({
             title: 'Error al obtener la información',
             icon: 'error',

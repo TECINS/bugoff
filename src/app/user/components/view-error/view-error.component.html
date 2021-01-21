@@ -38,10 +38,10 @@
             
                 <div class="row p-2">
                     <div class="col-6 d-flex justify-content-center" *ngIf="!errorInfo.anexo">
-                        <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
+                        <img class="img-fluid view" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
                     </div>
                     <div class="col-6 d-flex justify-content-center" *ngIf="errorInfo.anexo">
-                        <img class="img-fluid" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}" alt="img-anexo">
+                        <img class="img-fluid view" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}" alt="img-anexo">
                     </div>
                     <div class="col-6">
                         <div class="row">

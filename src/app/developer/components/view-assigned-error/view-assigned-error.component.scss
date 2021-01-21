@@ -143,3 +143,10 @@ font-weight: 500px;
         }
     }
 }
+.view {
+    transition: all ease-in-out 0.3s;
+}
+.view:hover {
+    z-index: 999;
+    transform: scale(1.3);
+}

@@ -10,6 +10,7 @@
             <div class="col-12">
                 <div class="row mb-3">
                     <div class="col-12 d-flex align-items-center">
+                        <img src="../../../../assets/imgs/sb-icon-logo.png" class="img-fluid mr-2" width="50px" alt="">
                         <h1 style="font-weight: bold; font-size: 30px; margin: 0;"> {{errorInfo.titulo_error}} </h1>
                         <div class="ml-auto">
                             <span class="badge badge-custom-danger mr-2" *ngIf="errorInfo.confirmado === 0">No confirmado</span>
@@ -47,11 +48,10 @@
             
                 <div class="row p-2">
                     <div class="col-6 d-flex justify-content-center" *ngIf="!errorInfo.anexo" >
-                        <img class="img-fluid" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
-                        <!-- <img *ngIf="errorInfo.anexo" class="img-fluid" src={{ 'https://tecdevsmx.com/' + errorInfo.anexo}} alt="not found"> -->
+                        <img class="img-fluid view" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
                     </div>
                     <div class="col-6 d-flex justify-content-center" *ngIf="errorInfo.anexo">
-                        <img class="img-fluid" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}"  alt="not found">
+                        <img class="img-fluid view" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}"  alt="anexo">
                     </div>
                     <div class="col-6">
                         <div class="row">
