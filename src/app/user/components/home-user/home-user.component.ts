@@ -25,16 +25,15 @@ export class HomeUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.utilService._loading = true;
+    setTimeout(() => {
+      this.utilService._loading = true;
+    });
     this.proyectosService.obtenerProyectosPorId(this.localSession.id_usuarios)
       .subscribe( data => {
         if (!data.error) {
           this.proyects = data.proyectos;
         }
       }, err => console.log(err)).add(() => this.utilService._loading = false);
-  }
-  clickCreate(): void {
-    this.router.navigateByUrl('app/user/crear-proyecto');
   }
   selectProject(proyecto: ProyectosSelect): void {
     this.utilService._loading = true;

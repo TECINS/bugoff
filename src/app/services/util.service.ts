@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class UtilService {
 
   constructor() { }
-  public loading = false;
+  private loading = false;
 
   public set _loading(loading) {
     this.loading = loading;

@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
             break;
         }
       } else {
-        this.router.navigateByUrl('/app/user');
+        this.router.navigateByUrl('/app/usuario');
       }
     } else {
       this.router.navigateByUrl('auth');

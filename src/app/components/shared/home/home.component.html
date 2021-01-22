@@ -1,46 +1,3 @@
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog"   >
-      <div class="modal-content">
-        <div class="modal-header">
-            <div class="row d-flex justify-content-left">
-                <div class="tituloModal" style="height: 50px;">
-                    <h1 style="font-weight: bold;" class="modal-title ml-4" id="exampleModalLongTitle"><span> <i class="fas fa-bell bell mr-2"></i> </span> Notificaciones</h1>
-                    <div class="subtitulo">
-                        <h5 class="sub mb-5" style="font-size: 14px; color: rgb(117, 86, 143);" >Actividades recientes</h5>
-                    </div>
-                </div>  
-            </div>
-        </div>
-        <div class="modal-body">
-            <div class="notificaciones mt-2">
-                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#555 Error en la carga de imagenes. <span style="color: rgb(117, 86, 143); font-size: 12px;">Angel Catedral</span></h3>
-                <h4 class="ml-5"><span><i class="far fa-eye-slash"></i></span> No se muestran las imagenes en orden</h4>
-                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(0, 175, 0);"><span style="font-size: 10px; color: white; ">Realizado</span></button>
-            </div>
-            <hr>
-            <div class="notificaciones mt-2">
-                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#666 No funciona nada. <span style="color: rgb(117, 86, 143); font-size: 12px;">Miguel Hernandez</span></h3>
-                <h4 class="ml-5"><span><i class="fas fa-exclamation-triangle"></i></span> Revisar de urgencia</h4>
-                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(175, 0, 146);"><span style="font-size: 10px; color: white; ">Retrasado</span></button>
-            </div>
-            <hr>
-            <div class="notificaciones mt-2">
-                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#666 Notificacion de prueba. <span style="color: rgb(117, 86, 143); font-size: 12px;">Luis Antonio</span></h3>
-                <h4 class="ml-5"><span><i class="fas fa-exclamation-circle"></i></span> Revisar de urgencia</h4>
-                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(17, 0, 175);"><span style="font-size: 10px; color: white; ">En espera</span></button>
-            </div>
-            <hr>
-            <div class="notificaciones mt-2">
-                <h3 class="ml-5" style="font-weight: bold; height: 10px;">#666 Notificacion de prueba. <span style="color: rgb(117, 86, 143); font-size: 12px;">Jose Medellin</span></h3>
-                <h4 class="ml-5"><span><i class="fas fa-exclamation-circle"></i></span> Revisar de urgencia</h4>
-                <button for="" class="estado-tarea ml-5 btn btn-primary" style="background-color: rgb(17, 0, 175);"><span style="font-size: 10px; color: white; ">En espera</span></button>
-            </div>
-        </div>
-      </div>
-    </div>
-</div>
-
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar style="background-color: #1A303E;">
         <mat-toolbar-row>
@@ -49,13 +6,19 @@
             </button>
             <div class="d-flex align-items-center">
                 <span style="color: white;">Menu</span>
-            <!-- <span *ngIf="proyectInfo" style="color: white; font-size: 13px; margin-left: 5px;">({{proyectInfo.area}})</span> -->
-            <div class="dropdown">
-                <button class="btn btn-drop dropdown-toggle" type="button" id="dropDonwMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div ngbDropdown  class="d-inline-block">
+                <button *ngIf="proyectInfo" class="btn btn-drop" ngbDropdownToggle type="button" id="dropDonwMenu">
                     {{proyectoActual}} ({{proyectInfo.area}})
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropDownMenu">
-                    <a (click)="selectProject(proyecto)" style="cursor: pointer;" class="dropdown-item" [value]="proyecto.id_proyectos" *ngFor="let proyecto of proyectos">{{proyecto.nombre}}</a>
+                <button *ngIf="!proyectInfo" class="btn btn-drop" ngbDropdownToggle type="button" id="dropDonwMenu">
+                    Selecciona un proyecto
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropDownMenu" class="dropdown-proyect">
+                    <div ngbDropdownItem class="d-flex align-items-center" *ngFor="let proyecto of proyectos">
+                        <i *ngIf="!proyecto.logo" style="color: #fcb207;" class="fa fa-briefcase mr-4"></i>
+                        <img *ngIf="proyecto.logo" class="mr-4" src= "{{ 'https://tecdevsmx.com/' + proyecto.logo}}" alt="logo" width="20px">
+                        <a (click)="selectProject(proyecto)" style="cursor: pointer;" >{{proyecto.nombre}}</a>
+                    </div>
                 </div>
             </div>
             </div>
@@ -63,10 +26,28 @@
             <button  routerLink="/app/usuario/crear-proyecto" mat-icon-button class="example-icon mr-2 buton-menu" style="background-color: #fcb207; color: white;">
                 <i class="fas fa-plus"></i>
             </button>
-            <button style="color: white;" mat-icon-button class="F-icon btn btn-primary buton-menu" type="button" data-toggle="modal" data-target="#exampleModalCenter">
-                
-                <i class="fas fa-bell"></i>
-            </button>
+            <div ngbDropdown class="d-inline-block">
+                <button id="dropDownNotifications" ngbDropdownToggle style="color: white;" mat-icon-button class="F-icon btn btn-primary buton-menu" type="button">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropDownNotifications">
+                    <div ngbDropdownItem class="d-flex align-items-center">
+                        <i class="fa fa-bell fa-1x mr-2"></i>
+                        <h1 style="font-weight: bold;">Notificaciones</h1>
+                    </div>
+                    <div class="dropdown-noti">
+                        <div ngbDropdownItem class="d-flex align-items-center" *ngFor="let noti of notifications">
+                            <img src="../../../../assets/imgs/sb-icon-logo.png" width="50px" alt="">
+                            <div class="d-inline-block p-2 ml-3">
+                                <h4 style="font-weight: bold;">{{noti.titulo}}</h4>
+                                <p style="font-size: small;">{{noti.descripcion}}</p>
+                                <p class="text-center float-right date-badge">{{noti.fecha_de_notificacion}}</p>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button style="color: white;" mat-icon-button class="example-icon ml-2 buton-menu">
                 <i class="fas fa-cogs"></i>
             </button>

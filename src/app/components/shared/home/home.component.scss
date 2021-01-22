@@ -175,3 +175,23 @@ h1.example-app-name {
         outline: none;
     }
 }
+.dropdown-divider {
+    height: 2px;
+    width: 100%;
+    background: #f39c12;
+    border-radius: 20px;
+}
+.date-badge {
+    width: 50%;
+    background: #fdda88;
+    border-radius: 10px;
+    font-size: 13px;
+}
+.dropdown-noti {
+    max-height: 400px; 
+    overflow: auto;
+}
+.dropdown-proyect {
+    max-height: 400px;
+    overflow: auto;
+}

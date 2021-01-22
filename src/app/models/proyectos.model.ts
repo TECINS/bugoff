@@ -1,6 +1,7 @@
 export interface ProyectosSelect {
     id_proyectos: string;
     nombre: string;
+    logo: string;
 }
 
 export interface ProyectInfo {

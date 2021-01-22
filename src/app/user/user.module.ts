@@ -20,7 +20,7 @@ import { TextoPipe } from '../pipes/texto.pipe';
     PorfileComponent,
     ViewErrorComponent,
     ViewErrorAsignedComponent,
-    TextoPipe
+    TextoPipe,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
 import { ProyectInfo, ProyectosSelect } from '../../../models/proyectos.model';
 import { UtilService } from '../../../services/util.service';
 import { ProyectosService } from '../../../services/proyectos.service';
@@ -21,20 +20,29 @@ export class HomeComponent implements OnInit {
   localsession: LocalSession;
   proyectos: ProyectosSelect[];
   proyectoActual = 'Proyectos';
-  fillerContent = Array.from(
-    { length: 50 }, () =>
-    `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-  );
   private _mobileQueryListener: () => void;
+  notifications = [ 
+    {
+      titulo: 'Bugoff tester',
+      descripcion: 'Tienes un error por verificar en bugoff',
+      fecha_de_notificacion: '2020-01-21'
+    },
+    {
+      titulo: 'Kabum desarollador',
+      descripcion: 'Tienes un error por resolver en kabum',
+      fecha_de_notificacion: '2020-11-10'
+    },
+    {
+      titulo: 'Cdental Lider',
+      descripcion: 'El tester KTdral ha terminado su trabajo',
+      fecha_de_notificacion: '2020-04-20'
+    },
+  ];
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private proyectosService: ProyectosService,
-    private utilService: UtilService
+    private utilService: UtilService,
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -58,7 +66,6 @@ export class HomeComponent implements OnInit {
     this.proyectosService.obtenerProyectosPorId(this.localsession.id_usuarios)
       .subscribe( data => {
         if (!data.error) {
-          console.log(data);
           this.proyectos = data.proyectos;
         } else {
           Swal.fire({
