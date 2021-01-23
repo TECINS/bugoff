@@ -40,4 +40,10 @@ export class LeaderService {
   obtenerErrorAsignado(body: any): Observable<any> {
     return this.http.post(this.appService.URL_API + 'errores_usuarios/select-by-id', body);
   }
+  actualizarProyecto(body: any): Observable<any> {
+    return this.http.put(this.appService.URL_API + 'proyectos/actualizar', body);
+  }
+  actualizarLogoProyecto(body: any): Observable<any> {
+    return this.http.put(this.appService.URL_API + 'proyectos/actualizar-logo', body);
+  }
 }

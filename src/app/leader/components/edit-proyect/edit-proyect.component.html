@@ -1,75 +1,86 @@
 <div class="container-fluid">
-    <div class="row mt-4">
-        <div style="padding-left: 5%;" class="col-lg-10 col-md-3">
+    <div class="row mt-4 align-items-center">
+        <div style="padding-left: 2%;" class="col-11">
             <div class="titulo">
-              
                 <div class="subtitulo">
-                    Bugoff
+                    Editar proyecto
                 </div>
             </div>
         </div>
-    
-        <div style="padding-left: 5%;" class="col-lg-2 col-md-3">
-            <img src="../../../../../assets/imgs/logo-black.png" width="70px" />
+        <div class="col-1">
+            <img src="../../../../../assets/imgs/logo-black.png" width="70px"/>
         </div>
     </div>
-
-<div class="container-fluid container">
-        
-    <div class="row salto">
-        <div class="col-lg-5 col-md-3">
-        <div class="row mt-5" >
-            <div class="col-5 img" style=" margin: 0%;">
-               <figure>
-                <img class="imagen" src="../../../../assets/imgs/sb-icon-logo.png" alt="" width="150" height="150"/>
-                
-                <div class="capa"><a href="">
-                    <h1><i class="fas fa-camera"></i></h1>
-                    <p>Editar Foto de Perfil</p>
-                </a>
+    <div class="container-fluid container" *ngIf="proyectInfo" [formGroup]="formProyecto">
+        <div class="row">
+            <div class="col-4">
+                <div class="row justify-content-center align-items-center h-100" >
+                    <div class="col-12 img" style=" margin: 0%;">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="text-center" style="font-weight: bold;">Logo del proyecto</h3>
+                            </div>
+                            <div class="col-12">
+                                <figure (click)="openFile()">
+                                    <input #logo type="file" style="display:none" (change)="updateLogoProyect($event)">
+                                    <img *ngIf="!proyectInfo.logo" class="img-fluid p-3" src="../../../../assets/imgs/sb-icon-logo.png" width="100px" alt="logo"/>
+                                    <img *ngIf="proyectInfo.logo" class="img-fluid p-3" src="{{ 'https://tecdevsmx.com' + proyectInfo.logo}}" width="100px" alt="logo"/>
+                                    <div class="capa">
+                                        <a>
+                                            <h1><i class="fas fa-camera"></i></h1>
+                                            <p style="font-size: 15px;">Cambiar logo del proyecto</p>
+                                        </a>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </figure>
             </div>
-           
+            <div class="col-8">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-form-field appearance="fill" style="width: 100%">
+                                    <mat-label>Nombre del proyecto</mat-label>
+                                    <input matInput placeholder="Nombre del proyecto" formControlName="nombre" autocomplete="off">
+                                    <mat-icon matSuffix>
+                                        <i class="fas fa-signature text-custom"></i>
+                                    </mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                                <mat-form-field  appearance="fill" style="width: 100%;">
+                                    <mat-label>Estado del proyecto:</mat-label>
+                                    <mat-select formControlName="id_estados_proyectos" autocomplete="off">
+                                        <mat-option value="1">Inicializado</mat-option>
+                                        <mat-option value="2">Terminado</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                                <mat-form-field appearance="fill" style="width: 100%">
+                                    <mat-label>Repositorio del proyecto</mat-label>
+                                    <input matInput placeholder="Repositorio del proyecto" formControlName="repositorio" autocomplete="off">
+                                    <mat-icon matSuffix>
+                                        <i class="fas fa-code-branch text-custom"></i>
+                                    </mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12">
+                                <mat-form-field appearance="fill" style="width: 100%;">
+                                    <mat-label>Descripción</mat-label>
+                                    <textarea style="height: 200px; max-height: 200px; min-height: 100px;" matInput formControlName="descripcion" autocomplete="off" ></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center mt-2 mb-3">
+                <button mat-flat-button class="btn btn-custom" [disabled]="formProyecto.invalid" (click)="updateProyect()">Guardar Cambios</button>
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="row mt-4">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mt-2">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="Nombre"/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mt-3">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="Estado del proyecto"/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mt-3">
-                        <input class="form-control campo " type="text" name="" id="" placeholder="Repositorio"/> 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mt-3">
-                        <textarea name="textarea" rows="10" cols="50" class="form-control campo-descripcion " placeholder="Descripción"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-        <div class="mt-5 boton mb-3 btn-block">
-            <button class="btn btn-primary" >Guardar Cambios</button>
-        </div>
-    </div>
-
-</div>
-
-</div>
 </div>

@@ -18,4 +18,7 @@ export class UsersService {
   actualizarUsuario(body:any): Observable<any>{
     return this.http.put(this.appService.URL_API +'usuarios/actualizar',body);
   }
+  actualizarFotoPerfil(body: any): Observable<any> {
+    return this.http.put(this.appService.URL_API + 'usuarios/actualizar-foto-perfil', body);
+  }
 }

@@ -10,4 +10,8 @@ export interface ProyectInfo {
     id_areas: string;
     nombre: string;
     user_name: string;
+    logo: string;
+    descripcion: string;
+    repositorio: string;
+    id_estados_proyectos: string;
 }

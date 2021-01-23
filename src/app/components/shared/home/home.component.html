@@ -14,10 +14,10 @@
                     Selecciona un proyecto
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropDownMenu" class="dropdown-proyect">
-                    <div ngbDropdownItem class="d-flex align-items-center" *ngFor="let proyecto of proyectos">
+                    <div (click)="selectProject(proyecto)" style="cursor: pointer;"   ngbDropdownItem class="d-flex align-items-center" *ngFor="let proyecto of proyectos">
                         <i *ngIf="!proyecto.logo" style="color: #fcb207;" class="fa fa-briefcase mr-4"></i>
                         <img *ngIf="proyecto.logo" class="mr-4" src= "{{ 'https://tecdevsmx.com/' + proyecto.logo}}" alt="logo" width="20px">
-                        <a (click)="selectProject(proyecto)" style="cursor: pointer;" >{{proyecto.nombre}}</a>
+                        <a>{{proyecto.nombre}}</a>
                     </div>
                 </div>
             </div>

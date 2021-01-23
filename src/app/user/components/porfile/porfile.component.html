@@ -1,127 +1,132 @@
 <div class="container-fluid">
     <div class="row mt-4">
-        <div style="padding-left: 5%;" class="col-lg-10 col-md-3">
+        <div style="padding-left: 5%;" class="col-10">
             <div class="titulo">
-                Hi, <br>
+                Hola, <br>
                 <div class="subtitulo">
                     {{secionlocal.user_name}}
                 </div>
             </div>
         </div>
-    
-        <div style="padding-left: 5%;" class="col-lg-2 col-md-3">
+        <div style="padding-left: 5%;" class="col-2">
             <img src="../../../../../assets/imgs/logo-black.png" width="70px" />
         </div>
     </div>
-
-<div class="container-fluid container">
-        
-    <div class="row salto">
-        <div class="col-lg-5 col-md-3">
-        <div class="row mt-5" >
-            <div class="col-5 img" style=" margin: 0%;">
-               <figure>
-                <img class="imagen" src="https://scontent.fmex4-2.fna.fbcdn.net/v/t1.0-9/60448348_2188457861222810_257805742654881792_o.jpg?_nc_cat=101&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeHFqigqpsb9AyaGaXznq0v1ql9H1etFXR6qX0fV60VdHmIy36Pb8KTFC-aKL4uhQx6n_kr0J3ROvcWvvgibdnGh&_nc_ohc=6KubGEupp7YAX-PdcTN&_nc_ht=scontent.fmex4-2.fna&oh=56e98068e667dc859269cba7f3eec966&oe=6022DE9E" alt="" width="150" height="150"/>
-                
-                <div class="capa"><a href="">
-                    <h1><i class="fas fa-camera"></i></h1>
-                    <p>Editar Foto de Perfil</p>
-                </a>
-                </div>
-            </figure>
-            </div>
-            <div class="col-5">
-                <div class="row" style="justify-content: space-between;">
-                    <span>Sobre mí</span>
-                    <a href="" style=" margin-right: 10px; color: blue;" > Editar </a>
-                </div> 
-                <form >
-                <div class="parrafo">
-                    <p  class="descripcion">
-                          {{secionlocal.descripcion}}
-                    </p> 
-                </div>
-            </form>
-            </div>
-    </div>
-</div>
-<div class="col-lg-4 col-md-3" style=" margin-left: 25%;">
-            <div>
-                <h1 style="text-align: right;"> <Strong>Historial de Proyectos.</Strong></h1>
-            <div class="row" style="text-align: right; line-height: 2;">
-                <div class="col-12">
-                    <h3> <span class="badge badge-pill badge-primary">Finalizado</span> Kabum </h3>
-                    <div>
-                    Tecins <br>
-                    <div >
-                        Backend
-                    </div>
-                </div> 
-                </div>
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row mt-4">
-  
-        <div class="col-5">
-            <form  [formGroup]="actualizarinfo">
+    <div class="row" [formGroup]="actualizarinfo">
+        <div class="col-12">
             <div class="row">
                 <div class="col-12">
-                    <div class="mt-2">
-                        <input class="form-control campo " type="text" formControlName="nombre" id=""/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mt-3">
-                        <input class="form-control campo " type="text" formControlName="apellido_paterno" />
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mt-3">
-                        <input class="form-control campo " type="text" formControlName="apellido_materno" id=""/> 
-                    </div>
-                </div> 
-            </div>
-        </form>
-        </div>
-    
-
-   
-        <div class="col-5">
-            <form  [formGroup]="actualizarinfo">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mt-2">
-                        <input class="form-control campo " type="text" formControlName="user_name" id=""/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mt-3">
-                        <input class="form-control campo " type="text" formControlName="correo" id=""/>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mt-3">
-                        <input class="form-control campo " type="text" formControlName="contrasenia" id="" /> 
+                    <div class="row mt-5 justify-content-center align-items-center">
+                        <div class="col-3 img" style=" margin: 0%;">
+                            <figure (click)="openFile()">
+                                <input #porfile type="file" style="display:none" (change)="updatePorfilePicture($event)">
+                                <img *ngIf="!secionlocal.foto_perfil" class="img-fluid p-3" src="../../../../assets/imgs/not-found-logo.png" width="100px" alt="foto perfil"/>
+                                <img *ngIf="secionlocal.foto_perfil" class="img-fluid p-3" src="{{ 'https://tecdevsmx.com' + secionlocal.foto_perfil}}" width="100px" alt="foto perfil"/>
+                                <div class="capa"><a>
+                                        <h1><i class="fas fa-camera"></i></h1>
+                                        <p>Editar Foto de Perfil</p>
+                                    </a>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-8">
+                            <mat-form-field appearance="fill" style="width: 100%;">
+                                <mat-label>Descripción</mat-label>
+                                <textarea style="height: 200px; max-height: 200px; min-height: 100px;" matInput
+                                    formControlName="descripcion" autocomplete="off"></textarea>
+                            </mat-form-field>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
-        </div>
-    
-
-        <div class="col-10">
-        <div class="mt-5 boton mb-3 btn-block">
-            <button class="btn btn-primary "  [disabled]="actualizarinfo.invalid" (click)="_ActualizarInfo()" >Guardar Cambios</button>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mt-2">
+                                <mat-form-field appearance="fill" style="width: 100%">
+                                    <mat-label>Nombre de usuario</mat-label>
+                                    <input type="text" matInput placeholder="Nombre del proyecto" formControlName="nombre"
+                                        autocomplete="off">
+                                    <mat-icon matSuffix>
+                                        <i class="fas fa-signature text-custom"></i>
+                                    </mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mt-3">
+                                <mat-form-field appearance="fill" style="width: 100%">
+                                    <mat-label>Apellido paterno</mat-label>
+                                    <input type="text" matInput placeholder="Apellido paterno" formControlName="apellido_paterno"
+                                        autocomplete="off">
+                                    <mat-icon matSuffix>
+                                        <i class="fas fa-signature text-custom"></i>
+                                    </mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mt-3">
+                                <mat-form-field appearance="fill" style="width: 100%">
+                                    <mat-label>Apellido materno</mat-label>
+                                    <input type="text" matInput placeholder="Apellido materno" formControlName="apellido_materno"
+                                        autocomplete="off">
+                                    <mat-icon matSuffix>
+                                        <i class="fas fa-signature text-custom"></i>
+                                    </mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <form [formGroup]="actualizarinfo">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="mt-2">
+                                    <mat-form-field appearance="fill" style="width: 100%">
+                                        <mat-label>Nombre de usuario</mat-label>
+                                        <input type="text" matInput placeholder="Nombre de usuario" formControlName="user_name"
+                                            autocomplete="off">
+                                        <mat-icon matSuffix>
+                                            <i class="fas fa-user-alt text-custom"></i>
+                                        </mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mt-3">
+                                    <mat-form-field appearance="fill" style="width: 100%">
+                                        <mat-label>Correo electronico</mat-label>
+                                        <input type="text" matInput placeholder="Correo electronico" formControlName="correo"
+                                            autocomplete="off">
+                                        <mat-icon matSuffix>
+                                            <i class="fas fa-at text-custom"></i>
+                                        </mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mt-3">
+                                    <mat-form-field appearance="fill" style="width: 100%">
+                                        <mat-label>Contraseña</mat-label>
+                                        <input type="text" type="password" matInput placeholder="Contraseña"
+                                            formControlName="contrasenia" autocomplete="off">
+                                        <mat-icon matSuffix>
+                                            <i class="fas fa-lock text-custom"></i>
+                                        </mat-icon>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button class="btn btn-custom " [disabled]="actualizarinfo.invalid"
+                        (click)="_ActualizarInfo()">Guardar Cambios</button>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
-
-</div>
-
-</div>
-

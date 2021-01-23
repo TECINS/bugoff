@@ -2,23 +2,6 @@
 .container {
     margin-top: 50px;
 }
-
-.saludo {
-    height: 60px;
-}
-.nombre {
-    height: 60px;
-}
-.saludo .saludo2 {
-    font-weight: bold;
-    color: rgb(0, 0, 146);
-    font-size: 30px;
-}
-.nombre .nombre2 {
-    font-weight: bold;
-    color: rgb(230, 195, 0);
-    font-size: 50px;
-}
 .img .imagen {
     border-radius: 20px;
     border-color: black;
@@ -28,10 +11,10 @@
     align-items: center;
 }
 
- .img figure{
+.img figure{
     position: relative;
     overflow: hidden;
-    box-shadow: 0px 15px 25px rgba(0,0,0,0.50);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     border-radius: 20px;
 }
@@ -47,7 +30,7 @@
     top:0;
     width: 100%;
     height: 100%;
-    background: rgba(0,103,123,0.6);
+    background: rgba(1, 93, 136, 0.274);
     transition: all 500ms ease-out;
     opacity: 0;
     visibility: hidden;
@@ -60,8 +43,8 @@
 }
 
 .img figure:hover > .capa h1{
-margin-top: 60px;
-margin-bottom: 15px;
+margin-top: 50%;
+margin-bottom: 5%;
 }
 
 .img figure:hover > img{
@@ -84,88 +67,45 @@ margin-bottom: 15px;
     margin: auto;
 }
 
-.parrafo .descripcion {
-    font-weight: bold;
-    font-size: 14px;
-    color: rgb(90, 90, 90);
-}
 
 .info {
     width: 450px;
 }
 
-.boton button {
-    width: 100%;
-    background-color: rgb(182, 155, 2);
-    border-style: none;
-}
-.boton button:hover {
-    background-color: rgb(160, 136, 0);
-}
 
-input {
-    height: 45px;
-    border-style: dashed;
-}
-
-.estadisticas {
-    font-weight: bold;
-    color: rgb(90, 90, 90);
-    font-size: 19px;
-}
-
-.cuadro1 {
-
-    border-radius: 20px;
-    background-color: rgb(228, 172, 172);
-    height: 180px;
-}
-.cuadro2 {
-
-    border-radius: 20px;
-    background-color: rgb(158, 219, 255);
-    height: 180px;
-}
-
-.numero {
-    font-weight: bold;
-    font-size: 40px;
-    color: rgb(63, 63, 63);
-}
-.margen {
-    margin: 8%;
-    height: 70%;
-    width: 100%;
-}
-
-.campo{
-    background-color: rgba(255, 217, 0, 0.301);
-    border-color: rgba(107, 92, 5, 0.671);
-    border-style: solid;
-}
-
-.titulo {
-    font-size: 30px;
-    font-weight: 600;
-    color: rgb(56, 92, 87);
-  }
-  
-  .subtitulo {
-      margin-top: 2%;
+.subtitulo {
+    margin-top: 2%;
     font-size: 50px;
     font-weight: 700;
-    color: rgb(230, 195, 0);
-  }
-
-  .salto{
-      margin-top: 3%;
-  }
-  .campo-descripcion{
-    background-color: rgba(255, 217, 0, 0.301);
-    border-color: rgba(107, 92, 5, 0.671);
-    border-style: solid;
-    height: 120px;
+    color: #fcb207;
+}
+a {
+    text-decoration: none;
 }
 textarea {
-    resize: none;
-  }
+    max-height: 200px;
+    min-height: 100px;
+}
+
+.btn-custom {
+    background: #fcb207;
+    color: #352501;
+    font-weight: bold;
+    width: 80%;
+    display: block;
+    transition: all ease 0.3s;
+    &:hover {
+        background: #ffd87d;
+    }
+}
+.form-control {
+    &:focus {
+        box-shadow: 0px 0px 5px 2px #fcb207;
+    }
+}
+label {
+    font-weight: bold;
+}
+.text-custom {
+    color: #fcb207;
+}
