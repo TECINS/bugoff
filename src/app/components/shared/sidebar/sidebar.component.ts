@@ -1,11 +1,13 @@
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { ProyectosSelect, ProyectInfo } from '../../../models/proyectos.model';
 import Swal from 'sweetalert2';
 import { UtilService } from '../../../services/util.service';
 import { Router } from '@angular/router';
+import { SocketService } from '../../../services/socket.service';
+import { LocalSession } from '../../../models/session.model';
 
 
 @Component({
@@ -18,21 +20,25 @@ export class SidebarComponent implements OnInit {
 
   @Input() toggleside: Observable<boolean>;
   mobileQuery: MediaQueryList;
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-  localsession: any;
+  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+  localsession: LocalSession;
   loadprojectsinfo = [];
   visiblecomponent = 0;
+  activeToast = false;
   private mobileQueryListener: () => void;
   proyectos: ProyectosSelect[];
   proyectInfo: ProyectInfo;
   principalRoute = '';
+  socket: SocketIOClient.Socket;
   area = '';
+  notificationData: any;
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private proyectosService: ProyectosService,
     private utilService: UtilService,
     private route: Router,
+    private socketService: SocketService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -41,6 +47,16 @@ export class SidebarComponent implements OnInit {
     this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
   }
   ngOnInit(): void {
+    this.socket = this.socketService.getSocketConnection();
+    this.socket.on('notificacion', (data: any) => {
+      if (this.localsession.id_usuarios === data.id_usuarios) {
+        this.activeToast = true;
+        this.notificationData = data;
+        setTimeout(() => {
+          this.activeToast = false;
+        }, 3000);
+      }
+    });
     if (this.proyectInfo) {
       this.visiblecomponent = Number(this.proyectInfo.id_areas);
     }
@@ -66,9 +82,10 @@ export class SidebarComponent implements OnInit {
         break;
     }
   }
-  cerrar(): void{
+  cerrar(): void {
     localStorage.removeItem('session-bugoff');
     localStorage.removeItem('proyect-info');
-    this.route.navigateByUrl('/');
+    localStorage.removeItem('notifications');
+    this.route.navigateByUrl('auth');
   }
 }

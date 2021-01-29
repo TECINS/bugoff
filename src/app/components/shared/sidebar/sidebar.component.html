@@ -16,16 +16,6 @@
                 </button>
                 <a matLine> @{{ localsession.user_name }} </a>
             </mat-list-item>
-            <!-- <div style="margin-top: 10px;">
-                <mat-form-field appearance="fill" style="height: 100%; min-width: 100%;">
-                    <mat-label>Cambiar de proyecto</mat-label>
-                    <mat-select >
-                        <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto.id_proyectos" (click)="selectProject(proyecto)">
-                            {{ proyecto.nombre }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div> -->
             <mat-list-item matLine routerLink="/app/usuario/crear-proyecto" class="first-item">
                 <button mat-icon-button>
                     <i class="fas fa-plus-square"></i>
@@ -79,16 +69,24 @@
                 </button>
                 <a matLine> Historial errores </a>
             </mat-list-item>
-            <mat-list-item routerLink="/app/auth" style="position: absolute;bottom: 0;">
+            <mat-list-item  (click)="cerrar()" style="position: absolute;bottom: 0;">
                 <button mat-icon-button>
                     <i class="fas fa-door-closed" style="color: #ffb142;"></i>
                 </button>
-                <a matLine  style="color: #ffb142;" (click)="cerrar()" > Cerrar Sesión </a>
+                <a matLine  style="color: #ffb142;"> Cerrar Sesión </a>
             </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content style="background-color: white; color: black; height: 90vh; width: 100%;">
-            <router-outlet></router-outlet>
+            <router-outlet>
+                <ngb-toast *ngIf="activeToast" class="mb-2 mr-2" style="position: fixed; bottom: 0;right: 0; width: 300px; background-color: #fcb207;" [autohide]=false (hidden)="activeToast=false">
+                    <ng-template ngbToastHeader>
+                        <img src="../../../../assets/imgs/sb-icon-logo.png" width="16" height="16" />
+                        <strong class="mx-1">Bugoff</strong>{{notificationData.fecha_de_notificacion | date:'short'}}
+                    </ng-template>
+                    {{notificationData.message}}
+                </ngb-toast>
+            </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

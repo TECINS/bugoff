@@ -1,33 +1,48 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar style="background-color: #1A303E;">
         <mat-toolbar-row>
-            <button mat-icon-button class="example-icon buton-menu" style="color: white;" aria-label="Example icon-button with menu icon">
-                <button mat-icon-button class="buton-menu" (click)="activateSide()"><mat-icon>menu</mat-icon></button>
+            <button mat-icon-button class="example-icon buton-menu" style="color: white;"
+                aria-label="Example icon-button with menu icon">
+                <button mat-icon-button class="buton-menu" (click)="activateSide()">
+                    <mat-icon>menu</mat-icon>
+                </button>
             </button>
             <div class="d-flex align-items-center">
                 <span style="color: white;">Menu</span>
-            <div ngbDropdown  class="d-inline-block">
-                <button *ngIf="proyectInfo" class="btn btn-drop" ngbDropdownToggle type="button" id="dropDonwMenu">
-                    {{proyectoActual}} ({{proyectInfo.area}})
-                </button>
-                <button *ngIf="!proyectInfo" class="btn btn-drop" ngbDropdownToggle type="button" id="dropDonwMenu">
-                    Selecciona un proyecto
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropDownMenu" class="dropdown-proyect">
-                    <div (click)="selectProject(proyecto)" style="cursor: pointer;"   ngbDropdownItem class="d-flex align-items-center" *ngFor="let proyecto of proyectos">
-                        <i *ngIf="!proyecto.logo" style="color: #fcb207;" class="fa fa-briefcase mr-4"></i>
-                        <img *ngIf="proyecto.logo" class="mr-4" src= "{{ 'https://tecdevsmx.com/' + proyecto.logo}}" alt="logo" width="20px">
-                        <a>{{proyecto.nombre}}</a>
+                <div ngbDropdown class="d-inline-block" *ngIf="proyectos">
+                    <button *ngIf="proyectInfo" class="btn btn-drop" ngbDropdownToggle type="button" id="dropDonwMenu">
+                        {{proyectoActual}} ({{proyectInfo.area}})
+                    </button>
+                    <button *ngIf="!proyectInfo" class="btn btn-drop" ngbDropdownToggle type="button" id="dropDonwMenu">
+                        Selecciona un proyecto
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropDownMenu" class="dropdown-proyect"
+                        *ngIf="proyectos.length > 0">
+                        <div (click)="selectProject(proyecto)" style="cursor: pointer;" ngbDropdownItem
+                            class="d-flex align-items-center" *ngFor="let proyecto of proyectos">
+                            <i *ngIf="!proyecto.logo" style="color: #fcb207;" class="fa fa-briefcase mr-4"></i>
+                            <img *ngIf="proyecto.logo" class="mr-4" src="{{ 'https://tecdevsmx.com/' + proyecto.logo}}"
+                                alt="logo" width="20px">
+                            <a>{{proyecto.nombre}}</a>
+                        </div>
+                    </div>
+                    <div ngbDropdownMenu aria-labelledby="dropDownMenu" class="dropdown-proyect">
+                        <div *ngIf="proyectos.length <= 0" style="cursor: pointer;" ngbDropdownItem
+                            class="d-flex align-items-center">
+                            <img class="mr-4" src="../../../../assets/imgs/not-found-logo.png" alt="logo" width="20px">
+                            <a>No tienes proyectos!</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
             <span class="example-spacer"></span>
-            <button  routerLink="/app/usuario/crear-proyecto" mat-icon-button class="example-icon mr-2 buton-menu" style="background-color: #fcb207; color: white;">
+            <button routerLink="/app/usuario/crear-proyecto" mat-icon-button class="example-icon mr-2 buton-menu"
+                style="background-color: #fcb207; color: white;">
                 <i class="fas fa-plus"></i>
             </button>
             <div ngbDropdown class="d-inline-block">
-                <button id="dropDownNotifications" ngbDropdownToggle style="color: white;" mat-icon-button class="F-icon btn btn-primary buton-menu" type="button">
+                <button id="dropDownNotifications" ngbDropdownToggle style="color: white;" mat-icon-button
+                    class="F-icon btn btn-primary buton-menu" type="button">
                     <i class="fas fa-bell"></i>
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropDownNotifications">
@@ -35,14 +50,22 @@
                         <i class="fa fa-bell fa-1x mr-2"></i>
                         <h1 style="font-weight: bold;">Notificaciones</h1>
                     </div>
-                    <div class="dropdown-noti">
+                    <div class="dropdown-noti" *ngIf="notifications">
                         <div ngbDropdownItem class="d-flex align-items-center" *ngFor="let noti of notifications">
                             <img src="../../../../assets/imgs/sb-icon-logo.png" width="50px" alt="">
                             <div class="d-inline-block p-2 ml-3">
-                                <h4 style="font-weight: bold;">{{noti.titulo}}</h4>
-                                <p style="font-size: small;">{{noti.descripcion}}</p>
-                                <p class="text-center float-right date-badge">{{noti.fecha_de_notificacion}}</p>
+                                <h4 style="font-weight: bold;">Bugoff</h4>
+                                <p style="font-size: small;">{{noti.message}}</p>
+                                <p class="text-center float-right date-badge">{{noti.fecha_de_notificacion | date:'short'}}</p>
                                 <div class="dropdown-divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-noti" *ngIf="!notifications">
+                        <div ngbDropdownItem class="d-flex align-items-center">
+                            <img src="../../../../assets/imgs/not-found-logo.png" width="50px" alt="">
+                            <div class="d-inline-block p-2 ml-3">
+                                <h4 style="font-weight: bold;">No hay notificaciones</h4>
                             </div>
                         </div>
                     </div>
@@ -53,6 +76,6 @@
             </button>
         </mat-toolbar-row>
     </mat-toolbar>
-    <app-sidebar [toggleside]="activate"></app-sidebar>
-
+    <app-sidebar [toggleside]="activate">
+    </app-sidebar>
 </div>

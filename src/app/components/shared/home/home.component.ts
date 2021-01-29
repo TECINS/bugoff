@@ -5,6 +5,8 @@ import { UtilService } from '../../../services/util.service';
 import { ProyectosService } from '../../../services/proyectos.service';
 import { LocalSession } from '../../../models/session.model';
 import Swal from 'sweetalert2';
+import { SocketService } from '../../../services/socket.service';
+import { Notifications } from '../../../models/notificatios.model';
 
 @Component({
   selector: 'app-home',
@@ -20,35 +22,25 @@ export class HomeComponent implements OnInit {
   localsession: LocalSession;
   proyectos: ProyectosSelect[];
   proyectoActual = 'Proyectos';
+  socket: SocketIOClient.Socket;
+  notifications: any[] = [];
+  activeToast = false;
   private _mobileQueryListener: () => void;
-  notifications = [ 
-    {
-      titulo: 'Bugoff tester',
-      descripcion: 'Tienes un error por verificar en bugoff',
-      fecha_de_notificacion: '2020-01-21'
-    },
-    {
-      titulo: 'Kabum desarollador',
-      descripcion: 'Tienes un error por resolver en kabum',
-      fecha_de_notificacion: '2020-11-10'
-    },
-    {
-      titulo: 'Cdental Lider',
-      descripcion: 'El tester KTdral ha terminado su trabajo',
-      fecha_de_notificacion: '2020-04-20'
-    },
-  ];
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private proyectosService: ProyectosService,
     private utilService: UtilService,
+    private socketService: SocketService
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.proyectInfo = JSON.parse(localStorage.getItem('proyect-info'));
     this.localsession = JSON.parse(localStorage.getItem('session-bugoff'));
+    if (localStorage.getItem('notifications')) {
+      this.notifications = JSON.parse(localStorage.getItem('notifications'));
+    }
   }
 
   activateSide(): void {
@@ -60,6 +52,21 @@ export class HomeComponent implements OnInit {
     } else {
       this.proyectoActual = 'Proyectos';
     }
+    this.socket = this.socketService.getSocketConnection();
+    this.socket.connect();
+    this.socket.on('connect', () => {
+      console.log('Conectado al servidor');
+    });
+    this.socket.on('notificacion', (data: any) => {
+      if (this.localsession.id_usuarios === data.id_usuarios) {
+        this.notifications.push(data);
+        localStorage.setItem('notifications', JSON.stringify(this.notifications));
+        this.activeToast = true;
+        setTimeout(() => {
+          this.activeToast = false;
+        }, 3000);
+      }
+    });
     setTimeout(() => {
       this.utilService._loading = true;
     });
@@ -67,6 +74,7 @@ export class HomeComponent implements OnInit {
       .subscribe( data => {
         if (!data.error) {
           this.proyectos = data.proyectos;
+          console.log(this.proyectos);
         } else {
           Swal.fire({
             title: 'Error',
