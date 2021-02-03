@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { ProyectInfo } from '../../../models/proyectos.model';
 import { LocalSession } from '../../../models/session.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-error-report',
@@ -36,7 +37,8 @@ export class ErrorReportComponent implements OnInit {
     private reportErrorService: ErrorReportService,
     public fb: FormBuilder,
     private utilService: UtilService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {
     this.formReport = fb.group({
       autor_reporte: [''],
@@ -74,7 +76,7 @@ export class ErrorReportComponent implements OnInit {
         control.markAsTouched();
         Swal.fire({
           icon: 'warning',
-          title: 'Verifica que no haya campos vacios'
+          title: 'Verifica que no haya campos vacíos'
         });
       });
     } else {
@@ -105,7 +107,7 @@ export class ErrorReportComponent implements OnInit {
                 icon: 'success',
                 title: 'Error reportado correctamente',
               });
-              this.formReport.reset();
+              window.location.reload();
               this.imageSrc = null;
             } else {
               console.log(resp);

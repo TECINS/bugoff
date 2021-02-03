@@ -17,7 +17,7 @@
             <div class="row align-items-center">
                 <div class="col-4">
                     <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label><i class="fas fa-filter mr-2"></i> Fitrar por prioridad:</mat-label>
+                        <mat-label><i class="fas fa-filter mr-2"></i> Filtrar por prioridad:</mat-label>
                         <mat-select>
                             <mat-option (click)="filterPrioridad(prioridad.prioridad)" value={{prioridad.prioridad}} *ngFor="let prioridad of prioridades">
                                 {{prioridad.prioridad}}
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-4">
                     <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label><i class="fas fa-filter mr-2"></i> Fitrar por asignación:</mat-label>
+                        <mat-label><i class="fas fa-filter mr-2"></i> Filtrar por asignación:</mat-label>
                         <mat-select>
                             <mat-option (click)="filterAsignacion(asign.id_asignaciones)" value="1" *ngFor="let asign of asignaciones" value={{asign.id_asignaciones}}>
                                 {{asign.asignacion}}
@@ -55,7 +55,7 @@
                             <h3 style="font-weight: bold;" class="m-0">Id</h3>
                         </div>
                         <div class="col-2">
-                            <h3 style="font-weight: bold;" class="m-0"> Titulo</h3>
+                            <h3 style="font-weight: bold;" class="m-0"> Título</h3>
                         </div>
                         <div class="col-2">
                             <h3 style="font-weight: bold;" class="m-0 pl-2">Prioridad</h3>
@@ -69,7 +69,19 @@
             </div>
         </div>
         <div class="col-12 error-list">
-            <div class="row justify-content-center">
+            <div class="row">
+                <div class="col-10 text-center" *ngIf="erroresProyectoFiltrado.length <= 0">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <h1 style="font-weight: bold;">No hay errores</h1>
+                        </div>
+                        <div class="col-12">
+                            <img src="../../../../assets/imgs/not-found-logo.png" alt="not found" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" *ngIf="erroresProyectoFiltrado.length > 0">
                 <div class="col-10" *ngFor="let error of erroresProyectoFiltrado">
                     <div class="row mt-2">
                         <div class="col-10"  (click)="viewError(error)">
@@ -145,7 +157,7 @@
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" style="width: 100%;">
-                        <mat-label>Proridad del error</mat-label>
+                        <mat-label>Prioridad del error</mat-label>
                         <mat-select formControlName="id_prioridades" autocomplete="off">
                             <mat-option value="1">Baja</mat-option>
                             <mat-option value="2">Media</mat-option>
@@ -175,7 +187,7 @@
                 <div class="col-6">
                     <mat-form-field appearance="fill" style="width: 100%">
                         <mat-label>Dispositivo de uso</mat-label>
-                        <input matInput placeholder="Dispositivo en el que se probo" formControlName="dispositivo_uso" autocomplete="off">
+                        <input matInput placeholder="Dispositivo en el que se probó" formControlName="dispositivo_uso" autocomplete="off">
                         <mat-icon matSuffix>
                             <i class="fas fa-mobile text-primary"></i>
                         </mat-icon>
@@ -183,7 +195,7 @@
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="fill" style="width: 100%">
-                        <mat-label>Rama en la que se encotro</mat-label>
+                        <mat-label>Rama en la que se encontro</mat-label>
                         <input matInput placeholder="Rama del repositorio en la que se encontro" formControlName="rama_repositorio" autocomplete="off">
                         <mat-icon matSuffix>
                             <i class="fas fa-code-branch text-primary"></i>
@@ -214,7 +226,10 @@
                         <textarea style="height: 100px; max-height: 300px; min-height: 100px;" matInput formControlName="descripcion" autocomplete="off" ></textarea>
                     </mat-form-field>
                 </div>
-                <div class="col-12 d-flex justify-content-center" *ngIf="errorInfo.anexo">
+                <div *ngIf="errorInfo.anexo" class="col-12 d-flex justify-content-center">
+                    <img src= "{{ 'https://tecdevsmx.com' + errorInfo.anexo}}" class="img-fluid" width="200px" alt="anexo">
+                </div>
+                <div *ngIf="!errorInfo.anexo" class="col-12 d-flex justify-content-center">
                     <img src="../../../../assets/imgs/not-found-logo.png" class="img-fluid" width="200px" alt="anexo">
                 </div>
             </form>

@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <div class="row p-2 mt-3">
         <div class="col-12">
-            <div class="row">
+            <div class="row justify-content-between align-items-center">
                 <div class="col-11">
-                    <h1 style="font-weight: bold;">Errores asignados</h1>
+                    <h1 style="font-weight: bold;">Historial de errores del proyecto</h1>
                 </div>
                 <div class="col-1">
-                    <img src="../../../../assets/imgs/logo-black.png" width="100px" class="img-fluid" alt="logo">
+                    <img src="../../../../assets/imgs/logo-black.png" width="100px" alt="logo" class="img-fluid">
                 </div>
             </div>
         </div>
         <div class="col-12">
-            <h4>Lista de errores que te han asignado</h4>
+            <h4>Historial de todos los errores del proyecto hasta la fecha</h4>
         </div>
         <div class="col-12">
             <div class="row align-items-center">
@@ -30,7 +30,7 @@
         <div class="col-12">
             <div class="row align-items-center">
                 <div class="col-12 d-flex align-items-center">
-                    <h1 class="title-list m-0">Lista de errores asignados</h1>
+                    <h1 class="title-list m-0">Lista de todos los errores</h1>
                     <span class="badge badge-custom ml-3">Filtrado: {{filtroSpan}}</span>
                 </div>
             </div>
@@ -41,20 +41,17 @@
                 <div class="col-1"></div>
                 <div class="col-10">
                     <div class="row justify-content-center m-0">
-                        <div class="col-1">
+                        <div class="col-2">
                             <h3 style="font-weight: bold;" class="m-0">Id</h3>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <h3 style="font-weight: bold;" class="m-0"> Título</h3>
                         </div>
                         <div class="col-2">
                             <h3 style="font-weight: bold;" class="m-0 pl-2">Prioridad</h3>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <h3 style="font-weight: bold;" class="m-0">Fecha de reporte</h3>
-                        </div>
-                        <div class="col-2">
-                            <h3 style="font-weight: bold;" class="m-0">Fecha de entrega</h3>
                         </div>
                     </div>
                 </div>
@@ -63,7 +60,7 @@
         </div>
         <div class="col-12 error-list">
             <div class="row">
-                <div class="col-10 text-center" *ngIf="erroresDevFiltrado.length <= 0">
+                <div class="col-10 text-center" *ngIf="erroresProyectoFiltrado.length <= 0">
                     <div class="row justify-content-center">
                         <div class="col-12">
                             <h1 style="font-weight: bold;">No hay errores</h1>
@@ -74,29 +71,26 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12" *ngFor="let error of erroresDevFiltrado">
+            <div class="row justify-content-center" *ngIf="erroresProyectoFiltrado.length > 0">
+                <div class="col-10" *ngFor="let error of erroresProyectoFiltrado">
                     <div class="row mt-2 justify-content-center">
                         <div class="col-10"  (click)="viewError(error)">
                             <div class="alert alert-dark" role="alert">
-                                <div class="row justify-content-between align-items-center m-0 p-3">
-                                    <div class="col-1">
+                                <div class="row justify-content-center align-items-center m-0 p-4">
+                                    <div class="col-3">
                                         <h3 class="m-0"> <strong> Id: </strong> {{error.id_errores}} </h3>
                                     </div>
                                     <div class="col-3">
-                                        <h3 class="m-0" data-toggle="tooltip" data-placement="top" title="Título del error"> <i class="fa fa-file-signature mr-2"></i> {{error.titulo_error}} </h3>
+                                        <h3 class="m-0" data-toggle="tooltip" data-placement="top" title="Titulo del errror"> <i class="fa fa-file-signature mr-2" ></i> {{error.titulo_error}} </h3>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <h3 *ngIf="error.grado_prioridad == 'Baja'" class="m-0 badge badge-pill badge-custom baja" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                         <h3 *ngIf="error.grado_prioridad == 'Media'" class="m-0 badge badge-pill badge-custom media" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                         <h3 *ngIf="error.grado_prioridad == 'Alta'" class="m-0 badge badge-pill badge-custom alta" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                         <h3 *ngIf="error.grado_prioridad == 'Blocxer'" class="m-0 badge badge-pill badge-custom blocker" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                     </div>
-                                    <div class="col-2">
-                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de reporte"> <i class="fa fa-calendar-plus mr-2"> </i> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
-                                    </div>
-                                    <div class="col-2">
-                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de entrega"> <i class="fa fa-calendar-day mr-2"></i> <span style="font-size: 14px;">{{error.fecha_de_entrega | date:'dd-MM-yyyy'}}</span> </h3>
+                                    <div class="col-3">
+                                        <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de reporte"> <i class="fa fa-calendar mr-2"> </i> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
                                     </div>
                                 </div>
                             </div>
@@ -107,3 +101,4 @@
         </div>
     </div>
 </div>
+

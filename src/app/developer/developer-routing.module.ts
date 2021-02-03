@@ -14,9 +14,6 @@ const routes: Routes = [
         path: 'errores-asignados', component: AssignedErrorsComponent
       },
       {
-        path: 'historial-errores', component: AssignedErrorsComponent
-      },
-      {
         path: '**', redirectTo: 'home'
       }
     ]

@@ -65,7 +65,7 @@ export class ViewAssignedErrorComponent implements OnInit {
       .subscribe(data => {
         if (!data.error) {
           Swal.fire({
-            title: 'Se marco como terminado el error',
+            title: 'Se marcó como terminado el error',
             icon: 'success'
           });
           this.developerService.cambiarEstadoDeUnError(this.idErrores, '5')

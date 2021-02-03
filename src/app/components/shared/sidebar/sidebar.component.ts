@@ -66,7 +66,7 @@ export class SidebarComponent implements OnInit {
     switch (Number(this.visiblecomponent)) {
       case 0:
         this.principalRoute = '/app/usuario';
-        this.area = 'usuario';
+        this.area = 'Usuario';
         break;
       case 1:
         this.principalRoute = '/app/lider';

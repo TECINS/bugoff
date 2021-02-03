@@ -30,21 +30,10 @@ export class RecoveryComponent implements OnInit {
 
   recoveryPassword(): void {
     this.correo = this.formRecoveryPass.value.correo;
-    console.log(this.correo);
-    Swal.fire(
-      {
-        allowOutsideClick: false,
-        icon: 'info',
-        text: 'Espere por favor...',
-        titleText: 'Recuperando'
-      }
-    );
-    Swal.showLoading();
     if (this.validarCorreoElectronico(this.correo)) {
       this.utilService._loading = true;
       this.loginService.sendForgotMessage(this.correo)
         .subscribe((resp: any) => {
-          console.log(resp);
           if (!resp.error) {
             Swal.fire({
               allowOutsideClick: false,
@@ -55,6 +44,7 @@ export class RecoveryComponent implements OnInit {
               this.router.navigateByUrl('auth');
             });
           } else {
+            console.log(resp);
             Swal.fire({
               allowOutsideClick: false,
               icon: 'info',

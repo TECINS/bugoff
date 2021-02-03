@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.value.correo === '' || this.formLogin.value.contrasenia === '') {
       Swal.fire({
         icon: 'warning',
-        title: 'Verifica que no haya campos vacios'
+        title: 'Verifica que no haya campos vacíos'
       });
     }
     else {

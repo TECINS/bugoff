@@ -26,7 +26,7 @@ export class ManageProyectComponent implements OnInit {
   titleList = 'Lista de errores no asignados';
   filtroSpan = 'Sin filtro';
   asignacion = 2;
-  erroresProyectoFiltrado: any[];
+  erroresProyectoFiltrado: any[] = [];
   errorInfo: any;
   errorActual: any;
   listaDesarrolladores: any[];
@@ -89,6 +89,7 @@ export class ManageProyectComponent implements OnInit {
       erroresNoAsignados: this.leaderService.obtenerListaErroresNoAsignados(this.proyectInfo.id_proyectos),
       listaDesarrolladores: this.leaderService.obtenerDesarrolladoresPorProyecto(this.proyectInfo.id_proyectos)
     }).subscribe(data => {
+      console.log(data);
       if (!data.erroresNoAsignados.error) {
         this.erroresProyecto = data.erroresNoAsignados.erroresNoAsignados;
         this.erroresProyectoFiltrado = data.erroresNoAsignados.erroresNoAsignados;
@@ -159,7 +160,6 @@ export class ManageProyectComponent implements OnInit {
   }
   viewError(error: any): void {
     if (this.asignacion === 1) {
-      console.log(error);
       const modalRef = this.modalService.open(ViewErrorAsignedComponent, {size: 'xl', centered: true});
       modalRef.componentInstance.idErrores = error.id_errores;
       modalRef.componentInstance.idUsuarios = error.id_usuarios;
@@ -295,7 +295,6 @@ export class ManageProyectComponent implements OnInit {
     this.leaderService.obtenerErrorAsignado({id_errores_usuarios: error.id_errores_usuarios})
       .subscribe (data => {
         if (!data.error) {
-          console.log(data);
           this.formEditarAsignado.get('id_errores').setValue(data.message.id_errores);
           this.formEditarAsignado.get('fecha_de_entrega').setValue(data.message.fecha_de_entrega.substring(0, 10));
           this.formEditarAsignado.get('id_usuarios').setValue(data.message.id_usuarios);

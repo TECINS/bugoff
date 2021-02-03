@@ -48,15 +48,15 @@
             
                 <div class="row p-2">
                     <div class="col-6 d-flex justify-content-center" *ngIf="!errorInfo.anexo" >
-                        <img class="img-fluid view" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
+                        <img class="img-fluid view" width="500px" src="../../../../assets/imgs/not-found-logo.png" alt="not found">
                     </div>
                     <div class="col-6 d-flex justify-content-center" *ngIf="errorInfo.anexo">
-                        <img class="img-fluid view" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}"  alt="anexo">
+                        <img class="img-fluid view" width="500px" src= "{{ 'https://tecdevsmx.com/' + errorInfo.anexo}}"  alt="anexo">
                     </div>
                     <div class="col-6">
                         <div class="row">
                             <div class="col trabajo">
-                                <p class="letrablanca">Rama en la que se trabajo</p>
+                                <p class="letrablanca">Rama en la que se trabajó</p>
                                 <p class="letrablancagrande">{{errorInfo.rama_repositorio}}</p>
                             </div>
                         </div>

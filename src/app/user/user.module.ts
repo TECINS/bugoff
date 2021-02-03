@@ -11,6 +11,7 @@ import { PorfileComponent } from './components/porfile/porfile.component';
 import { ViewErrorComponent } from './components/view-error/view-error.component';
 import { ViewErrorAsignedComponent } from './components/view-error-asigned/view-error-asigned.component';
 import { TextoPipe } from '../pipes/texto.pipe';
+import { HistoryErrorsComponent } from './components/history-errors/history-errors.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { TextoPipe } from '../pipes/texto.pipe';
     ViewErrorComponent,
     ViewErrorAsignedComponent,
     TextoPipe,
+    HistoryErrorsComponent,
   ],
   imports: [
     CommonModule,

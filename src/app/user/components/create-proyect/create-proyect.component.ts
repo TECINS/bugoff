@@ -88,7 +88,7 @@ export class CreateProyectComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: 'Proyecto registrado',
-            text: 'Ahora ve a invitar colavoradores al proyecto'
+            text: 'Ahora ve a invitar colaboradores al proyecto'
           });
           this.ngOnInit();
         } else {

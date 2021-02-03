@@ -8,7 +8,6 @@ import { ViewAssignedErrorComponent } from './components/view-assigned-error/vie
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
-import { HistoryErrorsComponent } from './components/history-errors/history-errors.component';
 
 
 @NgModule({
@@ -16,7 +15,6 @@ import { HistoryErrorsComponent } from './components/history-errors/history-erro
     HomeDeveloperComponent,
     AssignedErrorsComponent,
     ViewAssignedErrorComponent,
-    HistoryErrorsComponent,
   ],
   imports: [
     CommonModule,

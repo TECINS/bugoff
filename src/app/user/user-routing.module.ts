@@ -5,6 +5,7 @@ import { HomeUserComponent } from './components/home-user/home-user.component';
 import { PorfileComponent } from './components/porfile/porfile.component';
 import { ViewErrorComponent } from './components/view-error/view-error.component';
 import { ViewErrorAsignedComponent } from './components/view-error-asigned/view-error-asigned.component';
+import { HistoryErrorsComponent } from './components/history-errors/history-errors.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
       },
       {
         path: 'perfil', component: PorfileComponent
+      },
+      {
+        path: 'historial-errores', component: HistoryErrorsComponent
       },
       {
         path: '**', redirectTo: 'home'
