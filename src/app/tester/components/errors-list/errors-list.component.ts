@@ -21,6 +21,7 @@ export class ErrorsListComponent implements OnInit {
   errores: ErrorList[];
   erroresFilter: ErrorList[] = [];
   errorInfo: ErrorData;
+  errorActual: ErrorList;
   estados = [
     { id_estados_errores: '3', estado: 'En espera' },
     { id_estados_errores: '4', estado: 'En proceso' },
@@ -53,9 +54,10 @@ export class ErrorsListComponent implements OnInit {
 
   onChangeCb(value: boolean): void {
     if (value) {
+      this.erroresFilter = this.errores;
       this.erroresFilter = this.filterConfirm(1);
     } else {
-      this.erroresFilter = this.filterConfirm(0);
+      this.erroresFilter = this.errores;
     }
   }
 
@@ -83,5 +85,29 @@ export class ErrorsListComponent implements OnInit {
   verError(error: ErrorList): void {
     const modalRef = this.modalService.open(ViewErrorComponent, {size: 'xl'});
     modalRef.componentInstance.idErrores = error.id_errores;
+  }
+  openConfirm(content: any, error: ErrorList): void {
+    this.modalService.open(content, {centered: true});
+    this.errorActual = error;
+  }
+  confirmarError(): void {
+    this.utilService._loading = true;
+    this.errorsService.confirmarError(this.errorActual.id_errores)
+      .subscribe(data => {
+        if (!data.error) {
+          Swal.fire({
+            title: 'El error se confirmo correctamente',
+            icon: 'success'
+          });
+          this.ngOnInit();
+          this.modalService.dismissAll();
+        } else {
+          console.log(data);
+          Swal.fire({
+            title: 'Ocurrio un error al confirmar',
+            icon: 'error'
+          });
+        }
+      }, err => console.log(err)).add(() => this.utilService._loading = false);
   }
 }

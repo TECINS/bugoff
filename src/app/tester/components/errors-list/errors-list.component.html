@@ -49,7 +49,7 @@
     </div>
     <div class="row error-list" *ngIf="erroresFilter.length > 0">
         <div class="col-12">
-            <div class="row mt-2" *ngFor="let error of erroresFilter">
+            <div class="row mt-2 align-items-center" *ngFor="let error of erroresFilter">
                 <div class="col-1">
             
                 </div>
@@ -62,19 +62,23 @@
                             <div class="col-4">
                                 <h3 class="m-0" data-toggle="tooltip" data-placement="top" title="Título del error"> <i class="fa fa-file-signature mr-2"></i> {{error.titulo_error}} </h3>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <h3 *ngIf="error.grado_prioridad == 'Baja'" class="m-0 badge badge-pill badge-custom baja" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                 <h3 *ngIf="error.grado_prioridad == 'Media'" class="m-0 badge badge-pill badge-custom media" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                 <h3 *ngIf="error.grado_prioridad == 'Alta'" class="m-0 badge badge-pill badge-custom alta" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                                 <h3 *ngIf="error.grado_prioridad == 'Blocxer'" class="m-0 badge badge-pill badge-custom blocker" data-toggle="tooltip" data-placement="top" title="Prioridad del error"> <i class="fa fa-exclamation-circle mr-2"></i> <span>{{error.grado_prioridad}}</span> </h3>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
+                                <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Estado"> <span style="font-size: 14px;">{{error.estado}}</span> </h3>
+                            </div>
+                            <div class="col-2">
                                 <h3 class="m-0 badge badge-pill badge-custom" data-toggle="tooltip" data-placement="top" title="Fecha de reporte"> <i class="fa fa-calendar mr-2"> </i> <span style="font-size: 14px;">{{error.fecha_reporte | date:'dd-MM-yyyy'}}</span> </h3>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-1">
+                <div class="col-1 mb-2">
+                    <button *ngIf="error.id_estados_errores == '5'" (click)="openConfirm(confirmContent, error)" [disabled]="error.confirmado == '1'" class="btn btn-primary"><i class="fa fa-check"></i></button>
                 </div>
             </div>
         </div>
@@ -88,3 +92,24 @@
         </div>
     </div>
 </div>
+
+<ng-template #confirmContent let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h1 class="modal-title" style="font-weight: bold;">Confirmar error terminado</h1>
+        <button class="close" type="button" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <h4 style="font-weight: bold;">Al confirmar este error, se da por terminado el reporte y queda corregido.</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-12 text-center">
+            <button ngbAutofocus mat-flat-button color="primary" style="width: 80%;" type="submit" (click)="confirmarError()">CONFIRMAR</button>
+        </div>
+    </div>
+</ng-template>

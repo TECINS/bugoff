@@ -17,4 +17,7 @@ export class ErroresService {
     };
     return this.http.post(this.appService.URL_API + 'errores/errores-tester', body);
   }
+  confirmarError(idErrores: string): Observable<any> {
+    return this.http.put(this.appService.URL_API + 'errores/confirmar', {id_errores: idErrores});
+  }
 }
